@@ -330,29 +330,28 @@ body {
    ========================= */
 .skills-carousel-section {
     margin-top: 60px;
-    margin-bottom: 70px;
+    margin-bottom: 50px;
+    text-align: center;
 }
 
 .skills-carousel-section h2 {
     font-size: 2.8rem;
     margin-bottom: 30px;
     color: var(--couleur-texte);
-    text-align: center;
 }
 
 .skills-carousel {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 20px;
-    margin-bottom: 20px;
+    gap: 30px;
 }
 
 .carousel-window {
     width: 100%;
-    max-width: 1100px;
+    max-width: 700px;
     overflow: hidden;
-    border-radius: 28px;
+    border-radius: 25px;
 }
 
 .carousel-track {
@@ -365,104 +364,83 @@ body {
     min-width: 100%;
     width: 100%;
     flex: 0 0 100%;
-    padding: 0;
-    background: transparent;
-}
-
-/* Grand panneau clair */
-.slide-panel {
-    width: 100%;
-    background: #f7f4ff;
-    border: 1px solid rgba(189, 178, 255, 0.35);
-    border-radius: 28px;
-    padding: 28px;
-    box-shadow: 0 12px 30px rgba(189, 178, 255, 0.15);
-}
-
-/* En-tête */
-.slide-header {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    margin-bottom: 28px;
-}
-
-.slide-header-icon {
-    width: 70px;
-    height: 70px;
-    border-radius: 18px;
-    background: #efe9ff;
-    border: 1px solid rgba(189, 178, 255, 0.5);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-}
-
-.slide-header-icon img {
-    width: 32px;
-    height: 32px;
-    object-fit: contain;
-}
-
-.slide-header h3 {
-    font-size: 1.2rem;
-    line-height: 1.3;
-    color: var(--couleur-texte);
+    background-color: transparent;
+    border-radius: 25px;
+    padding: 10px 10px 20px 10px;
+    box-shadow: none;
     text-align: left;
-    margin: 0;
 }
 
-/* Grille des cartes */
+.carousel-slide h3 {
+    font-size: 2.5rem;
+    margin-bottom: 25px;
+    color: var(--couleur-accent);
+    text-align: center;
+}
+
+/* =========================
+   CARTES DE COMPETENCES
+   ========================= */
 .skills-grid {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 18px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
 }
 
-/* Cartes */
 .skill-card {
-    background: #ffffff;
-    border: 1px solid rgba(189, 178, 255, 0.35);
-    border-radius: 20px;
-    padding: 20px;
-    box-shadow: 0 8px 20px rgba(189, 178, 255, 0.10);
-    min-width: 0;
+    background: #14203a;
+    border: 1px solid rgba(189, 178, 255, 0.2);
+    border-radius: 18px;
+    padding: 22px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
 }
 
 .skill-card-header {
     display: flex;
     align-items: center;
     gap: 14px;
-    margin-bottom: 16px;
+    margin-bottom: 18px;
 }
 
 .skill-card-header img {
-    width: 48px;
-    height: 48px;
+    width: 42px;
+    height: 42px;
     object-fit: contain;
-    background-color: #f3eeff;
-    padding: 8px;
-    border-radius: 14px;
-    border: 1px solid rgba(189, 178, 255, 0.3);
-    flex-shrink: 0;
+    background-color: rgba(255, 255, 255, 0.04);
+    padding: 6px;
+    border-radius: 12px;
 }
 
 .skill-card-header h4 {
-    font-size: 1rem;
-    color: var(--couleur-texte);
+    font-size: 1.4rem;
+    color: #ffffff;
     margin: 0;
-    line-height: 1.3;
 }
 
 .skill-card p {
-    color: var(--couleur-texte-secondaire);
+    color: #f2f4ff;
     line-height: 1.6;
-    font-size: 0.92rem;
+    font-size: 1rem;
     margin: 0;
 }
 
-/* Flèches */
+.skill-item:last-child {
+    margin-bottom: 0;
+}
+
+.skill-item img {
+    width: 42px;
+    height: 42px;
+    object-fit: contain;
+}
+
+.skill-item span {
+    font-size: 1.15rem;
+    color: var(--couleur-texte-secondaire);
+    line-height: 1.5;
+    font-weight: 500;
+}
+
 .carousel-btn {
     background-color: transparent;
     border: none;
@@ -470,7 +448,6 @@ body {
     color: var(--couleur-accent);
     cursor: pointer;
     transition: transform 0.2s ease, color 0.2s ease;
-    flex-shrink: 0;
 }
 
 .carousel-btn:hover {
@@ -480,17 +457,16 @@ body {
 
 /* Points */
 .carousel-dots {
-    margin-top: 18px;
+    margin-top: 20px;
     display: flex;
     justify-content: center;
-    align-items: center;
     gap: 12px;
 }
 
 .dot {
     width: 12px;
     height: 12px;
-    background-color: #ddd4ff;
+    background-color: #d9d3ff;
     border-radius: 50%;
     display: inline-block;
     cursor: pointer;
@@ -501,6 +477,7 @@ body {
     background-color: var(--couleur-accent);
     transform: scale(1.15);
 }
+
 
 /* =========================
    PARCOURS (2 COLONNES)
@@ -678,42 +655,6 @@ body {
     .parcours-grid {
         gap: 40px;
     }
-
-	.carousel-window {
-    max-width: 100%;
-}
-
-.slide-panel {
-    padding: 28px;
-}
-
-.slide-header {
-    gap: 18px;
-    margin-bottom: 24px;
-}
-
-.slide-header-icon {
-    width: 68px;
-    height: 68px;
-}
-
-.slide-header-icon img {
-    width: 32px;
-    height: 32px;
-}
-
-.slide-header h3 {
-    font-size: 1.8rem;
-}
-
-.skills-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
-}
-
-.skill-card {
-    min-height: auto;
-}
 }
 
 /* =========================
@@ -807,7 +748,6 @@ body {
 	
 .skills-carousel-section h2 {
     font-size: 2rem;
-    text-align: center;
 }
 
 .skills-carousel {
@@ -818,57 +758,45 @@ body {
     max-width: 100%;
 }
 
-.slide-panel {
-    padding: 20px;
+.carousel-slide {
+    padding: 25px 20px;
 }
 
-.slide-header {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 14px;
-    margin-bottom: 20px;
+.carousel-slide h3 {
+    font-size: 1.5rem;
 }
 
-.slide-header-icon {
-    width: 58px;
-    height: 58px;
-    border-radius: 16px;
+.skill-item {
+    gap: 12px;
 }
 
-.slide-header-icon img {
-    width: 28px;
-    height: 28px;
+.skill-item img {
+    width: 32px;
+    height: 32px;
 }
 
-.slide-header h3 {
-    font-size: 1.4rem;
-    text-align: left;
-}
-
-.skills-grid {
-    grid-template-columns: 1fr;
-    gap: 16px;
-}
-
-.skill-card {
-    padding: 20px;
-    min-height: auto;
-}
-
-.skill-card-header img {
-    width: 46px;
-    height: 46px;
-    padding: 8px;
-}
-
-.skill-card-header h4 {
+.skill-item span {
     font-size: 1rem;
-}
-
-.skill-card p {
-    font-size: 0.92rem;
 }
 
 .carousel-btn {
     font-size: 2.2rem;
+}
+
+.skills-grid {
+    grid-template-columns: 1fr;
+}
+
+.skill-card {
+    padding: 18px;
+}
+
+.skill-card-header h4 {
+    font-size: 1.2rem;
+}
+
+.skill-card p {
+    font-size: 0.95rem;
+}
+
 }

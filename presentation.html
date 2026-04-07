@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Présentation - Portfolio BTS SIO SISR</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- =========================
+         HEADER / HAUT DE PAGE
+         ========================= -->
+    <header class="topbar">
+        <a href="index.html" class="brand">
+            <div class="logo-placeholder">
+                <img src="images/logo1.png" alt="Logo Thomas VITI" class="logo">
+            </div>
+            <span class="brand-title">PORTFOLIO BTS SIO - SISR</span>
+        </a>
+
+        <nav class="navbar">
+            <a href="index.html">ACCUEIL</a>
+            <a href="presentation.html" class="active">PRESENTATION</a>
+            <a href="btssio.html">BTS SIO</a>
+            <a href="e4.html">PROJETS E4</a>
+            <a href="veille.html">VEILLE</a>
+            <a href="contact.html">CONTACT</a>
+        </nav>
+    </header>
+
+    <!-- =========================
+         CONTENU PAGE PRESENTATION
+         ========================= -->
+    <main class="presentation-page">
+
+        <!-- =========================
+             A PROPOS HERO
+             ========================= -->
+        <section class="about-hero">
+            <h1>À propos de moi</h1>
+
+            <p>
+                De l’assistance technique sur le terrain à la mise en place d’architectures réseau avancées,
+            </p>
+
+            <p>
+                mon parcours s’inscrit dans une volonté constante de résoudre des problématiques concrètes et
+            </p>
+
+            <p>
+                de garantir la sécurité des systèmes d’information.
+            </p>
+
+            <a href="images/CV ThomasVITI.pdf" download class="btn-cv">
+                Consulter mon CV
+            </a>
+        </section>
+
+<!-- =========================
+     COMPETENCES TECHNIQUES
+     ========================= -->
+<section class="skills-carousel-section">
+    <h2>Compétences techniques</h2>
+
+    <div class="skills-carousel">
+        <button class="carousel-btn prev" onclick="changeSlide(-1)">&#10094;</button>
+
+        <div class="carousel-window">
+            <div class="carousel-track">
+
+                <!-- Slide 1 -->
+                <div class="carousel-slide">
+                    <h3>Systèmes</h3>
+
+                    <div class="skill-item">
+                        <img src="images/linux.png" alt="Logo Linux">
+                        <span>Linux (Debian, Ubuntu)</span>
+                    </div>
+
+                    <div class="skill-item">
+                        <img src="images/windows.png" alt="Logo Windows">
+                        <span>Windows Server 2016 / 2019</span>
+                    </div>
+
+                    <div class="skill-item">
+                        <img src="images/ad.png" alt="Logo Active Directory">
+                        <span>Active Directory, GPO</span>
+                    </div>
+                </div>
+
+                <!-- Slide 2 -->
+                <div class="carousel-slide">
+                    <h3>Réseaux & sécurité</h3>
+
+                    <div class="skill-item">
+                        <img src="images/network.png" alt="Logo Réseau">
+                        <span>Adressage IP, VLAN, DHCP, DNS</span>
+                    </div>
+
+                    <div class="skill-item">
+                        <img src="images/router.png" alt="Logo Routeur">
+                        <span>Configuration de switchs et routeurs</span>
+                    </div>
+
+                    <div class="skill-item">
+                        <img src="images/security.png" alt="Logo Sécurité">
+                        <span>Bonnes pratiques de sécurisation</span>
+                    </div>
+                </div>
+
+                <!-- Slide 3 -->
+                <div class="carousel-slide">
+                    <h3>Outils & virtualisation</h3>
+
+                    <div class="skill-item">
+                        <img src="images/virtualbox.png" alt="Logo VirtualBox">
+                        <span>VirtualBox</span>
+                    </div>
+
+                    <div class="skill-item">
+                        <img src="images/wds.png" alt="Logo Déploiement">
+                        <span>WDS / MDT / déploiement de postes</span>
+                    </div>
+
+                    <div class="skill-item">
+                        <img src="images/tools.png" alt="Logo Outils">
+                        <span>Outils d'administration et de support</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <button class="carousel-btn next" onclick="changeSlide(1)">&#10095;</button>
+    </div>
+
+    <div class="carousel-dots">
+        <span class="dot active" onclick="goToSlide(0)"></span>
+        <span class="dot" onclick="goToSlide(1)"></span>
+        <span class="dot" onclick="goToSlide(2)"></span>
+    </div>
+</section>
+
+        <!-- =========================
+             PARCOURS (2 COLONNES)
+             ========================= -->
+        <section class="parcours-section">
+            <div class="parcours-grid">
+
+                <!-- COLONNE GAUCHE : FORMATIONS -->
+                <div class="parcours-col">
+                    <section class="timeline-section">
+                        <h2>Mes formations</h2>
+
+                        <div class="timeline">
+                            <div class="timeline-item">
+                                <div class="timeline-dot"></div>
+                                <div class="timeline-content">
+                                    <h3>Lycée La Salle (Avignon)</h3>
+                                    <span class="date">Diplôme obtenu en 2024</span>
+                                    <p>
+                                        Bac Pro SN (Option RISC) - Réseaux Informatiques et Systèmes Communicants.
+                                    </p>
+                                    <p>
+                                        Bases de l'électronique, câblage, et configuration de switchs/routeurs.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="timeline-item">
+                                <div class="timeline-dot"></div>
+                                <div class="timeline-content">
+                                    <h3>Campus CCI (Vaucluse)</h3>
+                                    <span class="date">Diplôme en cours de 2024 à 2026</span>
+                                    <p>
+                                        BTS SIO (Option SISR) - Solutions d'Infrastructure, Systèmes et Réseaux.
+                                    </p>
+                                    <p>
+                                        Apprentissage approfondi de l'administration réseau, Windows/Linux Server et cybersécurité.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+
+                <!-- COLONNE DROITE : EXPERIENCES -->
+                <div class="parcours-col">
+                    <section class="timeline-section">
+                        <h2>Mes expériences</h2>
+
+                        <div class="timeline">
+                            <div class="timeline-item">
+                                <div class="timeline-dot"></div>
+                                <div class="timeline-content">
+                                    <h3>U Proximité France - Le Mistral</h3>
+                                    <span class="date">Du 28 février 2022 au 11 mars 2022</span>
+                                    <p>Stage 1 : j’avais comme premier projet, de faire un jeu simple</p>
+									<p>en programmation avec leur logiciel de programmation.</p>
+                                </div>
+                            </div>
+
+                            <div class="timeline-item">
+                                <div class="timeline-dot"></div>
+                                <div class="timeline-content">
+                                    <h3>U Proximité France - Le Mistral</h3>
+                                    <span class="date">Du 7 juin 2022 au 1 juillet 2022</span>
+                                    <p>Stage 2 : on m’a donné des tâches plus ou moins compliquées :</p>
+									<p>c’était souvent pour aider certains employés qui avaient des problèmes sur leurs pc</p>
+									<p> ou autres, mais aussi du câble management pour les baies les plus anciennes qui sont dans des états déplorables </p>
+                                </div>
+                            </div>
+
+                            <div class="timeline-item">
+                                <div class="timeline-dot"></div>
+                                <div class="timeline-content">
+                                    <h3>NGE</h3>
+                                    <span class="date">Du 16 janvier 2023 au 10 février 2023</span>
+                                    <p>Stage 3 : C’était que de la programmation, J’ai dû régler des problèmes </p>
+									<p>sur un de leur site qui permet de référencer à partir d’un fichier CSV les factures et</p>
+									<p>j’ai aussi réglé un problème dans leur découpeur de PDF qui ne découpait plus.</p>
+                                </div>
+                            </div>
+
+                            <div class="timeline-item">
+                                <div class="timeline-dot"></div>
+                                <div class="timeline-content">
+                                    <h3>NGE</h3>
+                                    <span class="date">Du 9 mai 2023 au 2 juin 2023</span>
+                                    <p>Stage 4 : Toujours dans la programmaion, j’ai eu un seul gros projet </p>
+									<p>qui était, à partir du découpeur de PDF faire un découpeur de fichier CSV.</p>
+                                </div>
+                            </div>
+
+                            <div class="timeline-item">
+                                <div class="timeline-dot"></div>
+                                <div class="timeline-content">
+                                    <h3>Socopa Viandes</h3>
+                                    <span class="date">Du 27 novembre 2023 au 22 décembre 2023</span>
+                                    <p>Stage 5 : Mon projet c’était de créer un outil qui permet de facilité la compréhension</p>
+									<p>de tout le réseau informatique de l’entreprise pour pouvoir former</p>
+									<p>les employers de la maintenance ou d’autres personnes.</p>
+                                </div>
+                            </div>
+
+                            <div class="timeline-item">
+                                <div class="timeline-dot"></div>
+                                <div class="timeline-content">
+                                    <h3>Socopa Viandes</h3>
+                                    <span class="date">Du 25 mars 2024 au 19 avril 2024</span>
+                                    <p>Stage 6 : Toujours avancer sur le premier projet et j’ai du changer un coeur de</p>
+									<p>réseau car il est tombé en panne et aussi de baliser l’entreprise avec des bornes</p>
+									<p> Wi-Fi car un besoin était nécessaire au niveau de la production puisqu’ils auront prochainement des tablettes.</p>
+                                </div>
+                            </div>
+
+                            <div class="timeline-item">
+                                <div class="timeline-dot"></div>
+                                <div class="timeline-content">
+                                    <h3>Caisse Primaire de l'Assurance Maladie</h3>
+                                    <span class="date">Du 8 novembre 2024 au 30 août 2026</span>
+                                    <p>
+                                        Alternance en tant que technicien support informatique,
+                                    </p>
+                                    <p>
+                                        avec intervention sur le support aux utilisateurs, la préparation de postes,
+                                    </p>
+                                    <p>
+                                        le déploiement et la résolution d'incidents.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- =========================
+             MES OBJECTIFS
+             ========================= -->
+        <section class="presentation-section">
+            <h2>Mes objectifs</h2>
+            <p>
+                Mon objectif est de continuer à développer mes compétences dans
+                l'administration systèmes et réseaux, la sécurisation des infrastructures
+                et le support informatique, afin d'évoluer vers un poste technique avec
+                davantage de responsabilités.
+            </p>
+        </section>
+
+    </main>
+
+    <!-- =========================
+         FOOTER / PIED DE PAGE
+         ========================= -->
+    <footer class="footer">
+        <p>Copyright © 2026. All rights reserved</p>
+        <p>Thomas VITI - Portfolio BTS SIO (SISR) - Session 2025 - 2026</p>
+    </footer>
+
+</body>
+
+<script>
+    let currentSlide = 0;
+
+    const track = document.querySelector(".carousel-track");
+    const slides = document.querySelectorAll(".carousel-slide");
+    const dots = document.querySelectorAll(".dot");
+
+    function updateCarousel() {
+        track.style.transform = `translateX(-${currentSlide * 100}%)`;
+
+        dots.forEach((dot) => dot.classList.remove("active"));
+        dots[currentSlide].classList.add("active");
+    }
+
+    function changeSlide(direction) {
+        currentSlide += direction;
+
+        if (currentSlide < 0) {
+            currentSlide = slides.length - 1;
+        }
+
+        if (currentSlide >= slides.length) {
+            currentSlide = 0;
+        }
+
+        updateCarousel();
+    }
+
+    function goToSlide(index) {
+        currentSlide = index;
+        updateCarousel();
+    }
+
+    updateCarousel();
+</script>
+</html>

@@ -605,6 +605,103 @@ body {
 }
 
 /* =========================
+   PAGE CONTACT
+   ========================= */
+.contact-page {
+    padding: 140px 100px 60px 100px;
+}
+
+.contact-hero {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.contact-hero h1 {
+    font-size: 3.5rem;
+    margin-bottom: 20px;
+    color: var(--couleur-texte);
+}
+
+.contact-hero h1::after {
+    content: "";
+    display: block;
+    width: 120px;
+    height: 4px;
+    background-color: var(--couleur-accent);
+    margin: 15px auto 0;
+    border-radius: 10px;
+}
+
+.contact-hero p {
+    max-width: 800px;
+    margin: 0 auto;
+    font-size: 1.1rem;
+    color: var(--couleur-texte-secondaire);
+    line-height: 1.7;
+}
+
+/* Grille */
+.contact-cards {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+}
+
+/* Carte */
+.contact-card {
+    background-color: var(--couleur-blanc);
+    border: 1px solid rgba(189, 178, 255, 0.35);
+    border-radius: 22px;
+    padding: 30px;
+    box-shadow: 0 8px 20px rgba(189, 178, 255, 0.10);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.contact-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 25px rgba(189, 178, 255, 0.18);
+}
+
+/* Icône */
+.contact-card-icon {
+    width: 54px;
+    height: 54px;
+    border-radius: 14px;
+    background-color: #f3eeff;
+    border: 1px solid rgba(189, 178, 255, 0.35);
+    color: var(--couleur-accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.contact-card h2 {
+    font-size: 1.4rem;
+    color: var(--couleur-texte);
+    margin-bottom: 12px;
+}
+
+.contact-card p {
+    font-size: 1rem;
+    color: var(--couleur-texte-secondaire);
+    line-height: 1.6;
+    word-break: break-word;
+}
+
+.contact-card a {
+    color: var(--couleur-texte-secondaire);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.contact-card a:hover {
+    color: var(--couleur-accent);
+}
+
+/* =========================
    FOOTER
    ========================= */
 .footer {
@@ -655,6 +752,10 @@ body {
     .parcours-grid {
         gap: 40px;
     }
+
+    .contact-page {
+    padding: 140px 60px 60px 60px;
+}
 }
 
 /* =========================
@@ -797,6 +898,26 @@ body {
 
 .skill-card p {
     font-size: 0.95rem;
+}
+
+.contact-page {
+    padding: 180px 20px 40px 20px;
+}
+
+.contact-hero h1 {
+    font-size: 2.2rem;
+}
+
+.contact-hero p {
+    font-size: 1rem;
+}
+
+.contact-cards {
+    grid-template-columns: 1fr;
+}
+
+.contact-card {
+    padding: 20px;
 }
 
 }

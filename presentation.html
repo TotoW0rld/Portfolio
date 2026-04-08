@@ -12,7 +12,7 @@
     <header class="topbar" id="topbar">
         <a href="index.html" class="brand">
             <div class="logo-placeholder">
-                <img src="logo1.png" alt="Logo Thomas VITI" class="logo">
+                <img src="images/logo1.png" alt="Logo Thomas VITI" class="logo">
             </div>
             <span class="brand-title">PORTFOLIO BTS SIO - SISR</span>
         </a>
@@ -37,10 +37,23 @@
                 résoudre des problématiques concrètes et de garantir la sécurité des
                 systèmes d'information.
             </p>
-            <a href="CV ThomasVITI.pdf" download class="btn-cv">
-                📄 Consulter mon CV
-            </a>
+            <div class="cv-buttons">
+                <button class="btn-cv-preview" onclick="openCVModal()">
+                    👁️ Aperçu du CV
+                </button>
+                <a href="images/CV ThomasVITI.pdf" download class="btn-cv">
+                    📄 Télécharger mon CV
+                </a>
+            </div>
         </section>
+
+        <!-- MODALE APERÇU CV -->
+        <div class="cv-modal" id="cvModal" onclick="closeCVModal(event)">
+            <div class="cv-modal-box">
+                <button class="cv-modal-close" onclick="closeCVModal()">✕</button>
+                <iframe src="images/CV ThomasVITI.pdf" class="cv-iframe" title="Aperçu CV Thomas VITI"></iframe>
+            </div>
+        </div>
 
         <!-- COMPÉTENCES -->
         <section class="skills-carousel-section reveal">
@@ -58,35 +71,35 @@
                             <div class="skills-grid">
                                 <div class="skill-card">
                                     <div class="skill-card-header">
-                                        <img src="windows.png" alt="Windows Server">
+                                        <img src="images/windows.png" alt="Windows Server">
                                         <h4>Windows Server</h4>
                                     </div>
                                     <p>Administration de Windows Server 2016 / 2019 en environnement de formation et de test.</p>
                                 </div>
                                 <div class="skill-card">
                                     <div class="skill-card-header">
-                                        <img src="windows.png" alt="Windows">
+                                        <img src="images/windows.png" alt="Windows">
                                         <h4>Windows 10 & 11</h4>
                                     </div>
                                     <p>Installation, configuration, gestion des comptes utilisateurs et dépannage.</p>
                                 </div>
                                 <div class="skill-card">
                                     <div class="skill-card-header">
-                                        <img src="linux.png" alt="Linux">
+                                        <img src="images/linux.png" alt="Linux">
                                         <h4>Linux</h4>
                                     </div>
                                     <p>Utilisation de Debian et Ubuntu en environnement virtuel et de laboratoire.</p>
                                 </div>
                                 <div class="skill-card">
                                     <div class="skill-card-header">
-                                        <img src="ad.png" alt="Active Directory">
+                                        <img src="images/ad.png" alt="Active Directory">
                                         <h4>Active Directory</h4>
                                     </div>
                                     <p>Création de comptes, groupes, GPO et gestion d'un domaine Windows.</p>
                                 </div>
                                 <div class="skill-card">
                                     <div class="skill-card-header">
-                                        <img src="glpi.png" alt="GLPI">
+                                        <img src="images/glpi.png" alt="GLPI">
                                         <h4>GLPI</h4>
                                     </div>
                                     <p>Gestion de tickets, inventaire et suivi du parc informatique.</p>
@@ -100,35 +113,35 @@
                             <div class="skills-grid">
                                 <div class="skill-card">
                                     <div class="skill-card-header">
-                                        <img src="proxmox.png" alt="Proxmox">
+                                        <img src="images/proxmox.png" alt="Proxmox">
                                         <h4>Proxmox</h4>
                                     </div>
                                     <p>Virtualisation et gestion de machines virtuelles dans un environnement de test.</p>
                                 </div>
                                 <div class="skill-card">
                                     <div class="skill-card-header">
-                                        <img src="cisco.png" alt="Cisco">
+                                        <img src="images/cisco.png" alt="Cisco">
                                         <h4>Cisco</h4>
                                     </div>
                                     <p>Configuration de base des équipements réseau en environnement pédagogique.</p>
                                 </div>
                                 <div class="skill-card">
                                     <div class="skill-card-header">
-                                        <img src="virtualbox.png" alt="VirtualBox">
+                                        <img src="images/virtualbox.png" alt="VirtualBox">
                                         <h4>VirtualBox</h4>
                                     </div>
                                     <p>Création et utilisation de machines virtuelles pour les tests systèmes et réseau.</p>
                                 </div>
                                 <div class="skill-card">
                                     <div class="skill-card-header">
-                                        <img src="dns.png" alt="DNS">
+                                        <img src="images/dns.png" alt="DNS">
                                         <h4>DNS</h4>
                                     </div>
                                     <p>Compréhension et mise en place du service de résolution de noms.</p>
                                 </div>
                                 <div class="skill-card">
                                     <div class="skill-card-header">
-                                        <img src="dhcp.png" alt="DHCP">
+                                        <img src="images/dhcp.png" alt="DHCP">
                                         <h4>DHCP</h4>
                                     </div>
                                     <p>Configuration du service d'attribution automatique d'adresses IP.</p>
@@ -142,28 +155,28 @@
                             <div class="skills-grid">
                                 <div class="skill-card">
                                     <div class="skill-card-header">
-                                        <img src="wireshark.png" alt="Wireshark">
+                                        <img src="images/wireshark.png" alt="Wireshark">
                                         <h4>Wireshark</h4>
                                     </div>
                                     <p>Analyse de trafic réseau et observation des échanges entre équipements.</p>
                                 </div>
                                 <div class="skill-card">
                                     <div class="skill-card-header">
-                                        <img src="kali.png" alt="Kali Linux">
+                                        <img src="images/kali.png" alt="Kali Linux">
                                         <h4>Kali Linux</h4>
                                     </div>
                                     <p>Découverte d'outils liés à la cybersécurité et à l'audit technique.</p>
                                 </div>
                                 <div class="skill-card">
                                     <div class="skill-card-header">
-                                        <img src="firewall.png" alt="Pare-feu">
+                                        <img src="images/firewall.png" alt="Pare-feu">
                                         <h4>Pare-feu</h4>
                                     </div>
                                     <p>Notions de filtrage réseau, protection des accès et sécurisation de base.</p>
                                 </div>
                                 <div class="skill-card">
                                     <div class="skill-card-header">
-                                        <img src="vpn.png" alt="VPN">
+                                        <img src="images/vpn.png" alt="VPN">
                                         <h4>VPN</h4>
                                     </div>
                                     <p>Compréhension du fonctionnement d'un accès distant sécurisé.</p>
@@ -177,21 +190,21 @@
                             <div class="skills-grid">
                                 <div class="skill-card">
                                     <div class="skill-card-header">
-                                        <img src="bash.png" alt="Bash">
+                                        <img src="images/bash.png" alt="Bash">
                                         <h4>Bash</h4>
                                     </div>
                                     <p>Scripts simples d'automatisation sous Linux.</p>
                                 </div>
                                 <div class="skill-card">
                                     <div class="skill-card-header">
-                                        <img src="python.png" alt="Python">
+                                        <img src="images/python.png" alt="Python">
                                         <h4>Python</h4>
                                     </div>
                                     <p>Scripts et logique de programmation pour automatiser certaines tâches.</p>
                                 </div>
                                 <div class="skill-card">
                                     <div class="skill-card-header">
-                                        <img src="powershell.png" alt="PowerShell">
+                                        <img src="images/powershell.png" alt="PowerShell">
                                         <h4>PowerShell</h4>
                                     </div>
                                     <p>Administration Windows et automatisation de tâches système.</p>
@@ -205,28 +218,28 @@
                             <div class="skills-grid">
                                 <div class="skill-card">
                                     <div class="skill-card-header">
-                                        <img src="html.png" alt="HTML">
+                                        <img src="images/html.png" alt="HTML">
                                         <h4>HTML5</h4>
                                     </div>
                                     <p>Structuration de pages web et intégration de contenu.</p>
                                 </div>
                                 <div class="skill-card">
                                     <div class="skill-card-header">
-                                        <img src="css.png" alt="CSS">
+                                        <img src="images/css.png" alt="CSS">
                                         <h4>CSS3</h4>
                                     </div>
                                     <p>Mise en forme, responsive design et amélioration visuelle d'interfaces.</p>
                                 </div>
                                 <div class="skill-card">
                                     <div class="skill-card-header">
-                                        <img src="php.png" alt="PHP">
+                                        <img src="images/php.png" alt="PHP">
                                         <h4>PHP 7</h4>
                                     </div>
                                     <p>Développement côté serveur pour des projets web dynamiques.</p>
                                 </div>
                                 <div class="skill-card">
                                     <div class="skill-card-header">
-                                        <img src="sql.png" alt="SQL">
+                                        <img src="images/sql.png" alt="SQL">
                                         <h4>SQL</h4>
                                     </div>
                                     <p>Manipulation de bases de données et requêtes simples.</p>
@@ -365,6 +378,23 @@
     </footer>
 
     <script>
+        function openCVModal() {
+            const modal = document.getElementById('cvModal');
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeCVModal(e) {
+            if (!e || e.target === document.getElementById('cvModal') || e.currentTarget.classList.contains('cv-modal-close')) {
+                document.getElementById('cvModal').classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        }
+
+        document.addEventListener('keydown', e => {
+            if (e.key === 'Escape') closeCVModal();
+        });
+
         let currentSlide = 0;
         const track = document.querySelector(".carousel-track");
         const slides = document.querySelectorAll(".carousel-slide");

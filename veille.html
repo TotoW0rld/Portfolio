@@ -6,6 +6,267 @@
     <title>Veille Technologique - Portfolio Thomas VITI</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* ===========================
+           FLUX EN DIRECT
+           =========================== */
+        .flux-section { margin-bottom: 60px; }
+
+        .flux-section-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .flux-section-title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.85rem;
+            font-weight: 700;
+            color: var(--couleur-texte);
+            margin: 0;
+        }
+
+        .title-bar {
+            display: inline-block;
+            width: 5px;
+            height: 36px;
+            border-radius: 4px;
+            flex-shrink: 0;
+        }
+
+        .flux-badge-sources {
+            font-size: 0.78rem;
+            font-weight: 700;
+            padding: 6px 14px;
+            border-radius: 50px;
+            border: 1.5px solid;
+            letter-spacing: 0.2px;
+        }
+
+        /* ===========================
+           GRILLE
+           =========================== */
+        .articles-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 22px;
+        }
+
+        /* ===========================
+           CARTE ARTICLE
+           =========================== */
+        .article-card {
+            background: var(--couleur-blanc);
+            border-radius: 18px;
+            overflow: hidden;
+            border: 1px solid var(--couleur-bordure);
+            box-shadow: var(--shadow-card);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .article-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .article-thumb {
+            position: relative;
+            width: 100%;
+            height: 185px;
+            overflow: hidden;
+            background: #0d1b2a;
+            flex-shrink: 0;
+        }
+
+        .article-thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+
+        .article-card:hover .article-thumb img {
+            transform: scale(1.06);
+        }
+
+        .article-thumb-fallback {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3.5rem;
+        }
+
+        .article-source-badge {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.4px;
+            text-transform: uppercase;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .article-date-badge {
+            position: absolute;
+            bottom: 10px;
+            left: 12px;
+            font-size: 0.74rem;
+            color: rgba(255,255,255,0.9);
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .article-body {
+            padding: 18px 18px 14px;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            gap: 8px;
+        }
+
+        .article-title {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--couleur-texte);
+            line-height: 1.45;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            transition: var(--transition);
+        }
+
+        .article-desc {
+            font-size: 0.82rem;
+            color: var(--couleur-texte-secondaire);
+            line-height: 1.6;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            flex: 1;
+        }
+
+        .article-read-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            padding: 9px 0;
+            border-radius: 10px;
+            border: 1px solid var(--couleur-bordure);
+            background: var(--couleur-fond);
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: var(--couleur-texte-secondaire);
+            transition: var(--transition);
+            margin-top: auto;
+        }
+
+        .article-card:hover .article-read-btn {
+            color: white;
+            border-color: transparent;
+        }
+
+        /* ===========================
+           SKELETON LOADER
+           =========================== */
+        @keyframes shimmer {
+            0%   { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+
+        .skeleton-card {
+            background: var(--couleur-blanc);
+            border-radius: 18px;
+            overflow: hidden;
+            border: 1px solid var(--couleur-bordure);
+        }
+
+        .skeleton-thumb {
+            height: 185px;
+            background: linear-gradient(90deg, #ebebeb 25%, #d6d6d6 50%, #ebebeb 75%);
+            background-size: 200% 100%;
+            animation: shimmer 1.4s infinite;
+        }
+
+        .skeleton-body { padding: 18px; display: flex; flex-direction: column; gap: 10px; }
+
+        .skeleton-line {
+            height: 13px;
+            border-radius: 6px;
+            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+            background-size: 200% 100%;
+            animation: shimmer 1.4s infinite;
+        }
+
+        /* ===========================
+           COULEURS PAR THÈME
+           =========================== */
+        /* Cyber — Rouge */
+        .theme-cyber .title-bar          { background: linear-gradient(180deg, #ff6b6b, #c0392b); }
+        .theme-cyber .flux-badge-sources { color: #c0392b; border-color: #c0392b; background: rgba(192,57,43,0.07); }
+        .theme-cyber .article-source-badge { background: #c0392b; }
+        .theme-cyber .article-card:hover .article-title { color: #c0392b; }
+        .theme-cyber .article-card:hover .article-read-btn { background: #c0392b; }
+
+        /* Réseau — Bleu */
+        .theme-reseau .title-bar          { background: linear-gradient(180deg, #74b9ff, #0984e3); }
+        .theme-reseau .flux-badge-sources { color: #0984e3; border-color: #0984e3; background: rgba(9,132,227,0.07); }
+        .theme-reseau .article-source-badge { background: #0984e3; }
+        .theme-reseau .article-card:hover .article-title { color: #0984e3; }
+        .theme-reseau .article-card:hover .article-read-btn { background: #0984e3; }
+
+        /* Tech — Violet */
+        .theme-tech .title-bar          { background: linear-gradient(180deg, var(--couleur-accent), var(--couleur-header)); }
+        .theme-tech .flux-badge-sources { color: var(--couleur-header); border-color: var(--couleur-header); background: rgba(161,0,242,0.07); }
+        .theme-tech .article-source-badge { background: var(--couleur-header); }
+        .theme-tech .article-card:hover .article-title { color: var(--couleur-header); }
+        .theme-tech .article-card:hover .article-read-btn { background: var(--couleur-header); }
+
+        /* ===========================
+           ERREUR
+           =========================== */
+        .flux-error {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 50px 20px;
+            color: var(--couleur-texte-secondaire);
+            font-size: 0.92rem;
+        }
+
+        /* ===========================
+           RESPONSIVE
+           =========================== */
+        @media (max-width: 1024px) {
+            .articles-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (max-width: 600px) {
+            .articles-grid { grid-template-columns: 1fr; }
+            .flux-section-title { font-size: 1.4rem; }
+        }
+    </style>
 </head>
 <body>
 
@@ -35,6 +296,7 @@
                 Dans le domaine de l'informatique, rester informé est essentiel.
                 Je réalise une veille régulière sur les thématiques liées à la
                 cybersécurité, aux réseaux et aux nouvelles technologies d'infrastructure.
+                Les articles ci-dessous sont mis à jour automatiquement en temps réel.
             </p>
         </section>
 
@@ -42,93 +304,60 @@
         <div class="veille-intro reveal">
             <h2>Ma méthode de veille</h2>
             <p>
-                Je consulte quotidiennement des flux RSS, newsletters spécialisées et
-                forums techniques pour me tenir informé des dernières évolutions.
-                Je concentre ma veille sur trois axes principaux : la <strong>cybersécurité</strong>,
+                Je consulte quotidiennement des flux RSS, newsletters spécialisées et forums
+                techniques pour me tenir informé des dernières évolutions. Je concentre ma veille
+                sur trois axes principaux : la <strong>cybersécurité</strong>,
                 les <strong>infrastructures réseaux</strong> et les <strong>nouvelles technologies
-                cloud et virtualisation</strong>. Cette démarche me permet d'anticiper
-                les tendances et d'adapter mes compétences aux besoins du terrain.
+                informatiques</strong>. Les articles sont récupérés automatiquement depuis les
+                sources les plus fiables du secteur.
             </p>
         </div>
 
-        <!-- ARTICLES DE VEILLE -->
-        <section class="reveal" style="margin-bottom: 50px;">
-            <h2 style="font-size:2rem; margin-bottom:28px; color:var(--couleur-texte); display:flex; align-items:center; gap:12px;">
-                <span style="display:inline-block;width:5px;height:36px;background:linear-gradient(180deg,var(--couleur-accent),var(--couleur-header));border-radius:4px;"></span>
-                Articles de veille
-            </h2>
-            <div class="veille-grid">
+        <!-- 🔐 CYBERSÉCURITÉ -->
+        <section class="flux-section reveal theme-cyber">
+            <div class="flux-section-header">
+                <h2 class="flux-section-title">
+                    <span class="title-bar"></span>
+                    🔐 Cybersécurité
+                </h2>
+                <span class="flux-badge-sources">Sources : CERT-FR, Korben, Bleeping Computer</span>
+            </div>
+            <div class="articles-grid" id="grid-cyber">
+                <div class="skeleton-card"><div class="skeleton-thumb"></div><div class="skeleton-body"><div class="skeleton-line" style="width:65%"></div><div class="skeleton-line" style="width:100%"></div><div class="skeleton-line" style="width:80%"></div></div></div>
+                <div class="skeleton-card"><div class="skeleton-thumb"></div><div class="skeleton-body"><div class="skeleton-line" style="width:50%"></div><div class="skeleton-line" style="width:100%"></div><div class="skeleton-line" style="width:70%"></div></div></div>
+                <div class="skeleton-card"><div class="skeleton-thumb"></div><div class="skeleton-body"><div class="skeleton-line" style="width:75%"></div><div class="skeleton-line" style="width:100%"></div><div class="skeleton-line" style="width:88%"></div></div></div>
+            </div>
+        </section>
 
-                <div class="veille-card">
-                    <div class="veille-card-header">
-                        <div class="veille-icon">🔐</div>
-                        <div>
-                            <h3>Les attaques par ransomware en 2025</h3>
-                            <span class="veille-date">Cybersécurité — 2025</span>
-                        </div>
-                    </div>
-                    <p>
-                        Les ransomwares évoluent rapidement vers des modèles
-                        Ransomware-as-a-Service (RaaS). Les attaquants ciblent
-                        désormais les infrastructures critiques comme les hôpitaux et
-                        organismes publics. La double extorsion (chiffrement + fuite de données)
-                        est devenue la norme. La sauvegarde isolée (air-gap) et la
-                        segmentation réseau restent les meilleures défenses.
-                    </p>
-                </div>
+        <!-- 🌐 RÉSEAUX -->
+        <section class="flux-section reveal theme-reseau">
+            <div class="flux-section-header">
+                <h2 class="flux-section-title">
+                    <span class="title-bar"></span>
+                    🌐 Réseaux & Infrastructure
+                </h2>
+                <span class="flux-badge-sources">Sources : IT-Connect, ZDNet, Cisco Blog</span>
+            </div>
+            <div class="articles-grid" id="grid-reseau">
+                <div class="skeleton-card"><div class="skeleton-thumb"></div><div class="skeleton-body"><div class="skeleton-line" style="width:60%"></div><div class="skeleton-line" style="width:100%"></div><div class="skeleton-line" style="width:75%"></div></div></div>
+                <div class="skeleton-card"><div class="skeleton-thumb"></div><div class="skeleton-body"><div class="skeleton-line" style="width:70%"></div><div class="skeleton-line" style="width:100%"></div><div class="skeleton-line" style="width:65%"></div></div></div>
+                <div class="skeleton-card"><div class="skeleton-thumb"></div><div class="skeleton-body"><div class="skeleton-line" style="width:55%"></div><div class="skeleton-line" style="width:100%"></div><div class="skeleton-line" style="width:82%"></div></div></div>
+            </div>
+        </section>
 
-                <div class="veille-card">
-                    <div class="veille-card-header">
-                        <div class="veille-icon">🌐</div>
-                        <div>
-                            <h3>Wi-Fi 7 : la nouvelle norme sans fil</h3>
-                            <span class="veille-date">Réseaux — 2024-2025</span>
-                        </div>
-                    </div>
-                    <p>
-                        Le Wi-Fi 7 (802.11be) offre des débits théoriques jusqu'à
-                        46 Gbps grâce au Multi-Link Operation (MLO) et à l'utilisation
-                        simultanée des bandes 2.4, 5 et 6 GHz. Il réduit considérablement
-                        la latence, ce qui en fait un candidat sérieux pour remplacer
-                        le câblage dans certains environnements d'entreprise.
-                    </p>
-                </div>
-
-                <div class="veille-card">
-                    <div class="veille-card-header">
-                        <div class="veille-icon">☁️</div>
-                        <div>
-                            <h3>Architecture Zero Trust en entreprise</h3>
-                            <span class="veille-date">Cybersécurité / Cloud — 2025</span>
-                        </div>
-                    </div>
-                    <p>
-                        Le modèle Zero Trust ("ne jamais faire confiance, toujours vérifier")
-                        s'impose comme référence de sécurité. Il remplace la logique du
-                        périmètre réseau classique par une authentification forte à chaque
-                        accès. L'adoption d'outils IAM, MFA et microsegmentation est
-                        en forte croissance dans les grandes organisations.
-                    </p>
-                </div>
-
-                <div class="veille-card">
-                    <div class="veille-card-header">
-                        <div class="veille-icon">🖥️</div>
-                        <div>
-                            <h3>Virtualisation : VMware vs alternatives open source</h3>
-                            <span class="veille-date">Infrastructure — 2024-2025</span>
-                        </div>
-                    </div>
-                    <p>
-                        Suite au rachat de VMware par Broadcom et la hausse des
-                        licences, de nombreuses entreprises se tournent vers des
-                        alternatives comme Proxmox VE, OpenStack ou KVM.
-                        Cette migration représente un enjeu technique important
-                        pour les équipes IT qui doivent adapter leurs compétences
-                        et leurs processus.
-                    </p>
-                </div>
-
+        <!-- 💻 TECHNOLOGIE INFORMATIQUE -->
+        <section class="flux-section reveal theme-tech">
+            <div class="flux-section-header">
+                <h2 class="flux-section-title">
+                    <span class="title-bar"></span>
+                    💻 Technologie Informatique
+                </h2>
+                <span class="flux-badge-sources">Sources : Le Monde Informatique, LeMagIT, 01net</span>
+            </div>
+            <div class="articles-grid" id="grid-tech">
+                <div class="skeleton-card"><div class="skeleton-thumb"></div><div class="skeleton-body"><div class="skeleton-line" style="width:68%"></div><div class="skeleton-line" style="width:100%"></div><div class="skeleton-line" style="width:78%"></div></div></div>
+                <div class="skeleton-card"><div class="skeleton-thumb"></div><div class="skeleton-body"><div class="skeleton-line" style="width:52%"></div><div class="skeleton-line" style="width:100%"></div><div class="skeleton-line" style="width:90%"></div></div></div>
+                <div class="skeleton-card"><div class="skeleton-thumb"></div><div class="skeleton-body"><div class="skeleton-line" style="width:72%"></div><div class="skeleton-line" style="width:100%"></div><div class="skeleton-line" style="width:60%"></div></div></div>
             </div>
         </section>
 
@@ -136,33 +365,15 @@
         <section class="sources-section reveal">
             <h2>Mes sources de veille</h2>
             <div class="sources-grid">
-                <a href="https://www.cert.ssi.gouv.fr/" target="_blank" rel="noopener" class="source-item">
-                    <span class="source-dot"></span>CERT-FR (ANSSI)
-                </a>
-                <a href="https://www.lemondeinformatique.fr/" target="_blank" rel="noopener" class="source-item">
-                    <span class="source-dot"></span>Le Monde Informatique
-                </a>
-                <a href="https://www.zdnet.fr/" target="_blank" rel="noopener" class="source-item">
-                    <span class="source-dot"></span>ZDNet France
-                </a>
-                <a href="https://www.cisecurity.org/" target="_blank" rel="noopener" class="source-item">
-                    <span class="source-dot"></span>CIS Security
-                </a>
-                <a href="https://www.reddit.com/r/sysadmin/" target="_blank" rel="noopener" class="source-item">
-                    <span class="source-dot"></span>Reddit r/sysadmin
-                </a>
-                <a href="https://www.it-connect.fr/" target="_blank" rel="noopener" class="source-item">
-                    <span class="source-dot"></span>IT-Connect.fr
-                </a>
-                <a href="https://www.bleepingcomputer.com/" target="_blank" rel="noopener" class="source-item">
-                    <span class="source-dot"></span>Bleeping Computer
-                </a>
-                <a href="https://korben.info/" target="_blank" rel="noopener" class="source-item">
-                    <span class="source-dot"></span>Korben.info
-                </a>
-                <a href="https://www.cisco.com/c/en/us/solutions/security.html" target="_blank" rel="noopener" class="source-item">
-                    <span class="source-dot"></span>Cisco Security Blog
-                </a>
+                <a href="https://www.cert.ssi.gouv.fr/" target="_blank" rel="noopener" class="source-item"><span class="source-dot"></span>CERT-FR (ANSSI)</a>
+                <a href="https://www.lemondeinformatique.fr/" target="_blank" rel="noopener" class="source-item"><span class="source-dot"></span>Le Monde Informatique</a>
+                <a href="https://www.zdnet.fr/" target="_blank" rel="noopener" class="source-item"><span class="source-dot"></span>ZDNet France</a>
+                <a href="https://www.it-connect.fr/" target="_blank" rel="noopener" class="source-item"><span class="source-dot"></span>IT-Connect.fr</a>
+                <a href="https://www.bleepingcomputer.com/" target="_blank" rel="noopener" class="source-item"><span class="source-dot"></span>Bleeping Computer</a>
+                <a href="https://korben.info/" target="_blank" rel="noopener" class="source-item"><span class="source-dot"></span>Korben.info</a>
+                <a href="https://www.lemagit.fr/" target="_blank" rel="noopener" class="source-item"><span class="source-dot"></span>LeMagIT</a>
+                <a href="https://www.01net.com/" target="_blank" rel="noopener" class="source-item"><span class="source-dot"></span>01net</a>
+                <a href="https://blogs.cisco.com/" target="_blank" rel="noopener" class="source-item"><span class="source-dot"></span>Cisco Blog</a>
             </div>
         </section>
 
@@ -174,13 +385,140 @@
     </footer>
 
     <script>
+        /* ============================================================
+           CONFIGURATION DES THÈMES ET SOURCES RSS
+           API proxy : rss2json.com — contourne les blocages CORS
+           ============================================================ */
+        const THEMES = {
+            cyber: {
+                gridId: 'grid-cyber',
+                badgeColor: '#c0392b',
+                thumbBg: 'linear-gradient(135deg, #1c0505, #4a1010)',
+                emoji: '🔐',
+                sources: [
+                    { url: 'https://www.cert.ssi.gouv.fr/feed/',                        label: 'CERT-FR',         icon: '🛡️' },
+                    { url: 'https://korben.info/feed',                                   label: 'Korben',          icon: '⚡' },
+                    { url: 'https://feeds.feedburner.com/TheHackersNews',               label: 'Hacker News',     icon: '🔓' },
+                ]
+            },
+            reseau: {
+                gridId: 'grid-reseau',
+                badgeColor: '#0984e3',
+                thumbBg: 'linear-gradient(135deg, #030d1c, #082d5a)',
+                emoji: '🌐',
+                sources: [
+                    { url: 'https://www.it-connect.fr/feed/',                            label: 'IT-Connect',      icon: '🔗' },
+                    { url: 'https://www.zdnet.fr/feeds/rss/actualites/',                 label: 'ZDNet',           icon: '📡' },
+                    { url: 'https://feeds.feedburner.com/CiscoBlogs',                   label: 'Cisco Blog',      icon: '🖧' },
+                ]
+            },
+            tech: {
+                gridId: 'grid-tech',
+                badgeColor: '#a100f2',
+                thumbBg: 'linear-gradient(135deg, #0d001f, #25005e)',
+                emoji: '💻',
+                sources: [
+                    { url: 'https://www.lemondeinformatique.fr/flux-rss/thematique/toute-l-informatique/rss.xml', label: 'Le Monde Info', icon: '💡' },
+                    { url: 'https://www.lemagit.fr/rss/toute-actualite.xml',            label: 'LeMagIT',         icon: '🖥️' },
+                    { url: 'https://www.01net.com/rss/info/flux-rss-01net.xml',         label: '01net',           icon: '📰' },
+                ]
+            }
+        };
+
+        const RSS2JSON = 'https://api.rss2json.com/v1/api.json?rss_url=';
+
+        /* --- Helpers --- */
+        function stripHtml(str) {
+            const d = document.createElement('div');
+            d.innerHTML = str || '';
+            return d.textContent || d.innerText || '';
+        }
+
+        function formatDate(str) {
+            if (!str) return '';
+            const d = new Date(str);
+            return isNaN(d) ? '' : d.toLocaleDateString('fr-FR', { day: 'numeric', month: 'short', year: 'numeric' });
+        }
+
+        function getImage(item) {
+            // 1. Enclosure (podcasts, médias attachés)
+            if (item.enclosure?.link && item.enclosure?.type?.startsWith('image')) return item.enclosure.link;
+            // 2. Thumbnail natif rss2json
+            if (item.thumbnail && item.thumbnail.startsWith('http')) return item.thumbnail;
+            // 3. Balise <img> dans le contenu HTML
+            const html = item.content || item.description || '';
+            const m = html.match(/<img[^>]+src=["']([^"']+)["']/i);
+            if (m?.[1]?.startsWith('http')) return m[1];
+            return null;
+        }
+
+        /* --- Construction d'une carte article --- */
+        function buildCard(item, source, theme) {
+            const imgUrl = getImage(item);
+            const title  = stripHtml(item.title) || 'Article sans titre';
+            const desc   = stripHtml(item.description || item.content || '').slice(0, 160);
+            const date   = formatDate(item.pubDate);
+            const link   = item.link || '#';
+
+            const thumbContent = imgUrl
+                ? `<img src="${imgUrl}" alt="" loading="lazy"
+                       onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">`
+                : '';
+
+            return `
+            <a class="article-card" href="${link}" target="_blank" rel="noopener noreferrer">
+                <div class="article-thumb">
+                    ${thumbContent}
+                    <div class="article-thumb-fallback" style="background:${theme.thumbBg};display:${imgUrl ? 'none' : 'flex'}">${theme.emoji}</div>
+                    <span class="article-source-badge" style="background:${theme.badgeColor}">${source.icon} ${source.label}</span>
+                    ${date ? `<span class="article-date-badge">🕐 ${date}</span>` : ''}
+                </div>
+                <div class="article-body">
+                    <div class="article-title">${title}</div>
+                    ${desc ? `<div class="article-desc">${desc}…</div>` : ''}
+                    <span class="article-read-btn">Lire l'article ↗</span>
+                </div>
+            </a>`;
+        }
+
+        /* --- Chargement d'un flux RSS via API proxy --- */
+        async function fetchFeed(url, source, theme) {
+            try {
+                const r = await fetch(`${RSS2JSON}${encodeURIComponent(url)}&count=1`, { signal: AbortSignal.timeout(8000) });
+                if (!r.ok) throw new Error('HTTP ' + r.status);
+                const data = await r.json();
+                if (data.status !== 'ok' || !data.items?.length) throw new Error('Vide');
+                return buildCard(data.items[0], source, theme);
+            } catch (e) {
+                console.warn(`[${source.label}] ${e.message}`);
+                return null;
+            }
+        }
+
+        /* --- Chargement de tous les articles d'un thème --- */
+        async function loadTheme(key) {
+            const theme = THEMES[key];
+            const grid  = document.getElementById(theme.gridId);
+            const results = await Promise.allSettled(theme.sources.map(s => fetchFeed(s.url, s, theme)));
+
+            const cards = results
+                .filter(r => r.status === 'fulfilled' && r.value)
+                .map(r => r.value);
+
+            grid.innerHTML = cards.length
+                ? cards.join('')
+                : `<div class="flux-error">⚠️ Impossible de charger les articles pour le moment.<br>Consultez directement les sources listées ci-dessous.</div>`;
+        }
+
+        /* --- Lancement --- */
+        Promise.all(['cyber', 'reseau', 'tech'].map(loadTheme));
+
+        /* --- Header & reveal au scroll --- */
         window.addEventListener('scroll', () => {
             document.getElementById('topbar').classList.toggle('scrolled', window.scrollY > 50);
         });
-        const observer = new IntersectionObserver(entries => {
-            entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-        }, { threshold: 0.1 });
-        document.querySelectorAll('.reveal').forEach(r => observer.observe(r));
+        const obs = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }), { threshold: 0.05 });
+        document.querySelectorAll('.reveal').forEach(r => obs.observe(r));
     </script>
 </body>
 </html>

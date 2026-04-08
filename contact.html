@@ -3,27 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact - Portfolio BTS SIO SISR</title>
-
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <title>Contact - Portfolio Thomas VITI</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- =========================
-         HEADER / HAUT DE PAGE
-         ========================= -->
-    <header class="topbar">
+    <header class="topbar" id="topbar">
         <a href="index.html" class="brand">
             <div class="logo-placeholder">
-                <img src="logo1.png" alt="Logo Thomas VITI" class="logo">
+                <img src="images/logo1.png" alt="Logo Thomas VITI" class="logo">
             </div>
             <span class="brand-title">PORTFOLIO BTS SIO - SISR</span>
         </a>
-
         <nav class="navbar">
             <a href="index.html">ACCUEIL</a>
-            <a href="presentation.html">PRESENTATION</a>
+            <a href="presentation.html">PRÉSENTATION</a>
             <a href="btssio.html">BTS SIO</a>
             <a href="e4.html">PROJETS E4</a>
             <a href="veille.html">VEILLE</a>
@@ -31,13 +26,9 @@
         </nav>
     </header>
 
-    <!-- =========================
-         CONTENU PAGE CONTACT
-         ========================= -->
     <main class="contact-page">
 
-        <!-- HERO CONTACT -->
-        <section class="contact-hero">
+        <section class="contact-hero reveal">
             <h1>Contact</h1>
             <p>
                 Vous pouvez me contacter pour échanger à propos de mon parcours,
@@ -45,8 +36,7 @@
             </p>
         </section>
 
-        <!-- BLOCS CONTACT -->
-        <section class="contact-cards">
+        <section class="contact-cards reveal">
 
             <div class="contact-card">
                 <div class="contact-card-icon">✉</div>
@@ -60,7 +50,7 @@
                 <div class="contact-card-icon">☎</div>
                 <h2>Téléphone</h2>
                 <p>
-                    <a href="tel:0610391009">06.10.39.10.09</a>
+                    <a href="tel:0610391009">06 10 39 10 09</a>
                 </p>
             </div>
 
@@ -84,13 +74,19 @@
 
     </main>
 
-    <!-- =========================
-         FOOTER / PIED DE PAGE
-         ========================= -->
     <footer class="footer">
         <p>Copyright © 2026. All rights reserved</p>
         <p>Thomas VITI - Portfolio BTS SIO (SISR) - Session 2025 - 2026</p>
     </footer>
 
+    <script>
+        window.addEventListener('scroll', () => {
+            document.getElementById('topbar').classList.toggle('scrolled', window.scrollY > 50);
+        });
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.reveal').forEach(r => observer.observe(r));
+    </script>
 </body>
 </html>

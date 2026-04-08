@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Veille Technologique - Portfolio Thomas VITI</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="topbar" id="topbar">
+        <a href="index.html" class="brand">
+            <div class="logo-placeholder">
+                <img src="images/logo1.png" alt="Logo Thomas VITI" class="logo">
+            </div>
+            <span class="brand-title">PORTFOLIO BTS SIO - SISR</span>
+        </a>
+        <nav class="navbar">
+            <a href="index.html">ACCUEIL</a>
+            <a href="presentation.html">PRÉSENTATION</a>
+            <a href="btssio.html">BTS SIO</a>
+            <a href="e4.html">PROJETS E4</a>
+            <a href="veille.html" class="active">VEILLE</a>
+            <a href="contact.html">CONTACT</a>
+        </nav>
+    </header>
+
+    <main class="veille-page">
+
+        <!-- HERO -->
+        <section class="page-hero reveal">
+            <h1>Veille Technologique</h1>
+            <p>
+                Dans le domaine de l'informatique, rester informé est essentiel.
+                Je réalise une veille régulière sur les thématiques liées à la
+                cybersécurité, aux réseaux et aux nouvelles technologies d'infrastructure.
+            </p>
+        </section>
+
+        <!-- INTRO MÉTHODE -->
+        <div class="veille-intro reveal">
+            <h2>Ma méthode de veille</h2>
+            <p>
+                Je consulte quotidiennement des flux RSS, newsletters spécialisées et
+                forums techniques pour me tenir informé des dernières évolutions.
+                Je concentre ma veille sur trois axes principaux : la <strong>cybersécurité</strong>,
+                les <strong>infrastructures réseaux</strong> et les <strong>nouvelles technologies
+                cloud et virtualisation</strong>. Cette démarche me permet d'anticiper
+                les tendances et d'adapter mes compétences aux besoins du terrain.
+            </p>
+        </div>
+
+        <!-- ARTICLES DE VEILLE -->
+        <section class="reveal" style="margin-bottom: 50px;">
+            <h2 style="font-size:2rem; margin-bottom:28px; color:var(--couleur-texte); display:flex; align-items:center; gap:12px;">
+                <span style="display:inline-block;width:5px;height:36px;background:linear-gradient(180deg,var(--couleur-accent),var(--couleur-header));border-radius:4px;"></span>
+                Articles de veille
+            </h2>
+            <div class="veille-grid">
+
+                <div class="veille-card">
+                    <div class="veille-card-header">
+                        <div class="veille-icon">🔐</div>
+                        <div>
+                            <h3>Les attaques par ransomware en 2025</h3>
+                            <span class="veille-date">Cybersécurité — 2025</span>
+                        </div>
+                    </div>
+                    <p>
+                        Les ransomwares évoluent rapidement vers des modèles
+                        Ransomware-as-a-Service (RaaS). Les attaquants ciblent
+                        désormais les infrastructures critiques comme les hôpitaux et
+                        organismes publics. La double extorsion (chiffrement + fuite de données)
+                        est devenue la norme. La sauvegarde isolée (air-gap) et la
+                        segmentation réseau restent les meilleures défenses.
+                    </p>
+                </div>
+
+                <div class="veille-card">
+                    <div class="veille-card-header">
+                        <div class="veille-icon">🌐</div>
+                        <div>
+                            <h3>Wi-Fi 7 : la nouvelle norme sans fil</h3>
+                            <span class="veille-date">Réseaux — 2024-2025</span>
+                        </div>
+                    </div>
+                    <p>
+                        Le Wi-Fi 7 (802.11be) offre des débits théoriques jusqu'à
+                        46 Gbps grâce au Multi-Link Operation (MLO) et à l'utilisation
+                        simultanée des bandes 2.4, 5 et 6 GHz. Il réduit considérablement
+                        la latence, ce qui en fait un candidat sérieux pour remplacer
+                        le câblage dans certains environnements d'entreprise.
+                    </p>
+                </div>
+
+                <div class="veille-card">
+                    <div class="veille-card-header">
+                        <div class="veille-icon">☁️</div>
+                        <div>
+                            <h3>Architecture Zero Trust en entreprise</h3>
+                            <span class="veille-date">Cybersécurité / Cloud — 2025</span>
+                        </div>
+                    </div>
+                    <p>
+                        Le modèle Zero Trust ("ne jamais faire confiance, toujours vérifier")
+                        s'impose comme référence de sécurité. Il remplace la logique du
+                        périmètre réseau classique par une authentification forte à chaque
+                        accès. L'adoption d'outils IAM, MFA et microsegmentation est
+                        en forte croissance dans les grandes organisations.
+                    </p>
+                </div>
+
+                <div class="veille-card">
+                    <div class="veille-card-header">
+                        <div class="veille-icon">🖥️</div>
+                        <div>
+                            <h3>Virtualisation : VMware vs alternatives open source</h3>
+                            <span class="veille-date">Infrastructure — 2024-2025</span>
+                        </div>
+                    </div>
+                    <p>
+                        Suite au rachat de VMware par Broadcom et la hausse des
+                        licences, de nombreuses entreprises se tournent vers des
+                        alternatives comme Proxmox VE, OpenStack ou KVM.
+                        Cette migration représente un enjeu technique important
+                        pour les équipes IT qui doivent adapter leurs compétences
+                        et leurs processus.
+                    </p>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- SOURCES -->
+        <section class="sources-section reveal">
+            <h2>Mes sources de veille</h2>
+            <div class="sources-grid">
+                <a href="https://www.cert.ssi.gouv.fr/" target="_blank" rel="noopener" class="source-item">
+                    <span class="source-dot"></span>CERT-FR (ANSSI)
+                </a>
+                <a href="https://www.lemondeinformatique.fr/" target="_blank" rel="noopener" class="source-item">
+                    <span class="source-dot"></span>Le Monde Informatique
+                </a>
+                <a href="https://www.zdnet.fr/" target="_blank" rel="noopener" class="source-item">
+                    <span class="source-dot"></span>ZDNet France
+                </a>
+                <a href="https://www.cisecurity.org/" target="_blank" rel="noopener" class="source-item">
+                    <span class="source-dot"></span>CIS Security
+                </a>
+                <a href="https://www.reddit.com/r/sysadmin/" target="_blank" rel="noopener" class="source-item">
+                    <span class="source-dot"></span>Reddit r/sysadmin
+                </a>
+                <a href="https://www.it-connect.fr/" target="_blank" rel="noopener" class="source-item">
+                    <span class="source-dot"></span>IT-Connect.fr
+                </a>
+                <a href="https://www.bleepingcomputer.com/" target="_blank" rel="noopener" class="source-item">
+                    <span class="source-dot"></span>Bleeping Computer
+                </a>
+                <a href="https://korben.info/" target="_blank" rel="noopener" class="source-item">
+                    <span class="source-dot"></span>Korben.info
+                </a>
+                <a href="https://www.cisco.com/c/en/us/solutions/security.html" target="_blank" rel="noopener" class="source-item">
+                    <span class="source-dot"></span>Cisco Security Blog
+                </a>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="footer">
+        <p>Copyright © 2026. All rights reserved</p>
+        <p>Thomas VITI - Portfolio BTS SIO (SISR) - Session 2025 - 2026</p>
+    </footer>
+
+    <script>
+        window.addEventListener('scroll', () => {
+            document.getElementById('topbar').classList.toggle('scrolled', window.scrollY > 50);
+        });
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.reveal').forEach(r => observer.observe(r));
+    </script>
+</body>
+</html>

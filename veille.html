@@ -7,16 +7,21 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <style>
+
         /* ===========================
-           FLUX EN DIRECT
+           SECTION FLUX
            =========================== */
-        .flux-section { margin-bottom: 60px; }
+        .flux-section {
+            margin-bottom: 60px;
+        }
 
         .flux-section-header {
             display: flex;
             align-items: center;
             justify-content: space-between;
             margin-bottom: 24px;
+            padding-bottom: 16px;
+            border-bottom: 1.5px solid var(--couleur-bordure);
             flex-wrap: wrap;
             gap: 12px;
         }
@@ -24,32 +29,30 @@
         .flux-section-title {
             display: flex;
             align-items: center;
-            gap: 12px;
-            font-size: 1.85rem;
+            gap: 10px;
+            font-size: 1.6rem;
             font-weight: 700;
             color: var(--couleur-texte);
             margin: 0;
         }
 
-        .title-bar {
-            display: inline-block;
-            width: 5px;
-            height: 36px;
-            border-radius: 4px;
-            flex-shrink: 0;
+        .flux-title-icon {
+            font-size: 1.5rem;
+            line-height: 1;
         }
 
         .flux-badge-sources {
             font-size: 0.78rem;
             font-weight: 700;
-            padding: 6px 14px;
+            padding: 6px 16px;
             border-radius: 50px;
             border: 1.5px solid;
             letter-spacing: 0.2px;
+            white-space: nowrap;
         }
 
         /* ===========================
-           GRILLE
+           GRILLE 3 COLONNES
            =========================== */
         .articles-grid {
             display: grid;
@@ -62,7 +65,7 @@
            =========================== */
         .article-card {
             background: var(--couleur-blanc);
-            border-radius: 18px;
+            border-radius: 16px;
             overflow: hidden;
             border: 1px solid var(--couleur-bordure);
             box-shadow: var(--shadow-card);
@@ -75,15 +78,15 @@
 
         .article-card:hover {
             transform: translateY(-6px);
-            box-shadow: var(--shadow-hover);
+            box-shadow: 0 12px 32px rgba(0,0,0,0.12);
         }
 
+        /* Thumbnail */
         .article-thumb {
             position: relative;
             width: 100%;
-            height: 185px;
+            height: 190px;
             overflow: hidden;
-            background: #0d1b2a;
             flex-shrink: 0;
         }
 
@@ -96,9 +99,10 @@
         }
 
         .article-card:hover .article-thumb img {
-            transform: scale(1.06);
+            transform: scale(1.05);
         }
 
+        /* Fallback si pas d'image */
         .article-thumb-fallback {
             width: 100%;
             height: 100%;
@@ -108,152 +112,138 @@
             font-size: 3.5rem;
         }
 
+        /* Badge source (coin haut gauche) */
         .article-source-badge {
             position: absolute;
             top: 12px;
             left: 12px;
-            padding: 4px 10px;
-            border-radius: 6px;
+            padding: 5px 11px;
+            border-radius: 7px;
             font-size: 0.72rem;
             font-weight: 700;
-            letter-spacing: 0.4px;
+            letter-spacing: 0.5px;
             text-transform: uppercase;
             color: white;
             display: flex;
             align-items: center;
-            gap: 4px;
+            gap: 5px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.25);
         }
 
+        /* Date (coin bas gauche) */
         .article-date-badge {
             position: absolute;
             bottom: 10px;
             left: 12px;
-            font-size: 0.74rem;
-            color: rgba(255,255,255,0.9);
+            font-size: 0.75rem;
+            color: rgba(255,255,255,0.92);
             font-weight: 500;
             display: flex;
             align-items: center;
-            gap: 4px;
+            gap: 5px;
+            text-shadow: 0 1px 4px rgba(0,0,0,0.5);
         }
 
+        /* Corps de la carte */
         .article-body {
-            padding: 18px 18px 14px;
+            padding: 20px 20px 16px;
             display: flex;
             flex-direction: column;
             flex: 1;
-            gap: 8px;
+            gap: 10px;
         }
 
         .article-title {
-            font-size: 0.95rem;
+            font-size: 0.97rem;
             font-weight: 700;
             color: var(--couleur-texte);
             line-height: 1.45;
-            display: -webkit-box;
-            -webkit-line-clamp: 3;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-            transition: var(--transition);
+            transition: color var(--transition);
         }
 
         .article-desc {
-            font-size: 0.82rem;
+            font-size: 0.83rem;
             color: var(--couleur-texte-secondaire);
-            line-height: 1.6;
-            display: -webkit-box;
-            -webkit-line-clamp: 3;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
+            line-height: 1.65;
             flex: 1;
         }
 
+        /* Bouton lire */
         .article-read-btn {
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 6px;
-            padding: 9px 0;
+            gap: 8px;
+            padding: 10px 0;
             border-radius: 10px;
             border: 1px solid var(--couleur-bordure);
             background: var(--couleur-fond);
-            font-size: 0.82rem;
+            font-size: 0.83rem;
             font-weight: 600;
             color: var(--couleur-texte-secondaire);
             transition: var(--transition);
             margin-top: auto;
+            text-decoration: none;
         }
 
-        .article-card:hover .article-read-btn {
-            color: white;
-            border-color: transparent;
+        .article-read-btn svg {
+            width: 14px;
+            height: 14px;
+            transition: transform var(--transition);
         }
 
-        /* ===========================
-           SKELETON LOADER
-           =========================== */
-        @keyframes shimmer {
-            0%   { background-position: 200% 0; }
-            100% { background-position: -200% 0; }
-        }
-
-        .skeleton-card {
-            background: var(--couleur-blanc);
-            border-radius: 18px;
-            overflow: hidden;
-            border: 1px solid var(--couleur-bordure);
-        }
-
-        .skeleton-thumb {
-            height: 185px;
-            background: linear-gradient(90deg, #ebebeb 25%, #d6d6d6 50%, #ebebeb 75%);
-            background-size: 200% 100%;
-            animation: shimmer 1.4s infinite;
-        }
-
-        .skeleton-body { padding: 18px; display: flex; flex-direction: column; gap: 10px; }
-
-        .skeleton-line {
-            height: 13px;
-            border-radius: 6px;
-            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
-            background-size: 200% 100%;
-            animation: shimmer 1.4s infinite;
+        .article-card:hover .article-read-btn svg {
+            transform: translate(2px, -2px);
         }
 
         /* ===========================
            COULEURS PAR THÈME
            =========================== */
-        /* Cyber — Rouge */
-        .theme-cyber .title-bar          { background: linear-gradient(180deg, #ff6b6b, #c0392b); }
-        .theme-cyber .flux-badge-sources { color: #c0392b; border-color: #c0392b; background: rgba(192,57,43,0.07); }
-        .theme-cyber .article-source-badge { background: #c0392b; }
-        .theme-cyber .article-card:hover .article-title { color: #c0392b; }
-        .theme-cyber .article-card:hover .article-read-btn { background: #c0392b; }
 
-        /* Réseau — Bleu */
-        .theme-reseau .title-bar          { background: linear-gradient(180deg, #74b9ff, #0984e3); }
-        .theme-reseau .flux-badge-sources { color: #0984e3; border-color: #0984e3; background: rgba(9,132,227,0.07); }
-        .theme-reseau .article-source-badge { background: #0984e3; }
-        .theme-reseau .article-card:hover .article-title { color: #0984e3; }
-        .theme-reseau .article-card:hover .article-read-btn { background: #0984e3; }
-
-        /* Tech — Violet */
-        .theme-tech .title-bar          { background: linear-gradient(180deg, var(--couleur-accent), var(--couleur-header)); }
-        .theme-tech .flux-badge-sources { color: var(--couleur-header); border-color: var(--couleur-header); background: rgba(161,0,242,0.07); }
-        .theme-tech .article-source-badge { background: var(--couleur-header); }
-        .theme-tech .article-card:hover .article-title { color: var(--couleur-header); }
-        .theme-tech .article-card:hover .article-read-btn { background: var(--couleur-header); }
-
-        /* ===========================
-           ERREUR
-           =========================== */
-        .flux-error {
-            grid-column: 1 / -1;
-            text-align: center;
-            padding: 50px 20px;
-            color: var(--couleur-texte-secondaire);
-            font-size: 0.92rem;
+        /* 🔐 Cybersécurité — Rouge */
+        .theme-cyber .flux-badge-sources {
+            color: #c0392b;
+            border-color: #c0392b;
+            background: rgba(192,57,43,0.07);
         }
+        .theme-cyber .article-card:hover .article-title { color: #c0392b; }
+        .theme-cyber .article-card:hover .article-read-btn {
+            background: #c0392b;
+            color: white;
+            border-color: #c0392b;
+        }
+        .theme-cyber .badge-color { background: #c0392b; }
+        .theme-cyber .fallback-bg { background: linear-gradient(135deg, #1c0505, #4a1010); }
+
+        /* 🌐 Réseaux — Bleu */
+        .theme-reseau .flux-badge-sources {
+            color: #0984e3;
+            border-color: #0984e3;
+            background: rgba(9,132,227,0.07);
+        }
+        .theme-reseau .article-card:hover .article-title { color: #0984e3; }
+        .theme-reseau .article-card:hover .article-read-btn {
+            background: #0984e3;
+            color: white;
+            border-color: #0984e3;
+        }
+        .theme-reseau .badge-color { background: #0984e3; }
+        .theme-reseau .fallback-bg { background: linear-gradient(135deg, #030d1c, #082d5a); }
+
+        /* 💻 Tech — Violet */
+        .theme-tech .flux-badge-sources {
+            color: var(--couleur-header);
+            border-color: var(--couleur-header);
+            background: rgba(161,0,242,0.07);
+        }
+        .theme-tech .article-card:hover .article-title { color: var(--couleur-header); }
+        .theme-tech .article-card:hover .article-read-btn {
+            background: var(--couleur-header);
+            color: white;
+            border-color: var(--couleur-header);
+        }
+        .theme-tech .badge-color { background: var(--couleur-header); }
+        .theme-tech .fallback-bg { background: linear-gradient(135deg, #0d001f, #25005e); }
 
         /* ===========================
            RESPONSIVE
@@ -262,9 +252,10 @@
             .articles-grid { grid-template-columns: repeat(2, 1fr); }
         }
 
-        @media (max-width: 600px) {
+        @media (max-width: 640px) {
             .articles-grid { grid-template-columns: 1fr; }
-            .flux-section-title { font-size: 1.4rem; }
+            .flux-section-title { font-size: 1.3rem; }
+            .flux-section-header { flex-direction: column; align-items: flex-start; }
         }
     </style>
 </head>
@@ -296,7 +287,6 @@
                 Dans le domaine de l'informatique, rester informé est essentiel.
                 Je réalise une veille régulière sur les thématiques liées à la
                 cybersécurité, aux réseaux et aux nouvelles technologies d'infrastructure.
-                Les articles ci-dessous sont mis à jour automatiquement en temps réel.
             </p>
         </section>
 
@@ -304,61 +294,60 @@
         <div class="veille-intro reveal">
             <h2>Ma méthode de veille</h2>
             <p>
-                Je consulte quotidiennement des flux RSS, newsletters spécialisées et forums
-                techniques pour me tenir informé des dernières évolutions. Je concentre ma veille
-                sur trois axes principaux : la <strong>cybersécurité</strong>,
-                les <strong>infrastructures réseaux</strong> et les <strong>nouvelles technologies
-                informatiques</strong>. Les articles sont récupérés automatiquement depuis les
-                sources les plus fiables du secteur.
+                Je consulte régulièrement des sources spécialisées, newsletters et forums techniques
+                pour me tenir informé des dernières évolutions. Je concentre ma veille sur trois axes :
+                la <strong>cybersécurité</strong>, les <strong>infrastructures réseaux</strong>
+                et les <strong>nouvelles technologies informatiques</strong>.
             </p>
         </div>
 
-        <!-- 🔐 CYBERSÉCURITÉ -->
+        <!-- ============================================================
+             🔐 CYBERSÉCURITÉ
+             Pour ajouter / modifier un article :
+             - image    : URL d'une image (ou laisser "" pour le fallback)
+             - source   : nom affiché dans le badge
+             - date     : date de l'article
+             - title    : titre de l'article
+             - desc     : court résumé (2-3 phrases)
+             - link     : URL de l'article
+             ============================================================ -->
         <section class="flux-section reveal theme-cyber">
             <div class="flux-section-header">
                 <h2 class="flux-section-title">
-                    <span class="title-bar"></span>
-                    🔐 Cybersécurité
+                    <span class="flux-title-icon">🔐</span>
+                    Cybersécurité
                 </h2>
                 <span class="flux-badge-sources">Sources : CERT-FR, Korben, Bleeping Computer</span>
             </div>
-            <div class="articles-grid" id="grid-cyber">
-                <div class="skeleton-card"><div class="skeleton-thumb"></div><div class="skeleton-body"><div class="skeleton-line" style="width:65%"></div><div class="skeleton-line" style="width:100%"></div><div class="skeleton-line" style="width:80%"></div></div></div>
-                <div class="skeleton-card"><div class="skeleton-thumb"></div><div class="skeleton-body"><div class="skeleton-line" style="width:50%"></div><div class="skeleton-line" style="width:100%"></div><div class="skeleton-line" style="width:70%"></div></div></div>
-                <div class="skeleton-card"><div class="skeleton-thumb"></div><div class="skeleton-body"><div class="skeleton-line" style="width:75%"></div><div class="skeleton-line" style="width:100%"></div><div class="skeleton-line" style="width:88%"></div></div></div>
-            </div>
+            <div class="articles-grid" id="grid-cyber"></div>
         </section>
 
-        <!-- 🌐 RÉSEAUX -->
+        <!-- ============================================================
+             🌐 RÉSEAUX & INFRASTRUCTURE
+             ============================================================ -->
         <section class="flux-section reveal theme-reseau">
             <div class="flux-section-header">
                 <h2 class="flux-section-title">
-                    <span class="title-bar"></span>
-                    🌐 Réseaux & Infrastructure
+                    <span class="flux-title-icon">🌐</span>
+                    Réseaux & Infrastructure
                 </h2>
                 <span class="flux-badge-sources">Sources : IT-Connect, ZDNet, Cisco Blog</span>
             </div>
-            <div class="articles-grid" id="grid-reseau">
-                <div class="skeleton-card"><div class="skeleton-thumb"></div><div class="skeleton-body"><div class="skeleton-line" style="width:60%"></div><div class="skeleton-line" style="width:100%"></div><div class="skeleton-line" style="width:75%"></div></div></div>
-                <div class="skeleton-card"><div class="skeleton-thumb"></div><div class="skeleton-body"><div class="skeleton-line" style="width:70%"></div><div class="skeleton-line" style="width:100%"></div><div class="skeleton-line" style="width:65%"></div></div></div>
-                <div class="skeleton-card"><div class="skeleton-thumb"></div><div class="skeleton-body"><div class="skeleton-line" style="width:55%"></div><div class="skeleton-line" style="width:100%"></div><div class="skeleton-line" style="width:82%"></div></div></div>
-            </div>
+            <div class="articles-grid" id="grid-reseau"></div>
         </section>
 
-        <!-- 💻 TECHNOLOGIE INFORMATIQUE -->
+        <!-- ============================================================
+             💻 TECHNOLOGIE INFORMATIQUE
+             ============================================================ -->
         <section class="flux-section reveal theme-tech">
             <div class="flux-section-header">
                 <h2 class="flux-section-title">
-                    <span class="title-bar"></span>
-                    💻 Technologie Informatique
+                    <span class="flux-title-icon">💻</span>
+                    Technologie Informatique
                 </h2>
                 <span class="flux-badge-sources">Sources : Le Monde Informatique, LeMagIT, 01net</span>
             </div>
-            <div class="articles-grid" id="grid-tech">
-                <div class="skeleton-card"><div class="skeleton-thumb"></div><div class="skeleton-body"><div class="skeleton-line" style="width:68%"></div><div class="skeleton-line" style="width:100%"></div><div class="skeleton-line" style="width:78%"></div></div></div>
-                <div class="skeleton-card"><div class="skeleton-thumb"></div><div class="skeleton-body"><div class="skeleton-line" style="width:52%"></div><div class="skeleton-line" style="width:100%"></div><div class="skeleton-line" style="width:90%"></div></div></div>
-                <div class="skeleton-card"><div class="skeleton-thumb"></div><div class="skeleton-body"><div class="skeleton-line" style="width:72%"></div><div class="skeleton-line" style="width:100%"></div><div class="skeleton-line" style="width:60%"></div></div></div>
-            </div>
+            <div class="articles-grid" id="grid-tech"></div>
         </section>
 
         <!-- SOURCES -->
@@ -385,140 +374,160 @@
     </footer>
 
     <script>
-        /* ============================================================
-           CONFIGURATION DES THÈMES ET SOURCES RSS
-           API proxy : rss2json.com — contourne les blocages CORS
-           ============================================================ */
-        const THEMES = {
-            cyber: {
-                gridId: 'grid-cyber',
-                badgeColor: '#c0392b',
-                thumbBg: 'linear-gradient(135deg, #1c0505, #4a1010)',
-                emoji: '🔐',
-                sources: [
-                    { url: 'https://www.cert.ssi.gouv.fr/feed/',                        label: 'CERT-FR',         icon: '🛡️' },
-                    { url: 'https://korben.info/feed',                                   label: 'Korben',          icon: '⚡' },
-                    { url: 'https://feeds.feedburner.com/TheHackersNews',               label: 'Hacker News',     icon: '🔓' },
-                ]
+    /* ================================================================
+       ARTICLES DE VEILLE — modifiez ce tableau pour mettre à jour
+       ================================================================ */
+    const ARTICLES = {
+
+        /* --- 🔐 CYBERSÉCURITÉ --- */
+        cyber: [
+            {
+                image:  "https://www.cert.ssi.gouv.fr/img/Logo-CERT-FR.png",
+                source: "🛡️ CERT-FR",
+                date:   "27 mars 2026",
+                title:  "Multiples vulnérabilités dans le noyau Linux d'Ubuntu (27 mars 2026)",
+                desc:   "De multiples vulnérabilités ont été découvertes dans le noyau Linux d'Ubuntu. Certaines d'entre elles permettent à un attaquant de provoquer une exécution de code arbitraire à distance.",
+                link:   "https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0276/"
             },
-            reseau: {
-                gridId: 'grid-reseau',
-                badgeColor: '#0984e3',
-                thumbBg: 'linear-gradient(135deg, #030d1c, #082d5a)',
-                emoji: '🌐',
-                sources: [
-                    { url: 'https://www.it-connect.fr/feed/',                            label: 'IT-Connect',      icon: '🔗' },
-                    { url: 'https://www.zdnet.fr/feeds/rss/actualites/',                 label: 'ZDNet',           icon: '📡' },
-                    { url: 'https://feeds.feedburner.com/CiscoBlogs',                   label: 'Cisco Blog',      icon: '🖧' },
-                ]
+            {
+                image:  "",
+                source: "⚡ Korben",
+                date:   "5 avr. 2026",
+                title:  "Ransomware-as-a-Service : comment les cybercriminels louent leurs outils",
+                desc:   "Le modèle RaaS (Ransomware-as-a-Service) explose. Des plateformes criminelles proposent désormais des kits clés en main pour lancer des attaques par ransomware sans compétences techniques.",
+                link:   "https://korben.info/"
             },
-            tech: {
-                gridId: 'grid-tech',
-                badgeColor: '#a100f2',
-                thumbBg: 'linear-gradient(135deg, #0d001f, #25005e)',
-                emoji: '💻',
-                sources: [
-                    { url: 'https://www.lemondeinformatique.fr/flux-rss/thematique/toute-l-informatique/rss.xml', label: 'Le Monde Info', icon: '💡' },
-                    { url: 'https://www.lemagit.fr/rss/toute-actualite.xml',            label: 'LeMagIT',         icon: '🖥️' },
-                    { url: 'https://www.01net.com/rss/info/flux-rss-01net.xml',         label: '01net',           icon: '📰' },
-                ]
+            {
+                image:  "",
+                source: "🔓 Bleeping Computer",
+                date:   "8 avr. 2026",
+                title:  "Faille zero-day BlueHammer : un chercheur publie les détails après Microsoft",
+                desc:   "Mécontent de la façon dont Microsoft a traité sa découverte, un chercheur a décidé de publier sur GitHub les détails complets d'une faille zero-day Windows affectant les systèmes non patchés.",
+                link:   "https://www.bleepingcomputer.com/"
             }
-        };
+        ],
 
-        const RSS2JSON = 'https://api.rss2json.com/v1/api.json?rss_url=';
-
-        /* --- Helpers --- */
-        function stripHtml(str) {
-            const d = document.createElement('div');
-            d.innerHTML = str || '';
-            return d.textContent || d.innerText || '';
-        }
-
-        function formatDate(str) {
-            if (!str) return '';
-            const d = new Date(str);
-            return isNaN(d) ? '' : d.toLocaleDateString('fr-FR', { day: 'numeric', month: 'short', year: 'numeric' });
-        }
-
-        function getImage(item) {
-            // 1. Enclosure (podcasts, médias attachés)
-            if (item.enclosure?.link && item.enclosure?.type?.startsWith('image')) return item.enclosure.link;
-            // 2. Thumbnail natif rss2json
-            if (item.thumbnail && item.thumbnail.startsWith('http')) return item.thumbnail;
-            // 3. Balise <img> dans le contenu HTML
-            const html = item.content || item.description || '';
-            const m = html.match(/<img[^>]+src=["']([^"']+)["']/i);
-            if (m?.[1]?.startsWith('http')) return m[1];
-            return null;
-        }
-
-        /* --- Construction d'une carte article --- */
-        function buildCard(item, source, theme) {
-            const imgUrl = getImage(item);
-            const title  = stripHtml(item.title) || 'Article sans titre';
-            const desc   = stripHtml(item.description || item.content || '').slice(0, 160);
-            const date   = formatDate(item.pubDate);
-            const link   = item.link || '#';
-
-            const thumbContent = imgUrl
-                ? `<img src="${imgUrl}" alt="" loading="lazy"
-                       onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">`
-                : '';
-
-            return `
-            <a class="article-card" href="${link}" target="_blank" rel="noopener noreferrer">
-                <div class="article-thumb">
-                    ${thumbContent}
-                    <div class="article-thumb-fallback" style="background:${theme.thumbBg};display:${imgUrl ? 'none' : 'flex'}">${theme.emoji}</div>
-                    <span class="article-source-badge" style="background:${theme.badgeColor}">${source.icon} ${source.label}</span>
-                    ${date ? `<span class="article-date-badge">🕐 ${date}</span>` : ''}
-                </div>
-                <div class="article-body">
-                    <div class="article-title">${title}</div>
-                    ${desc ? `<div class="article-desc">${desc}…</div>` : ''}
-                    <span class="article-read-btn">Lire l'article ↗</span>
-                </div>
-            </a>`;
-        }
-
-        /* --- Chargement d'un flux RSS via API proxy --- */
-        async function fetchFeed(url, source, theme) {
-            try {
-                const r = await fetch(`${RSS2JSON}${encodeURIComponent(url)}&count=1`, { signal: AbortSignal.timeout(8000) });
-                if (!r.ok) throw new Error('HTTP ' + r.status);
-                const data = await r.json();
-                if (data.status !== 'ok' || !data.items?.length) throw new Error('Vide');
-                return buildCard(data.items[0], source, theme);
-            } catch (e) {
-                console.warn(`[${source.label}] ${e.message}`);
-                return null;
+        /* --- 🌐 RÉSEAUX & INFRASTRUCTURE --- */
+        reseau: [
+            {
+                image:  "",
+                source: "🔗 IT-Connect",
+                date:   "2 avr. 2026",
+                title:  "Wi-Fi 7 (802.11be) : tout ce qu'il faut savoir avant de déployer en entreprise",
+                desc:   "Le Wi-Fi 7 offre des débits théoriques jusqu'à 46 Gbps grâce au Multi-Link Operation. IT-Connect fait le point sur la compatibilité matérielle, les prérequis et les cas d'usage réels en entreprise.",
+                link:   "https://www.it-connect.fr/"
+            },
+            {
+                image:  "",
+                source: "📡 ZDNet",
+                date:   "6 avr. 2026",
+                title:  "Migration VMware vers Proxmox : retour d'expérience après le rachat Broadcom",
+                desc:   "Suite à la hausse des licences VMware par Broadcom, de nombreuses DSI se tournent vers Proxmox VE. ZDNet analyse les étapes clés, les pièges à éviter et le retour d'expérience de plusieurs entreprises.",
+                link:   "https://www.zdnet.fr/"
+            },
+            {
+                image:  "",
+                source: "🖧 Cisco Blog",
+                date:   "8 avr. 2026",
+                title:  "Zero Trust Network Access : comment segmenter votre réseau efficacement",
+                desc:   "Cisco détaille les meilleures pratiques pour mettre en œuvre une architecture Zero Trust, de la microsegmentation à l'authentification continue, en passant par la gestion des accès privilégiés.",
+                link:   "https://blogs.cisco.com/"
             }
-        }
+        ],
 
-        /* --- Chargement de tous les articles d'un thème --- */
-        async function loadTheme(key) {
-            const theme = THEMES[key];
-            const grid  = document.getElementById(theme.gridId);
-            const results = await Promise.allSettled(theme.sources.map(s => fetchFeed(s.url, s, theme)));
+        /* --- 💻 TECHNOLOGIE INFORMATIQUE --- */
+        tech: [
+            {
+                image:  "",
+                source: "💡 Le Monde Info",
+                date:   "1 avr. 2026",
+                title:  "IA générative en entreprise : où en sont les DSI françaises en 2026 ?",
+                desc:   "Le Monde Informatique dresse un panorama de l'adoption de l'IA générative dans les entreprises françaises : cas d'usage concrets, freins réglementaires et impacts sur les équipes IT.",
+                link:   "https://www.lemondeinformatique.fr/"
+            },
+            {
+                image:  "",
+                source: "🖥️ LeMagIT",
+                date:   "4 avr. 2026",
+                title:  "Cloud hybride : les tendances qui vont façonner l'infrastructure IT en 2026",
+                desc:   "LeMagIT analyse les grandes tendances du cloud hybride : montée du edge computing, fin des datacenters on-premise traditionnels et émergence de nouvelles architectures multi-cloud souveraines.",
+                link:   "https://www.lemagit.fr/"
+            },
+            {
+                image:  "",
+                source: "📰 01net",
+                date:   "7 avr. 2026",
+                title:  "Windows 12 : tout ce qu'on sait sur la prochaine version du système de Microsoft",
+                desc:   "01net fait le point sur les fuites et annonces autour de Windows 12 : intégration native de l'IA Copilot, refonte de l'interface, compatibilité matérielle et date de sortie pressentie.",
+                link:   "https://www.01net.com/"
+            }
+        ]
+    };
 
-            const cards = results
-                .filter(r => r.status === 'fulfilled' && r.value)
-                .map(r => r.value);
+    /* ================================================================
+       RENDU DES CARTES — NE PAS MODIFIER
+       ================================================================ */
+    const FALLBACK_BG = {
+        cyber:  'linear-gradient(135deg, #1c0505, #4a1010)',
+        reseau: 'linear-gradient(135deg, #030d1c, #082d5a)',
+        tech:   'linear-gradient(135deg, #0d001f, #25005e)'
+    };
 
-            grid.innerHTML = cards.length
-                ? cards.join('')
-                : `<div class="flux-error">⚠️ Impossible de charger les articles pour le moment.<br>Consultez directement les sources listées ci-dessous.</div>`;
-        }
+    const FALLBACK_EMOJI = { cyber: '🔐', reseau: '🌐', tech: '💻' };
 
-        /* --- Lancement --- */
-        Promise.all(['cyber', 'reseau', 'tech'].map(loadTheme));
+    function buildCard(article, theme) {
+        const hasImg = article.image && article.image.trim() !== '';
 
-        /* --- Header & reveal au scroll --- */
-        window.addEventListener('scroll', () => {
-            document.getElementById('topbar').classList.toggle('scrolled', window.scrollY > 50);
-        });
-        const obs = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }), { threshold: 0.05 });
-        document.querySelectorAll('.reveal').forEach(r => obs.observe(r));
+        const thumbContent = hasImg
+            ? `<img src="${article.image}" alt="" loading="lazy"
+                   onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">`
+            : '';
+
+        const fallbackDisplay = hasImg ? 'none' : 'flex';
+
+        return `
+        <a class="article-card" href="${article.link}" target="_blank" rel="noopener noreferrer">
+            <div class="article-thumb">
+                ${thumbContent}
+                <div class="article-thumb-fallback fallback-bg"
+                     style="background:${FALLBACK_BG[theme]};display:${fallbackDisplay}">
+                    ${FALLBACK_EMOJI[theme]}
+                </div>
+                <span class="article-source-badge badge-color">${article.source}</span>
+                <span class="article-date-badge">🕐 ${article.date}</span>
+            </div>
+            <div class="article-body">
+                <div class="article-title">${article.title}</div>
+                <div class="article-desc">${article.desc}</div>
+                <span class="article-read-btn">
+                    Lire l'article
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/>
+                        <polyline points="15 3 21 3 21 9"/>
+                        <line x1="10" y1="14" x2="21" y2="3"/>
+                    </svg>
+                </span>
+            </div>
+        </a>`;
+    }
+
+    ['cyber', 'reseau', 'tech'].forEach(theme => {
+        const grid = document.getElementById('grid-' + theme);
+        grid.innerHTML = ARTICLES[theme].map(a => buildCard(a, theme)).join('');
+    });
+
+    /* ================================================================
+       HEADER & REVEAL
+       ================================================================ */
+    window.addEventListener('scroll', () => {
+        document.getElementById('topbar').classList.toggle('scrolled', window.scrollY > 50);
+    });
+
+    const obs = new IntersectionObserver(
+        es => es.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }),
+        { threshold: 0.05 }
+    );
+    document.querySelectorAll('.reveal').forEach(r => obs.observe(r));
     </script>
 </body>
 </html>

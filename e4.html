@@ -82,6 +82,99 @@
         .btn-doc:hover svg {
             transform: scale(1.1);
         }
+
+        /* === BOUTON TABLEAU DE SYNTHÈSE === */
+        .btn-synthese {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 13px 28px;
+            background: transparent;
+            color: var(--couleur-header);
+            border: 2px solid var(--couleur-header);
+            border-radius: 12px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            transition: var(--transition);
+            margin-bottom: 10px;
+        }
+
+        .btn-synthese svg {
+            width: 18px;
+            height: 18px;
+            flex-shrink: 0;
+        }
+
+        .btn-synthese:hover {
+            background: var(--couleur-header);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(161, 0, 242, 0.3);
+        }
+
+        /* === MODALE TABLEAU DE SYNTHÈSE === */
+        .synthese-modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(10, 0, 30, 0.75);
+            backdrop-filter: blur(6px);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .synthese-modal.active {
+            display: flex;
+        }
+
+        .synthese-modal-box {
+            position: relative;
+            width: 100%;
+            max-width: 960px;
+            height: 90vh;
+            background: var(--couleur-blanc);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 30px 80px rgba(161, 0, 242, 0.3);
+            animation: fadeUp 0.35s ease forwards;
+        }
+
+        .synthese-modal-close {
+            position: absolute;
+            top: 14px;
+            right: 14px;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border: none;
+            background: var(--couleur-header);
+            color: white;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .synthese-modal-close:hover {
+            background: #7b00c0;
+            transform: scale(1.1);
+        }
+
+        .synthese-iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: block;
+        }
     </style>
 </head>
 <body>
@@ -115,9 +208,35 @@
             </p>
         </section>
 
+        <!-- BOUTON TABLEAU DE SYNTHÈSE -->
+        <div class="reveal" style="text-align:center; margin-bottom: 10px;">
+            <button class="btn-synthese" onclick="openSyntheseModal()">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
+                    <polyline points="14 2 14 8 20 8"/>
+                    <line x1="8" y1="13" x2="16" y2="13"/>
+                    <line x1="8" y1="17" x2="16" y2="17"/>
+                    <line x1="8" y1="9" x2="10" y2="9"/>
+                </svg>
+                Voir le tableau de synthèse E4
+            </button>
+        </div>
+
+        <!-- MODALE TABLEAU DE SYNTHÈSE -->
+        <div class="synthese-modal" id="syntheseModal" onclick="closeSyntheseModal(event)">
+            <div class="synthese-modal-box">
+                <button class="synthese-modal-close" onclick="closeSyntheseModal()">✕</button>
+                <iframe
+                    src="Annexe-6-1-Tableau-de-synthese-Epreuve-E4-BTS-SIO-2022__2_.pdf"
+                    class="synthese-iframe"
+                    title="Tableau de synthèse E4 — Thomas VITI">
+                </iframe>
+            </div>
+        </div>
+
         <!-- SÉPARATEUR PREMIÈRE ANNÉE -->
         <div class="e4-annee-label reveal">
-            <span>1ère année</span>
+            <span>1ère année — CPAM Marseille</span>
         </div>
 
         <div class="projets-grid">
@@ -132,9 +251,9 @@
                     <div class="projet-tags">
                         <span class="tag">Développement</span>
                         <span class="tag">Outils internes</span>
-                        <span class="tag">Entreprise</span>
+                        <span class="tag">CPAM Marseille</span>
                     </div>
-                    <p class="projet-periode">08/11/2024 — 31/08/2025</p>
+                    <p class="projet-periode">📅 08/11/2024 — 31/08/2025</p>
                     <p class="projet-description">
                         Conception et développement d'outils numériques internes destinés
                         à faciliter les tâches quotidiennes du service informatique.
@@ -167,9 +286,9 @@
                     <div class="projet-tags">
                         <span class="tag">Déploiement</span>
                         <span class="tag">Windows 11</span>
-                        <span class="tag">Entreprise</span>
+                        <span class="tag">CPAM Marseille</span>
                     </div>
-                    <p class="projet-periode">01/03/2025 — 30/10/2025</p>
+                    <p class="projet-periode">📅 01/03/2025 — 30/10/2025</p>
                     <p class="projet-description">
                         Planification et réalisation du déploiement en masse de la mise à jour
                         Windows 11 sur l'ensemble du parc informatique de la CPAM.
@@ -196,7 +315,7 @@
 
         <!-- SÉPARATEUR DEUXIÈME ANNÉE -->
         <div class="e4-annee-label reveal">
-            <span>2ème année</span>
+            <span>2ème année — CPAM Marseille</span>
         </div>
 
         <div class="projets-grid">
@@ -211,9 +330,9 @@
                     <div class="projet-tags">
                         <span class="tag">Support N1</span>
                         <span class="tag">Ticketing</span>
-                        <span class="tag">Entreprise</span>
+                        <span class="tag">CPAM Marseille</span>
                     </div>
-                    <p class="projet-periode">08/11/2024 — 30/08/2026</p>
+                    <p class="projet-periode">📅 08/11/2024 — 30/08/2026</p>
                     <p class="projet-description">
                         Prise en charge et traitement des tickets de support de niveau 1
                         au sein du service informatique de la CPAM. Collecte, qualification
@@ -246,9 +365,9 @@
                     <div class="projet-tags">
                         <span class="tag">WAPT</span>
                         <span class="tag">Gestion de parc</span>
-                        <span class="tag">Entreprise</span>
+                        <span class="tag">CPAM Marseille</span>
                     </div>
-                    <p class="projet-periode">01/09/2025 — 30/08/2026</p>
+                    <p class="projet-periode">📅 01/09/2025 — 30/08/2026</p>
                     <p class="projet-description">
                         Mise en place et exploitation de WAPT (Web Application Packaging Tool)
                         pour automatiser le déploiement de logiciels et la maintenance du parc
@@ -281,9 +400,9 @@
                     <div class="projet-tags">
                         <span class="tag">Support</span>
                         <span class="tag">Autonomie</span>
-                        <span class="tag">Entreprise</span>
+                        <span class="tag">CPAM Marseille</span>
                     </div>
-                    <p class="projet-periode">08/11/2024 — 30/08/2026</p>
+                    <p class="projet-periode">📅 08/11/2024 — 30/08/2026</p>
                     <p class="projet-description">
                         Réalisation en autonomie d'interventions techniques variées sur
                         le parc informatique de la CPAM : dépannage matériel et logiciel,
@@ -316,6 +435,22 @@
     </footer>
 
     <script>
+        function openSyntheseModal() {
+            document.getElementById('syntheseModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeSyntheseModal(e) {
+            if (!e || e.target === document.getElementById('syntheseModal') || e.currentTarget.classList.contains('synthese-modal-close')) {
+                document.getElementById('syntheseModal').classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        }
+
+        document.addEventListener('keydown', e => {
+            if (e.key === 'Escape') closeSyntheseModal();
+        });
+
         window.addEventListener('scroll', () => {
             document.getElementById('topbar').classList.toggle('scrolled', window.scrollY > 50);
         });

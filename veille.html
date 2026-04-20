@@ -7,57 +7,46 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <style>
-
         /* ===========================
-           SECTION FLUX
+           SECTION VEILLE PRINCIPALE
            =========================== */
-        .flux-section {
-            margin-bottom: 60px;
-        }
-
-        .flux-section-header {
+        .veille-section-header {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            margin-bottom: 24px;
-            padding-bottom: 16px;
-            border-bottom: 1.5px solid var(--couleur-bordure);
+            margin-bottom: 30px;
             flex-wrap: wrap;
             gap: 12px;
         }
 
-        .flux-section-title {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 1.6rem;
+        .veille-section-title {
+            font-size: 2rem;
             font-weight: 700;
             color: var(--couleur-texte);
+            display: flex;
+            align-items: center;
+            gap: 12px;
             margin: 0;
         }
 
-        .flux-title-icon {
-            font-size: 1.5rem;
-            line-height: 1;
-        }
-
-        .flux-badge-sources {
-            font-size: 0.78rem;
-            font-weight: 700;
-            padding: 6px 16px;
-            border-radius: 50px;
-            border: 1.5px solid;
-            letter-spacing: 0.2px;
-            white-space: nowrap;
+        .veille-section-title::before {
+            content: "";
+            display: inline-block;
+            width: 5px;
+            height: 36px;
+            background: linear-gradient(180deg, var(--couleur-accent), var(--couleur-header));
+            border-radius: 4px;
+            flex-shrink: 0;
         }
 
         /* ===========================
-           GRILLE 3 COLONNES
+           GRILLE 3 CARTES
            =========================== */
         .articles-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 22px;
+            gap: 24px;
+            margin-bottom: 60px;
         }
 
         /* ===========================
@@ -102,7 +91,6 @@
             transform: scale(1.05);
         }
 
-        /* Fallback si pas d'image */
         .article-thumb-fallback {
             width: 100%;
             height: 100%;
@@ -112,8 +100,8 @@
             font-size: 3.5rem;
         }
 
-        /* Badge source (coin haut gauche) */
-        .article-source-badge {
+        /* Badge thème (coin haut gauche) */
+        .article-theme-badge {
             position: absolute;
             top: 12px;
             left: 12px;
@@ -144,13 +132,20 @@
             text-shadow: 0 1px 4px rgba(0,0,0,0.5);
         }
 
-        /* Corps de la carte */
+        /* Corps */
         .article-body {
             padding: 20px 20px 16px;
             display: flex;
             flex-direction: column;
             flex: 1;
             gap: 10px;
+        }
+
+        .article-source {
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         .article-title {
@@ -183,7 +178,6 @@
             color: var(--couleur-texte-secondaire);
             transition: var(--transition);
             margin-top: auto;
-            text-decoration: none;
         }
 
         .article-read-btn svg {
@@ -192,70 +186,34 @@
             transition: transform var(--transition);
         }
 
-        .article-card:hover .article-read-btn svg {
-            transform: translate(2px, -2px);
-        }
+        /* Couleurs par thème au hover */
+        .article-card.theme-cyber:hover .article-title  { color: #c0392b; }
+        .article-card.theme-cyber:hover .article-read-btn { background: #c0392b; color: white; border-color: #c0392b; }
+        .article-card.theme-cyber:hover .article-read-btn svg { transform: translate(2px,-2px); }
+        .article-card.theme-cyber .article-theme-badge  { background: #c0392b; }
+        .article-card.theme-cyber .article-source       { color: #c0392b; }
 
-        /* ===========================
-           COULEURS PAR THÈME
-           =========================== */
+        .article-card.theme-reseau:hover .article-title  { color: #0984e3; }
+        .article-card.theme-reseau:hover .article-read-btn { background: #0984e3; color: white; border-color: #0984e3; }
+        .article-card.theme-reseau:hover .article-read-btn svg { transform: translate(2px,-2px); }
+        .article-card.theme-reseau .article-theme-badge  { background: #0984e3; }
+        .article-card.theme-reseau .article-source       { color: #0984e3; }
 
-        /* 🔐 Cybersécurité — Rouge */
-        .theme-cyber .flux-badge-sources {
-            color: #c0392b;
-            border-color: #c0392b;
-            background: rgba(192,57,43,0.07);
-        }
-        .theme-cyber .article-card:hover .article-title { color: #c0392b; }
-        .theme-cyber .article-card:hover .article-read-btn {
-            background: #c0392b;
-            color: white;
-            border-color: #c0392b;
-        }
-        .theme-cyber .badge-color { background: #c0392b; }
-        .theme-cyber .fallback-bg { background: linear-gradient(135deg, #1c0505, #4a1010); }
-
-        /* 🌐 Réseaux — Bleu */
-        .theme-reseau .flux-badge-sources {
-            color: #0984e3;
-            border-color: #0984e3;
-            background: rgba(9,132,227,0.07);
-        }
-        .theme-reseau .article-card:hover .article-title { color: #0984e3; }
-        .theme-reseau .article-card:hover .article-read-btn {
-            background: #0984e3;
-            color: white;
-            border-color: #0984e3;
-        }
-        .theme-reseau .badge-color { background: #0984e3; }
-        .theme-reseau .fallback-bg { background: linear-gradient(135deg, #030d1c, #082d5a); }
-
-        /* 💻 Tech — Violet */
-        .theme-tech .flux-badge-sources {
-            color: var(--couleur-header);
-            border-color: var(--couleur-header);
-            background: rgba(161,0,242,0.07);
-        }
-        .theme-tech .article-card:hover .article-title { color: var(--couleur-header); }
-        .theme-tech .article-card:hover .article-read-btn {
-            background: var(--couleur-header);
-            color: white;
-            border-color: var(--couleur-header);
-        }
-        .theme-tech .badge-color { background: var(--couleur-header); }
-        .theme-tech .fallback-bg { background: linear-gradient(135deg, #0d001f, #25005e); }
+        .article-card.theme-tech:hover .article-title  { color: var(--couleur-header); }
+        .article-card.theme-tech:hover .article-read-btn { background: var(--couleur-header); color: white; border-color: var(--couleur-header); }
+        .article-card.theme-tech:hover .article-read-btn svg { transform: translate(2px,-2px); }
+        .article-card.theme-tech .article-theme-badge  { background: var(--couleur-header); }
+        .article-card.theme-tech .article-source       { color: var(--couleur-header); }
 
         /* ===========================
            RESPONSIVE
            =========================== */
         @media (max-width: 1024px) {
-            .articles-grid { grid-template-columns: repeat(2, 1fr); }
+            .articles-grid { grid-template-columns: 1fr 1fr; }
         }
 
         @media (max-width: 640px) {
             .articles-grid { grid-template-columns: 1fr; }
-            .flux-section-title { font-size: 1.3rem; }
-            .flux-section-header { flex-direction: column; align-items: flex-start; }
         }
     </style>
 </head>
@@ -302,52 +260,15 @@
         </div>
 
         <!-- ============================================================
-             🔐 CYBERSÉCURITÉ
-             Pour ajouter / modifier un article :
-             - image    : URL d'une image (ou laisser "" pour le fallback)
-             - source   : nom affiché dans le badge
-             - date     : date de l'article
-             - title    : titre de l'article
-             - desc     : court résumé (2-3 phrases)
-             - link     : URL de l'article
+             ARTICLES DE VEILLE — 1 par thème
+             Pour modifier un article, éditez le tableau ARTICLES
+             dans le <script> en bas de page.
              ============================================================ -->
-        <section class="flux-section reveal theme-cyber">
-            <div class="flux-section-header">
-                <h2 class="flux-section-title">
-                    <span class="flux-title-icon">🔐</span>
-                    Cybersécurité
-                </h2>
-                <span class="flux-badge-sources">Sources : CERT-FR, Korben, Bleeping Computer</span>
+        <section class="reveal">
+            <div class="veille-section-header">
+                <h2 class="veille-section-title">Articles de veille</h2>
             </div>
-            <div class="articles-grid" id="grid-cyber"></div>
-        </section>
-
-        <!-- ============================================================
-             🌐 RÉSEAUX & INFRASTRUCTURE
-             ============================================================ -->
-        <section class="flux-section reveal theme-reseau">
-            <div class="flux-section-header">
-                <h2 class="flux-section-title">
-                    <span class="flux-title-icon">🌐</span>
-                    Réseaux & Infrastructure
-                </h2>
-                <span class="flux-badge-sources">Sources : IT-Connect, ZDNet, Cisco Blog</span>
-            </div>
-            <div class="articles-grid" id="grid-reseau"></div>
-        </section>
-
-        <!-- ============================================================
-             💻 TECHNOLOGIE INFORMATIQUE
-             ============================================================ -->
-        <section class="flux-section reveal theme-tech">
-            <div class="flux-section-header">
-                <h2 class="flux-section-title">
-                    <span class="flux-title-icon">💻</span>
-                    Technologie Informatique
-                </h2>
-                <span class="flux-badge-sources">Sources : Le Monde Informatique, LeMagIT, 01net</span>
-            </div>
-            <div class="articles-grid" id="grid-tech"></div>
+            <div class="articles-grid" id="grid-veille"></div>
         </section>
 
         <!-- SOURCES -->
@@ -375,130 +296,85 @@
 
     <script>
     /* ================================================================
-       ARTICLES DE VEILLE — modifiez ce tableau pour mettre à jour
-       ================================================================ */
-    const ARTICLES = {
+       ARTICLES DE VEILLE
+       1 article par thème — modifiez uniquement ce tableau
+       ================================================================
 
-        /* --- 🔐 CYBERSÉCURITÉ --- */
-        cyber: [
-            {
-                image:  "https://www.cert.ssi.gouv.fr/img/Logo-CERT-FR.png",
-                source: "🛡️ CERT-FR",
-                date:   "27 mars 2026",
-                title:  "Multiples vulnérabilités dans le noyau Linux d'Ubuntu (27 mars 2026)",
-                desc:   "De multiples vulnérabilités ont été découvertes dans le noyau Linux d'Ubuntu. Certaines d'entre elles permettent à un attaquant de provoquer une exécution de code arbitraire à distance.",
-                link:   "https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0276/"
-            },
-            {
-                image:  "",
-                source: "⚡ Korben",
-                date:   "5 avr. 2026",
-                title:  "Ransomware-as-a-Service : comment les cybercriminels louent leurs outils",
-                desc:   "Le modèle RaaS (Ransomware-as-a-Service) explose. Des plateformes criminelles proposent désormais des kits clés en main pour lancer des attaques par ransomware sans compétences techniques.",
-                link:   "https://korben.info/"
-            },
-            {
-                image:  "",
-                source: "🔓 Bleeping Computer",
-                date:   "8 avr. 2026",
-                title:  "Faille zero-day BlueHammer : un chercheur publie les détails après Microsoft",
-                desc:   "Mécontent de la façon dont Microsoft a traité sa découverte, un chercheur a décidé de publier sur GitHub les détails complets d'une faille zero-day Windows affectant les systèmes non patchés.",
-                link:   "https://www.bleepingcomputer.com/"
-            }
-        ],
-
-        /* --- 🌐 RÉSEAUX & INFRASTRUCTURE --- */
-        reseau: [
-            {
-                image:  "",
-                source: "🔗 IT-Connect",
-                date:   "2 avr. 2026",
-                title:  "Wi-Fi 7 (802.11be) : tout ce qu'il faut savoir avant de déployer en entreprise",
-                desc:   "Le Wi-Fi 7 offre des débits théoriques jusqu'à 46 Gbps grâce au Multi-Link Operation. IT-Connect fait le point sur la compatibilité matérielle, les prérequis et les cas d'usage réels en entreprise.",
-                link:   "https://www.it-connect.fr/"
-            },
-            {
-                image:  "",
-                source: "📡 ZDNet",
-                date:   "6 avr. 2026",
-                title:  "Migration VMware vers Proxmox : retour d'expérience après le rachat Broadcom",
-                desc:   "Suite à la hausse des licences VMware par Broadcom, de nombreuses DSI se tournent vers Proxmox VE. ZDNet analyse les étapes clés, les pièges à éviter et le retour d'expérience de plusieurs entreprises.",
-                link:   "https://www.zdnet.fr/"
-            },
-            {
-                image:  "",
-                source: "🖧 Cisco Blog",
-                date:   "8 avr. 2026",
-                title:  "Zero Trust Network Access : comment segmenter votre réseau efficacement",
-                desc:   "Cisco détaille les meilleures pratiques pour mettre en œuvre une architecture Zero Trust, de la microsegmentation à l'authentification continue, en passant par la gestion des accès privilégiés.",
-                link:   "https://blogs.cisco.com/"
-            }
-        ],
-
-        /* --- 💻 TECHNOLOGIE INFORMATIQUE --- */
-        tech: [
-            {
-                image:  "",
-                source: "💡 Le Monde Info",
-                date:   "1 avr. 2026",
-                title:  "IA générative en entreprise : où en sont les DSI françaises en 2026 ?",
-                desc:   "Le Monde Informatique dresse un panorama de l'adoption de l'IA générative dans les entreprises françaises : cas d'usage concrets, freins réglementaires et impacts sur les équipes IT.",
-                link:   "https://www.lemondeinformatique.fr/"
-            },
-            {
-                image:  "",
-                source: "🖥️ LeMagIT",
-                date:   "4 avr. 2026",
-                title:  "Cloud hybride : les tendances qui vont façonner l'infrastructure IT en 2026",
-                desc:   "LeMagIT analyse les grandes tendances du cloud hybride : montée du edge computing, fin des datacenters on-premise traditionnels et émergence de nouvelles architectures multi-cloud souveraines.",
-                link:   "https://www.lemagit.fr/"
-            },
-            {
-                image:  "",
-                source: "📰 01net",
-                date:   "7 avr. 2026",
-                title:  "Windows 12 : tout ce qu'on sait sur la prochaine version du système de Microsoft",
-                desc:   "01net fait le point sur les fuites et annonces autour de Windows 12 : intégration native de l'IA Copilot, refonte de l'interface, compatibilité matérielle et date de sortie pressentie.",
-                link:   "https://www.01net.com/"
-            }
-        ]
-    };
+       Champs disponibles :
+         theme  : "cyber" | "reseau" | "tech"
+         image  : URL d'une image, ou "" pour le fallback coloré
+         label  : texte du badge thème (coin haut gauche de l'image)
+         source : nom de la source affiché sous le titre
+         date   : date de l'article
+         title  : titre de l'article
+         desc   : résumé court (2-3 phrases)
+         link   : URL vers l'article original
+    ================================================================ */
+    const ARTICLES = [
+        {
+            theme:  "cyber",
+            image:  "",
+            label:  "🔐 Cybersécurité",
+            source: "🛡️ CERT-FR",
+            date:   "27 mars 2026",
+            title:  "Multiples vulnérabilités dans le noyau Linux d'Ubuntu",
+            desc:   "De multiples vulnérabilités ont été découvertes dans le noyau Linux d'Ubuntu. Certaines permettent à un attaquant de provoquer une exécution de code arbitraire à distance ou une élévation de privilèges.",
+            link:   "https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0276/"
+        },
+        {
+            theme:  "reseau",
+            image:  "",
+            label:  "🌐 Réseaux",
+            source: "🔗 IT-Connect",
+            date:   "2 avr. 2026",
+            title:  "Wi-Fi 7 (802.11be) : tout ce qu'il faut savoir avant de déployer en entreprise",
+            desc:   "Le Wi-Fi 7 offre des débits théoriques jusqu'à 46 Gbps grâce au Multi-Link Operation. IT-Connect fait le point sur la compatibilité matérielle, les prérequis et les cas d'usage réels en entreprise.",
+            link:   "https://www.it-connect.fr/"
+        },
+        {
+            theme:  "tech",
+            image:  "",
+            label:  "💻 Technologie",
+            source: "💡 Le Monde Informatique",
+            date:   "1 avr. 2026",
+            title:  "IA générative en entreprise : où en sont les DSI françaises en 2026 ?",
+            desc:   "Le Monde Informatique dresse un panorama de l'adoption de l'IA générative dans les entreprises françaises : cas d'usage concrets, freins réglementaires et impacts sur les équipes IT.",
+            link:   "https://www.lemondeinformatique.fr/"
+        }
+    ];
 
     /* ================================================================
-       RENDU DES CARTES — NE PAS MODIFIER
-       ================================================================ */
-    const FALLBACK_BG = {
-        cyber:  'linear-gradient(135deg, #1c0505, #4a1010)',
-        reseau: 'linear-gradient(135deg, #030d1c, #082d5a)',
-        tech:   'linear-gradient(135deg, #0d001f, #25005e)'
+       RENDU — NE PAS MODIFIER
+    ================================================================ */
+    const FALLBACK = {
+        cyber:  { bg: 'linear-gradient(135deg, #1c0505, #4a1010)', emoji: '🔐' },
+        reseau: { bg: 'linear-gradient(135deg, #030d1c, #082d5a)', emoji: '🌐' },
+        tech:   { bg: 'linear-gradient(135deg, #0d001f, #25005e)', emoji: '💻' }
     };
 
-    const FALLBACK_EMOJI = { cyber: '🔐', reseau: '🌐', tech: '💻' };
-
-    function buildCard(article, theme) {
-        const hasImg = article.image && article.image.trim() !== '';
-
+    function buildCard(a) {
+        const fb = FALLBACK[a.theme];
+        const hasImg = a.image && a.image.trim() !== '';
         const thumbContent = hasImg
-            ? `<img src="${article.image}" alt="" loading="lazy"
+            ? `<img src="${a.image}" alt="" loading="lazy"
                    onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">`
             : '';
 
-        const fallbackDisplay = hasImg ? 'none' : 'flex';
-
         return `
-        <a class="article-card" href="${article.link}" target="_blank" rel="noopener noreferrer">
+        <a class="article-card theme-${a.theme}" href="${a.link}" target="_blank" rel="noopener noreferrer">
             <div class="article-thumb">
                 ${thumbContent}
-                <div class="article-thumb-fallback fallback-bg"
-                     style="background:${FALLBACK_BG[theme]};display:${fallbackDisplay}">
-                    ${FALLBACK_EMOJI[theme]}
+                <div class="article-thumb-fallback"
+                     style="background:${fb.bg};display:${hasImg ? 'none' : 'flex'}">
+                    ${fb.emoji}
                 </div>
-                <span class="article-source-badge badge-color">${article.source}</span>
-                <span class="article-date-badge">🕐 ${article.date}</span>
+                <span class="article-theme-badge">${a.label}</span>
+                <span class="article-date-badge">🕐 ${a.date}</span>
             </div>
             <div class="article-body">
-                <div class="article-title">${article.title}</div>
-                <div class="article-desc">${article.desc}</div>
+                <span class="article-source">${a.source}</span>
+                <div class="article-title">${a.title}</div>
+                <div class="article-desc">${a.desc}</div>
                 <span class="article-read-btn">
                     Lire l'article
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
@@ -511,18 +387,12 @@
         </a>`;
     }
 
-    ['cyber', 'reseau', 'tech'].forEach(theme => {
-        const grid = document.getElementById('grid-' + theme);
-        grid.innerHTML = ARTICLES[theme].map(a => buildCard(a, theme)).join('');
-    });
+    document.getElementById('grid-veille').innerHTML = ARTICLES.map(buildCard).join('');
 
-    /* ================================================================
-       HEADER & REVEAL
-       ================================================================ */
+    /* Header & reveal */
     window.addEventListener('scroll', () => {
         document.getElementById('topbar').classList.toggle('scrolled', window.scrollY > 50);
     });
-
     const obs = new IntersectionObserver(
         es => es.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }),
         { threshold: 0.05 }

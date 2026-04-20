@@ -83,6 +83,62 @@
             transform: scale(1.1);
         }
 
+        /* === TAGS COLORÉS PAR CONTEXTE === */
+        .tag-entreprise {
+            padding: 5px 12px;
+            background: rgba(161, 0, 242, 0.12);
+            border: 1px solid rgba(161, 0, 242, 0.4);
+            border-radius: 50px;
+            font-size: 0.78rem;
+            font-weight: 700;
+            color: var(--couleur-header);
+        }
+
+        .tag-formation {
+            padding: 5px 12px;
+            background: rgba(9, 132, 227, 0.12);
+            border: 1px solid rgba(9, 132, 227, 0.4);
+            border-radius: 50px;
+            font-size: 0.78rem;
+            font-weight: 700;
+            color: #0984e3;
+        }
+
+        .tag-neutre {
+            padding: 5px 12px;
+            background: rgba(189, 178, 255, 0.15);
+            border: 1px solid rgba(189, 178, 255, 0.4);
+            border-radius: 50px;
+            font-size: 0.78rem;
+            font-weight: 700;
+            color: var(--couleur-accent-dark);
+        }
+
+        /* Légende */
+        .tags-legende {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+        }
+
+        .tags-legende span {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            font-size: 0.78rem;
+            color: var(--couleur-texte-secondaire);
+            font-weight: 500;
+        }
+
+        .legende-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
         /* === BOUTON TABLEAU DE SYNTHÈSE === */
         .btn-synthese {
             display: inline-flex;
@@ -208,6 +264,18 @@
             </p>
         </section>
 
+        <!-- LÉGENDE DES TAGS -->
+        <div class="tags-legende reveal">
+            <span>
+                <span class="legende-dot" style="background: var(--couleur-header);"></span>
+                Contexte entreprise
+            </span>
+            <span>
+                <span class="legende-dot" style="background: #0984e3;"></span>
+                Contexte formation
+            </span>
+        </div>
+
         <!-- BOUTON TABLEAU DE SYNTHÈSE -->
         <div class="reveal" style="text-align:center; margin-bottom: 10px;">
             <button class="btn-synthese" onclick="openSyntheseModal()">
@@ -249,9 +317,9 @@
                 </div>
                 <div class="projet-body">
                     <div class="projet-tags">
-                        <span class="tag">Développement</span>
-                        <span class="tag">Outils internes</span>
-                        <span class="tag">CPAM Marseille</span>
+                        <span class="tag-neutre">Développement</span>
+                        <span class="tag-neutre">Outils internes</span>
+                        <span class="tag-entreprise">🏢 CPAM Marseille</span>
                     </div>
                     <p class="projet-periode">📅 08/11/2024 — 31/08/2025</p>
                     <p class="projet-description">
@@ -284,9 +352,9 @@
                 </div>
                 <div class="projet-body">
                     <div class="projet-tags">
-                        <span class="tag">Déploiement</span>
-                        <span class="tag">Windows 11</span>
-                        <span class="tag">CPAM Marseille</span>
+                        <span class="tag-neutre">Déploiement</span>
+                        <span class="tag-neutre">Windows 11</span>
+                        <span class="tag-entreprise">🏢 CPAM Marseille</span>
                     </div>
                     <p class="projet-periode">📅 01/03/2025 — 30/10/2025</p>
                     <p class="projet-description">
@@ -328,9 +396,9 @@
                 </div>
                 <div class="projet-body">
                     <div class="projet-tags">
-                        <span class="tag">Support N1</span>
-                        <span class="tag">Ticketing</span>
-                        <span class="tag">CPAM Marseille</span>
+                        <span class="tag-neutre">Support N1</span>
+                        <span class="tag-neutre">Ticketing</span>
+                        <span class="tag-entreprise">🏢 CPAM Marseille</span>
                     </div>
                     <p class="projet-periode">📅 08/11/2024 — 30/08/2026</p>
                     <p class="projet-description">
@@ -363,9 +431,9 @@
                 </div>
                 <div class="projet-body">
                     <div class="projet-tags">
-                        <span class="tag">WAPT</span>
-                        <span class="tag">Gestion de parc</span>
-                        <span class="tag">CPAM Marseille</span>
+                        <span class="tag-neutre">WAPT</span>
+                        <span class="tag-neutre">Gestion de parc</span>
+                        <span class="tag-entreprise">🏢 CPAM Marseille</span>
                     </div>
                     <p class="projet-periode">📅 01/09/2025 — 30/08/2026</p>
                     <p class="projet-description">
@@ -398,9 +466,9 @@
                 </div>
                 <div class="projet-body">
                     <div class="projet-tags">
-                        <span class="tag">Support</span>
-                        <span class="tag">Autonomie</span>
-                        <span class="tag">CPAM Marseille</span>
+                        <span class="tag-neutre">Support</span>
+                        <span class="tag-neutre">Autonomie</span>
+                        <span class="tag-entreprise">🏢 CPAM Marseille</span>
                     </div>
                     <p class="projet-periode">📅 08/11/2024 — 30/08/2026</p>
                     <p class="projet-description">

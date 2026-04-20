@@ -428,86 +428,18 @@
         <div class="veille-intro reveal">
             <h2>Ma méthode de veille</h2>
             <p>
-                Pour rester à jour dans un domaine qui évolue aussi vite que l'informatique, j'ai mis en place
-                une routine de veille structurée autour de plusieurs canaux complémentaires.
+                Pour rester à jour dans un domaine en constante évolution, j'ai mis en place une routine
+                de veille quotidienne. Je centralise l'actualité via des <strong>flux RSS</strong> provenant
+                de sites comme CERT-FR, IT-Connect, ZDNet et Bleeping Computer. Je complète cette veille
+                par des <strong>newsletters spécialisées</strong> — notamment les alertes officielles de
+                l'ANSSI — et par des <strong>abonnements YouTube</strong>, en particulier la chaîne
+                <strong>Micode</strong>, référence française en cybersécurité. Je consulte également des
+                <strong>forums professionnels</strong> comme Reddit r/sysadmin pour suivre les retours
+                d'expérience du terrain. Cette approche me permet de couvrir trois axes principaux :
+                la <strong>cybersécurité</strong>, les <strong>infrastructures réseaux</strong>
+                et les <strong>nouvelles technologies informatiques</strong>.
             </p>
-            <div class="methode-grid">
-                <div class="methode-item">
-                    <span class="methode-icon">📡</span>
-                    <div>
-                        <strong>Flux RSS</strong>
-                        <span>J'agrège les flux RSS de sites comme CERT-FR, IT-Connect, ZDNet et Bleeping Computer via un lecteur RSS. Cela me permet de centraliser toute l'actualité en un seul endroit sans visiter chaque site manuellement.</span>
-                    </div>
-                </div>
-                <div class="methode-item">
-                    <span class="methode-icon">▶️</span>
-                    <div>
-                        <strong>Abonnement YouTube</strong>
-                        <span>Je suis la chaîne <strong>Micode</strong>, référence française en cybersécurité, qui vulgarise les grandes failles et affaires de hacking avec des enquêtes très approfondies.</span>
-                    </div>
-                </div>
-                <div class="methode-item">
-                    <span class="methode-icon">📧</span>
-                    <div>
-                        <strong>Newsletters</strong>
-                        <span>Je suis abonné aux alertes e-mail du CERT-FR (ANSSI) qui publie des avis de sécurité officiels, ainsi qu'à la newsletter hebdomadaire de Le Monde Informatique pour l'actualité IT générale.</span>
-                    </div>
-                </div>
-                <div class="methode-item">
-                    <span class="methode-icon">💬</span>
-                    <div>
-                        <strong>Forums & communautés</strong>
-                        <span>Je consulte régulièrement les forums <strong>Reddit r/sysadmin</strong> et <strong>IT-Connect</strong> pour suivre les retours d'expérience de professionnels sur les incidents et nouvelles technologiques du terrain.</span>
-                    </div>
-                </div>
-            </div>
         </div>
-        <style>
-            .methode-grid {
-                display: grid;
-                grid-template-columns: repeat(2, 1fr);
-                gap: 16px;
-                margin-top: 20px;
-            }
-            .methode-item {
-                display: flex;
-                align-items: flex-start;
-                gap: 14px;
-                background: var(--couleur-fond);
-                border: 1px solid var(--couleur-bordure);
-                border-radius: 12px;
-                padding: 16px 18px;
-                transition: var(--transition);
-            }
-            .methode-item:hover {
-                border-color: rgba(189,178,255,0.5);
-                background: rgba(189,178,255,0.07);
-            }
-            .methode-icon {
-                font-size: 1.4rem;
-                flex-shrink: 0;
-                line-height: 1;
-                margin-top: 2px;
-            }
-            .methode-item div {
-                display: flex;
-                flex-direction: column;
-                gap: 4px;
-            }
-            .methode-item strong {
-                font-size: 0.9rem;
-                color: var(--couleur-texte);
-                font-weight: 700;
-            }
-            .methode-item span {
-                font-size: 0.83rem;
-                color: var(--couleur-texte-secondaire);
-                line-height: 1.6;
-            }
-            @media (max-width: 640px) {
-                .methode-grid { grid-template-columns: 1fr; }
-            }
-        </style>
 
         <!-- ============================================================
              ARTICLES DE VEILLE — 1 par thème

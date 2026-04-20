@@ -3,177 +3,393 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projets E4 - Portfolio Thomas VITI</title>
+    <title>Veille Technologique - Portfolio Thomas VITI</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <style>
-        /* === SÉPARATEURS ANNÉE === */
-        .e4-annee-label {
+        /* ===========================
+           SECTION VEILLE PRINCIPALE
+           =========================== */
+        .veille-section-header {
             display: flex;
             align-items: center;
-            gap: 16px;
-            margin: 40px 0 24px 0;
+            justify-content: space-between;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            gap: 12px;
         }
 
-        .e4-annee-label::before,
-        .e4-annee-label::after {
-            content: "";
-            flex: 1;
-            height: 1.5px;
-            background: linear-gradient(90deg, var(--couleur-accent), var(--couleur-header));
-            border-radius: 2px;
-            opacity: 0.4;
-        }
-
-        .e4-annee-label span {
-            white-space: nowrap;
-            font-size: 0.78rem;
+        .veille-section-title {
+            font-size: 2rem;
             font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            color: var(--couleur-header);
-            background: rgba(161, 0, 242, 0.07);
-            border: 1.5px solid rgba(161, 0, 242, 0.25);
-            padding: 5px 16px;
-            border-radius: 50px;
-        }
-
-        /* === PÉRIODE === */
-        .projet-periode {
-            font-size: 0.8rem;
-            font-weight: 600;
-            color: var(--couleur-header);
+            color: var(--couleur-texte);
+            display: flex;
+            align-items: center;
+            gap: 12px;
             margin: 0;
         }
 
-        /* === BOUTON DOCUMENTATION === */
-        .btn-doc {
+        .veille-section-title::before {
+            content: "";
+            display: inline-block;
+            width: 5px;
+            height: 36px;
+            background: linear-gradient(180deg, var(--couleur-accent), var(--couleur-header));
+            border-radius: 4px;
+            flex-shrink: 0;
+        }
+
+        /* ===========================
+           GRILLE 3 CARTES
+           =========================== */
+        .articles-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-bottom: 60px;
+        }
+
+        /* ===========================
+           CARTE ARTICLE
+           =========================== */
+        .article-card {
+            background: var(--couleur-blanc);
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid var(--couleur-bordure);
+            box-shadow: var(--shadow-card);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .article-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 32px rgba(0,0,0,0.12);
+        }
+
+        /* Thumbnail */
+        .article-thumb {
+            position: relative;
+            width: 100%;
+            height: 190px;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .article-thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+
+        .article-card:hover .article-thumb img {
+            transform: scale(1.05);
+        }
+
+        .article-thumb-fallback {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3.5rem;
+        }
+
+        /* Badge thème (coin haut gauche) */
+        .article-theme-badge {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            padding: 5px 11px;
+            border-radius: 7px;
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+        }
+
+        /* Date (coin bas gauche) */
+        .article-date-badge {
+            position: absolute;
+            bottom: 10px;
+            left: 12px;
+            font-size: 0.75rem;
+            color: rgba(255,255,255,0.92);
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            text-shadow: 0 1px 4px rgba(0,0,0,0.5);
+        }
+
+        /* ===========================
+           CARTE YOUTUBE
+           =========================== */
+        .yt-card {
+            background: var(--couleur-blanc);
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid var(--couleur-bordure);
+            box-shadow: var(--shadow-card);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .yt-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 32px rgba(0,0,0,0.12);
+        }
+
+        .yt-thumb-wrapper {
+            position: relative;
+            width: 100%;
+            height: 190px;
+            overflow: hidden;
+            flex-shrink: 0;
+            background: #0d0d0d;
+            cursor: pointer;
+        }
+
+        .yt-thumb-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+
+        .yt-card:hover .yt-thumb-wrapper img {
+            transform: scale(1.05);
+        }
+
+        /* Bouton play centré */
+        .yt-play-btn {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 54px;
+            height: 54px;
+            background: rgba(255,0,0,0.88);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+            transition: var(--transition);
+            pointer-events: none;
+        }
+
+        .yt-card:hover .yt-play-btn {
+            background: #ff0000;
+            transform: translate(-50%, -50%) scale(1.1);
+        }
+
+        .yt-play-btn svg {
+            width: 22px;
+            height: 22px;
+            fill: white;
+            margin-left: 3px;
+        }
+
+        /* Badge YouTube */
+        .yt-badge {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            padding: 5px 11px;
+            border-radius: 7px;
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            background: #ff0000;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+        }
+
+        .yt-date {
+            position: absolute;
+            bottom: 10px;
+            left: 12px;
+            font-size: 0.75rem;
+            color: rgba(255,255,255,0.92);
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            text-shadow: 0 1px 4px rgba(0,0,0,0.5);
+        }
+
+        /* Corps carte YouTube */
+        .yt-body {
+            padding: 20px 20px 16px;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            gap: 10px;
+        }
+
+        .yt-channel {
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #ff0000;
+        }
+
+        .yt-title {
+            font-size: 0.97rem;
+            font-weight: 700;
+            color: var(--couleur-texte);
+            line-height: 1.45;
+            transition: color var(--transition);
+        }
+
+        .yt-card:hover .yt-title { color: #ff0000; }
+
+        .yt-desc {
+            font-size: 0.83rem;
+            color: var(--couleur-texte-secondaire);
+            line-height: 1.65;
+            flex: 1;
+        }
+
+        .yt-watch-btn {
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 8px;
-            margin-top: 16px;
-            padding: 11px 0;
+            padding: 10px 0;
             border-radius: 10px;
-            border: 1.5px solid var(--couleur-header);
+            border: 1px solid #ff0000;
             background: transparent;
-            color: var(--couleur-header);
-            font-family: 'Poppins', sans-serif;
-            font-size: 0.85rem;
+            font-size: 0.83rem;
             font-weight: 600;
-            text-decoration: none;
+            color: #ff0000;
             transition: var(--transition);
-        }
-
-        .btn-doc svg {
-            width: 16px;
-            height: 16px;
-            flex-shrink: 0;
-            transition: transform var(--transition);
-        }
-
-        .btn-doc:hover {
-            background: var(--couleur-header);
-            color: white;
-            box-shadow: 0 6px 20px rgba(161, 0, 242, 0.3);
-            transform: translateY(-2px);
-        }
-
-        .btn-doc:hover svg {
-            transform: scale(1.1);
-        }
-
-        /* === BOUTON TABLEAU DE SYNTHÈSE === */
-        .btn-synthese {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            padding: 13px 28px;
-            background: transparent;
-            color: var(--couleur-header);
-            border: 2px solid var(--couleur-header);
-            border-radius: 12px;
-            font-family: 'Poppins', sans-serif;
-            font-size: 0.9rem;
-            font-weight: 600;
+            margin-top: auto;
             text-decoration: none;
             cursor: pointer;
-            transition: var(--transition);
-            margin-bottom: 10px;
         }
 
-        .btn-synthese svg {
-            width: 18px;
-            height: 18px;
-            flex-shrink: 0;
-        }
-
-        .btn-synthese:hover {
-            background: var(--couleur-header);
+        .yt-watch-btn:hover,
+        .yt-card:hover .yt-watch-btn {
+            background: #ff0000;
             color: white;
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(161, 0, 242, 0.3);
         }
 
-        /* === MODALE TABLEAU DE SYNTHÈSE === */
-        .synthese-modal {
+        /* Iframe embed (cachée jusqu'au clic) */
+        .yt-iframe-wrapper {
             display: none;
-            position: fixed;
-            inset: 0;
-            background: rgba(10, 0, 30, 0.75);
-            backdrop-filter: blur(6px);
-            z-index: 2000;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-        }
-
-        .synthese-modal.active {
-            display: flex;
-        }
-
-        .synthese-modal-box {
-            position: relative;
-            width: 100%;
-            max-width: 960px;
-            height: 90vh;
-            background: var(--couleur-blanc);
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 30px 80px rgba(161, 0, 242, 0.3);
-            animation: fadeUp 0.35s ease forwards;
-        }
-
-        .synthese-modal-close {
             position: absolute;
-            top: 14px;
-            right: 14px;
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            border: none;
-            background: var(--couleur-header);
-            color: white;
-            font-size: 1rem;
-            font-weight: 700;
-            cursor: pointer;
-            z-index: 10;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: var(--transition);
+            inset: 0;
         }
 
-        .synthese-modal-close:hover {
-            background: #7b00c0;
-            transform: scale(1.1);
-        }
-
-        .synthese-iframe {
+        .yt-iframe-wrapper iframe {
             width: 100%;
             height: 100%;
             border: none;
-            display: block;
+        }
+
+        .yt-iframe-wrapper.active { display: block; }
+
+        /* Corps */
+        .article-body {
+            padding: 20px 20px 16px;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            gap: 10px;
+        }
+
+        .article-source {
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .article-title {
+            font-size: 0.97rem;
+            font-weight: 700;
+            color: var(--couleur-texte);
+            line-height: 1.45;
+            transition: color var(--transition);
+        }
+
+        .article-desc {
+            font-size: 0.83rem;
+            color: var(--couleur-texte-secondaire);
+            line-height: 1.65;
+            flex: 1;
+        }
+
+        /* Bouton lire */
+        .article-read-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 10px 0;
+            border-radius: 10px;
+            border: 1px solid var(--couleur-bordure);
+            background: var(--couleur-fond);
+            font-size: 0.83rem;
+            font-weight: 600;
+            color: var(--couleur-texte-secondaire);
+            transition: var(--transition);
+            margin-top: auto;
+        }
+
+        .article-read-btn svg {
+            width: 14px;
+            height: 14px;
+            transition: transform var(--transition);
+        }
+
+        /* Couleurs par thème au hover */
+        .article-card.theme-cyber:hover .article-title  { color: #c0392b; }
+        .article-card.theme-cyber:hover .article-read-btn { background: #c0392b; color: white; border-color: #c0392b; }
+        .article-card.theme-cyber:hover .article-read-btn svg { transform: translate(2px,-2px); }
+        .article-card.theme-cyber .article-theme-badge  { background: #c0392b; }
+        .article-card.theme-cyber .article-source       { color: #c0392b; }
+
+        .article-card.theme-reseau:hover .article-title  { color: #0984e3; }
+        .article-card.theme-reseau:hover .article-read-btn { background: #0984e3; color: white; border-color: #0984e3; }
+        .article-card.theme-reseau:hover .article-read-btn svg { transform: translate(2px,-2px); }
+        .article-card.theme-reseau .article-theme-badge  { background: #0984e3; }
+        .article-card.theme-reseau .article-source       { color: #0984e3; }
+
+        .article-card.theme-tech:hover .article-title  { color: var(--couleur-header); }
+        .article-card.theme-tech:hover .article-read-btn { background: var(--couleur-header); color: white; border-color: var(--couleur-header); }
+        .article-card.theme-tech:hover .article-read-btn svg { transform: translate(2px,-2px); }
+        .article-card.theme-tech .article-theme-badge  { background: var(--couleur-header); }
+        .article-card.theme-tech .article-source       { color: var(--couleur-header); }
+
+        /* ===========================
+           RESPONSIVE
+           =========================== */
+        @media (max-width: 1024px) {
+            .articles-grid { grid-template-columns: 1fr 1fr; }
+        }
+
+        @media (max-width: 640px) {
+            .articles-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -190,242 +406,93 @@
             <a href="index.html">ACCUEIL</a>
             <a href="presentation.html">PRÉSENTATION</a>
             <a href="btssio.html">BTS SIO</a>
-            <a href="e4.html" class="active">PROJETS E4</a>
-            <a href="veille.html">VEILLE</a>
+            <a href="e4.html">PROJETS E4</a>
+            <a href="veille.html" class="active">VEILLE</a>
             <a href="contact.html">CONTACT</a>
         </nav>
     </header>
 
-    <main class="e4-page">
+    <main class="veille-page">
 
         <!-- HERO -->
         <section class="page-hero reveal">
-            <h1>Projets E4</h1>
+            <h1>Veille Technologique</h1>
             <p>
-                L'épreuve E4 évalue la mise en situation professionnelle à travers des
-                projets réels réalisés en entreprise. Voici les situations professionnelles
-                significatives que j'ai menées lors de mon alternance à la CPAM de Marseille.
+                Dans le domaine de l'informatique, rester informé est essentiel.
+                Je réalise une veille régulière sur les thématiques liées à la
+                cybersécurité, aux réseaux et aux nouvelles technologies d'infrastructure.
             </p>
         </section>
 
-        <!-- BOUTON TABLEAU DE SYNTHÈSE -->
-        <div class="reveal" style="text-align:center; margin-bottom: 10px;">
-            <button class="btn-synthese" onclick="openSyntheseModal()">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
-                    <polyline points="14 2 14 8 20 8"/>
-                    <line x1="8" y1="13" x2="16" y2="13"/>
-                    <line x1="8" y1="17" x2="16" y2="17"/>
-                    <line x1="8" y1="9" x2="10" y2="9"/>
-                </svg>
-                Voir le tableau de synthèse E4
-            </button>
+        <!-- INTRO MÉTHODE -->
+        <div class="veille-intro reveal">
+            <h2>Ma méthode de veille</h2>
+            <p>
+                Je consulte régulièrement des sources spécialisées, newsletters et forums techniques
+                pour me tenir informé des dernières évolutions. Je concentre ma veille sur trois axes :
+                la <strong>cybersécurité</strong>, les <strong>infrastructures réseaux</strong>
+                et les <strong>nouvelles technologies informatiques</strong>.
+            </p>
         </div>
 
-        <!-- MODALE TABLEAU DE SYNTHÈSE -->
-        <div class="synthese-modal" id="syntheseModal" onclick="closeSyntheseModal(event)">
-            <div class="synthese-modal-box">
-                <button class="synthese-modal-close" onclick="closeSyntheseModal()">✕</button>
-                <iframe
-                    src="Annexe-6-1-Tableau-de-synthese-Epreuve-E4-BTS-SIO-2022__2_.pdf"
-                    class="synthese-iframe"
-                    title="Tableau de synthèse E4 — Thomas VITI">
-                </iframe>
+        <!-- ============================================================
+             ARTICLES DE VEILLE — 1 par thème
+             Pour modifier un article, éditez le tableau ARTICLES
+             dans le <script> en bas de page.
+             ============================================================ -->
+        <section class="reveal">
+            <div class="veille-section-header">
+                <h2 class="veille-section-title">Articles de veille</h2>
             </div>
-        </div>
+            <div class="articles-grid" id="grid-veille">
 
-        <!-- SÉPARATEUR PREMIÈRE ANNÉE -->
-        <div class="e4-annee-label reveal">
-            <span>1ère année — CPAM Marseille</span>
-        </div>
-
-        <div class="projets-grid">
-
-            <!-- PROJET 01 -->
-            <div class="projet-card reveal">
-                <div class="projet-header">
-                    <p class="projet-numero">Projet 01</p>
-                    <h3>Création d'outils numériques</h3>
-                </div>
-                <div class="projet-body">
-                    <div class="projet-tags">
-                        <span class="tag">Développement</span>
-                        <span class="tag">Outils internes</span>
-                        <span class="tag">CPAM Marseille</span>
-                    </div>
-                    <p class="projet-periode">📅 08/11/2024 — 31/08/2025</p>
-                    <p class="projet-description">
-                        Conception et développement d'outils numériques internes destinés
-                        à faciliter les tâches quotidiennes du service informatique.
-                        Analyse des besoins, développement, tests et mise en production
-                        des solutions retenues.
-                    </p>
-                    <div class="projet-competences">
-                        <h4>Compétences mobilisées</h4>
-                        <div class="comp-list">
-                            <span class="comp-item">Analyse du besoin et conception</span>
-                            <span class="comp-item">Développer la présence en ligne de l'organisation</span>
-                            <span class="comp-item">Travailler en mode projet</span>
-                            <span class="comp-item">Mise à disposition d'un service informatique</span>
+                <!-- CARTE YOUTUBE — Underscore_ (Cybersécurité) -->
+                <div class="yt-card">
+                    <div class="yt-thumb-wrapper" id="yt-thumb" onclick="playVideo()">
+                        <img
+                            src="https://i.ytimg.com/vi/gGcqFhXBFDc/maxresdefault.jpg"
+                            alt="Underscore_ — dernière vidéo"
+                            onerror="this.src='https://i.ytimg.com/vi/gGcqFhXBFDc/hqdefault.jpg'"
+                        >
+                        <div class="yt-iframe-wrapper" id="yt-iframe"></div>
+                        <div class="yt-play-btn" id="yt-play">
+                            <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
                         </div>
+                        <span class="yt-badge">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="white"><path d="M23.5 6.2a3 3 0 00-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.5A3 3 0 00.5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 002.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 002.1-2.1c.5-1.9.5-5.8.5-5.8s0-3.9-.5-5.8z"/><polygon points="9.75,15.02 15.5,12 9.75,8.98" fill="#ff0000"/></svg>
+                            Underscore_
+                        </span>
+                        <span class="yt-date">🕐 Cybersécurité</span>
                     </div>
-                    <a href="#" class="btn-doc" aria-label="Documentation Projet 01">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
-                        Documentation
-                    </a>
+                    <div class="yt-body">
+                        <span class="yt-channel">▶ YouTube · Underscore_</span>
+                        <div class="yt-title">Cette faille permettait d'espionner n'importe qui sur Internet</div>
+                        <div class="yt-desc">Underscore_ (Micode) décrypte les grandes failles de sécurité, les hacks marquants et les enjeux de la cybersécurité en français. Cliquez pour regarder directement ici ou ouvrir sur YouTube.</div>
+                        <a class="yt-watch-btn" href="https://www.youtube.com/@Underscore_" target="_blank" rel="noopener noreferrer">
+                            Voir la chaîne YouTube
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                        </a>
+                    </div>
                 </div>
+
             </div>
+        </section>
 
-            <!-- PROJET 02 -->
-            <div class="projet-card reveal">
-                <div class="projet-header">
-                    <p class="projet-numero">Projet 02</p>
-                    <h3>Déploiement de masse — Mise à jour Windows 11</h3>
-                </div>
-                <div class="projet-body">
-                    <div class="projet-tags">
-                        <span class="tag">Déploiement</span>
-                        <span class="tag">Windows 11</span>
-                        <span class="tag">CPAM Marseille</span>
-                    </div>
-                    <p class="projet-periode">📅 01/03/2025 — 30/10/2025</p>
-                    <p class="projet-description">
-                        Planification et réalisation du déploiement en masse de la mise à jour
-                        Windows 11 sur l'ensemble du parc informatique de la CPAM.
-                        Préparation des images, tests de compatibilité applicative, déploiement
-                        par vagues et suivi de l'avancement.
-                    </p>
-                    <div class="projet-competences">
-                        <h4>Compétences mobilisées</h4>
-                        <div class="comp-list">
-                            <span class="comp-item">Déployer un service</span>
-                            <span class="comp-item">Réaliser les tests d'intégration et d'acceptation</span>
-                            <span class="comp-item">Planifier les activités</span>
-                            <span class="comp-item">Gérer le patrimoine informatique</span>
-                        </div>
-                    </div>
-                    <a href="#" class="btn-doc" aria-label="Documentation Projet 02">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
-                        Documentation
-                    </a>
-                </div>
+        <!-- SOURCES -->
+        <section class="sources-section reveal">
+            <h2>Mes sources de veille</h2>
+            <div class="sources-grid">
+                <a href="https://www.cert.ssi.gouv.fr/" target="_blank" rel="noopener" class="source-item"><span class="source-dot"></span>CERT-FR (ANSSI)</a>
+                <a href="https://www.lemondeinformatique.fr/" target="_blank" rel="noopener" class="source-item"><span class="source-dot"></span>Le Monde Informatique</a>
+                <a href="https://www.zdnet.fr/" target="_blank" rel="noopener" class="source-item"><span class="source-dot"></span>ZDNet France</a>
+                <a href="https://www.it-connect.fr/" target="_blank" rel="noopener" class="source-item"><span class="source-dot"></span>IT-Connect.fr</a>
+                <a href="https://www.bleepingcomputer.com/" target="_blank" rel="noopener" class="source-item"><span class="source-dot"></span>Bleeping Computer</a>
+                <a href="https://korben.info/" target="_blank" rel="noopener" class="source-item"><span class="source-dot"></span>Korben.info</a>
+                <a href="https://www.lemagit.fr/" target="_blank" rel="noopener" class="source-item"><span class="source-dot"></span>LeMagIT</a>
+                <a href="https://www.01net.com/" target="_blank" rel="noopener" class="source-item"><span class="source-dot"></span>01net</a>
+                <a href="https://blogs.cisco.com/" target="_blank" rel="noopener" class="source-item"><span class="source-dot"></span>Cisco Blog</a>
             </div>
-
-        </div>
-
-        <!-- SÉPARATEUR DEUXIÈME ANNÉE -->
-        <div class="e4-annee-label reveal">
-            <span>2ème année — CPAM Marseille</span>
-        </div>
-
-        <div class="projets-grid">
-
-            <!-- PROJET 03 -->
-            <div class="projet-card reveal">
-                <div class="projet-header">
-                    <p class="projet-numero">Projet 03</p>
-                    <h3>Ticketing de niveau 1</h3>
-                </div>
-                <div class="projet-body">
-                    <div class="projet-tags">
-                        <span class="tag">Support N1</span>
-                        <span class="tag">Ticketing</span>
-                        <span class="tag">CPAM Marseille</span>
-                    </div>
-                    <p class="projet-periode">📅 08/11/2024 — 30/08/2026</p>
-                    <p class="projet-description">
-                        Prise en charge et traitement des tickets de support de niveau 1
-                        au sein du service informatique de la CPAM. Collecte, qualification
-                        et résolution des incidents utilisateurs, escalade vers le niveau 2
-                        si nécessaire, avec suivi dans l'outil de ticketing.
-                    </p>
-                    <div class="projet-competences">
-                        <h4>Compétences mobilisées</h4>
-                        <div class="comp-list">
-                            <span class="comp-item">Collecter, suivre et orienter des demandes</span>
-                            <span class="comp-item">Traiter des demandes réseau, système et applicatifs</span>
-                            <span class="comp-item">Accompagner les utilisateurs</span>
-                            <span class="comp-item">Répondre aux incidents et demandes d'assistance</span>
-                        </div>
-                    </div>
-                    <a href="#" class="btn-doc" aria-label="Documentation Projet 03">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
-                        Documentation
-                    </a>
-                </div>
-            </div>
-
-            <!-- PROJET 04 -->
-            <div class="projet-card reveal">
-                <div class="projet-header">
-                    <p class="projet-numero">Projet 04</p>
-                    <h3>Outil de maintenance du parc — WAPT</h3>
-                </div>
-                <div class="projet-body">
-                    <div class="projet-tags">
-                        <span class="tag">WAPT</span>
-                        <span class="tag">Gestion de parc</span>
-                        <span class="tag">CPAM Marseille</span>
-                    </div>
-                    <p class="projet-periode">📅 01/09/2025 — 30/08/2026</p>
-                    <p class="projet-description">
-                        Mise en place et exploitation de WAPT (Web Application Packaging Tool)
-                        pour automatiser le déploiement de logiciels et la maintenance du parc
-                        informatique. Création de paquets, gestion des mises à jour et
-                        supervision de l'état du parc.
-                    </p>
-                    <div class="projet-competences">
-                        <h4>Compétences mobilisées</h4>
-                        <div class="comp-list">
-                            <span class="comp-item">Gérer le patrimoine informatique</span>
-                            <span class="comp-item">Recenser et identifier les ressources numériques</span>
-                            <span class="comp-item">Vérifier les conditions de continuité du service</span>
-                            <span class="comp-item">Mettre à disposition un service informatique</span>
-                        </div>
-                    </div>
-                    <a href="#" class="btn-doc" aria-label="Documentation Projet 04">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
-                        Documentation
-                    </a>
-                </div>
-            </div>
-
-            <!-- PROJET 05 -->
-            <div class="projet-card reveal">
-                <div class="projet-header">
-                    <p class="projet-numero">Projet 05</p>
-                    <h3>Interventions support autonome</h3>
-                </div>
-                <div class="projet-body">
-                    <div class="projet-tags">
-                        <span class="tag">Support</span>
-                        <span class="tag">Autonomie</span>
-                        <span class="tag">CPAM Marseille</span>
-                    </div>
-                    <p class="projet-periode">📅 08/11/2024 — 30/08/2026</p>
-                    <p class="projet-description">
-                        Réalisation en autonomie d'interventions techniques variées sur
-                        le parc informatique de la CPAM : dépannage matériel et logiciel,
-                        configuration de postes, gestion des droits et habilitations,
-                        et accompagnement des utilisateurs.
-                    </p>
-                    <div class="projet-competences">
-                        <h4>Compétences mobilisées</h4>
-                        <div class="comp-list">
-                            <span class="comp-item">Mettre en place et vérifier les habilitations</span>
-                            <span class="comp-item">Exploiter des référentiels et normes</span>
-                            <span class="comp-item">Organiser son développement professionnel</span>
-                            <span class="comp-item">Gérer son identité professionnelle</span>
-                        </div>
-                    </div>
-                    <a href="#" class="btn-doc" aria-label="Documentation Projet 05">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
-                        Documentation
-                    </a>
-                </div>
-            </div>
-
-        </div>
+        </section>
 
     </main>
 
@@ -435,29 +502,109 @@
     </footer>
 
     <script>
-        function openSyntheseModal() {
-            document.getElementById('syntheseModal').classList.add('active');
-            document.body.style.overflow = 'hidden';
+    /* ================================================================
+       ARTICLES DE VEILLE
+       1 article par thème — modifiez uniquement ce tableau
+       ================================================================
+
+       Champs disponibles :
+         theme  : "cyber" | "reseau" | "tech"
+         image  : URL d'une image, ou "" pour le fallback coloré
+         label  : texte du badge thème (coin haut gauche de l'image)
+         source : nom de la source affiché sous le titre
+         date   : date de l'article
+         title  : titre de l'article
+         desc   : résumé court (2-3 phrases)
+         link   : URL vers l'article original
+    ================================================================ */
+    const ARTICLES = [
+        {
+            theme:  "reseau",
+            image:  "",
+            label:  "🌐 Réseaux",
+            source: "🔗 IT-Connect",
+            date:   "2 avr. 2026",
+            title:  "Wi-Fi 7 (802.11be) : tout ce qu'il faut savoir avant de déployer en entreprise",
+            desc:   "Le Wi-Fi 7 offre des débits théoriques jusqu'à 46 Gbps grâce au Multi-Link Operation. IT-Connect fait le point sur la compatibilité matérielle, les prérequis et les cas d'usage réels en entreprise.",
+            link:   "https://www.it-connect.fr/"
+        },
+        {
+            theme:  "tech",
+            image:  "",
+            label:  "💻 Technologie",
+            source: "💡 Le Monde Informatique",
+            date:   "1 avr. 2026",
+            title:  "IA générative en entreprise : où en sont les DSI françaises en 2026 ?",
+            desc:   "Le Monde Informatique dresse un panorama de l'adoption de l'IA générative dans les entreprises françaises : cas d'usage concrets, freins réglementaires et impacts sur les équipes IT.",
+            link:   "https://www.lemondeinformatique.fr/"
         }
+    ];
 
-        function closeSyntheseModal(e) {
-            if (!e || e.target === document.getElementById('syntheseModal') || e.currentTarget.classList.contains('synthese-modal-close')) {
-                document.getElementById('syntheseModal').classList.remove('active');
-                document.body.style.overflow = '';
-            }
-        }
+    /* Lecture YouTube au clic sur le thumbnail */
+    function playVideo() {
+        const videoId = 'gGcqFhXBFDc'; /* ← Remplacez par l'ID de la vidéo souhaitée */
+        const wrapper = document.getElementById('yt-iframe');
+        const play    = document.getElementById('yt-play');
+        wrapper.innerHTML = `<iframe src="https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0" allow="autoplay; encrypted-media" allowfullscreen></iframe>`;
+        wrapper.classList.add('active');
+        play.style.display = 'none';
+    }
 
-        document.addEventListener('keydown', e => {
-            if (e.key === 'Escape') closeSyntheseModal();
-        });
+    /* ================================================================
+       RENDU — NE PAS MODIFIER
+    ================================================================ */
+    const FALLBACK = {
+        cyber:  { bg: 'linear-gradient(135deg, #1c0505, #4a1010)', emoji: '🔐' },
+        reseau: { bg: 'linear-gradient(135deg, #030d1c, #082d5a)', emoji: '🌐' },
+        tech:   { bg: 'linear-gradient(135deg, #0d001f, #25005e)', emoji: '💻' }
+    };
 
-        window.addEventListener('scroll', () => {
-            document.getElementById('topbar').classList.toggle('scrolled', window.scrollY > 50);
-        });
-        const observer = new IntersectionObserver(entries => {
-            entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-        }, { threshold: 0.1 });
-        document.querySelectorAll('.reveal').forEach(r => observer.observe(r));
+    function buildCard(a) {
+        const fb = FALLBACK[a.theme];
+        const hasImg = a.image && a.image.trim() !== '';
+        const thumbContent = hasImg
+            ? `<img src="${a.image}" alt="" loading="lazy"
+                   onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">`
+            : '';
+
+        return `
+        <a class="article-card theme-${a.theme}" href="${a.link}" target="_blank" rel="noopener noreferrer">
+            <div class="article-thumb">
+                ${thumbContent}
+                <div class="article-thumb-fallback"
+                     style="background:${fb.bg};display:${hasImg ? 'none' : 'flex'}">
+                    ${fb.emoji}
+                </div>
+                <span class="article-theme-badge">${a.label}</span>
+                <span class="article-date-badge">🕐 ${a.date}</span>
+            </div>
+            <div class="article-body">
+                <span class="article-source">${a.source}</span>
+                <div class="article-title">${a.title}</div>
+                <div class="article-desc">${a.desc}</div>
+                <span class="article-read-btn">
+                    Lire l'article
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/>
+                        <polyline points="15 3 21 3 21 9"/>
+                        <line x1="10" y1="14" x2="21" y2="3"/>
+                    </svg>
+                </span>
+            </div>
+        </a>`;
+    }
+
+    document.getElementById('grid-veille').innerHTML += ARTICLES.map(buildCard).join('');
+
+    /* Header & reveal */
+    window.addEventListener('scroll', () => {
+        document.getElementById('topbar').classList.toggle('scrolled', window.scrollY > 50);
+    });
+    const obs = new IntersectionObserver(
+        es => es.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }),
+        { threshold: 0.05 }
+    );
+    document.querySelectorAll('.reveal').forEach(r => obs.observe(r));
     </script>
 </body>
 </html>

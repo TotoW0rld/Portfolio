@@ -132,6 +132,182 @@
             text-shadow: 0 1px 4px rgba(0,0,0,0.5);
         }
 
+        /* ===========================
+           CARTE YOUTUBE
+           =========================== */
+        .yt-card {
+            background: var(--couleur-blanc);
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid var(--couleur-bordure);
+            box-shadow: var(--shadow-card);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .yt-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 32px rgba(0,0,0,0.12);
+        }
+
+        .yt-thumb-wrapper {
+            position: relative;
+            width: 100%;
+            height: 190px;
+            overflow: hidden;
+            flex-shrink: 0;
+            background: #0d0d0d;
+            cursor: pointer;
+        }
+
+        .yt-thumb-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+
+        .yt-card:hover .yt-thumb-wrapper img {
+            transform: scale(1.05);
+        }
+
+        /* Bouton play centré */
+        .yt-play-btn {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 54px;
+            height: 54px;
+            background: rgba(255,0,0,0.88);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+            transition: var(--transition);
+            pointer-events: none;
+        }
+
+        .yt-card:hover .yt-play-btn {
+            background: #ff0000;
+            transform: translate(-50%, -50%) scale(1.1);
+        }
+
+        .yt-play-btn svg {
+            width: 22px;
+            height: 22px;
+            fill: white;
+            margin-left: 3px;
+        }
+
+        /* Badge YouTube */
+        .yt-badge {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            padding: 5px 11px;
+            border-radius: 7px;
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            background: #ff0000;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+        }
+
+        .yt-date {
+            position: absolute;
+            bottom: 10px;
+            left: 12px;
+            font-size: 0.75rem;
+            color: rgba(255,255,255,0.92);
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            text-shadow: 0 1px 4px rgba(0,0,0,0.5);
+        }
+
+        /* Corps carte YouTube */
+        .yt-body {
+            padding: 20px 20px 16px;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            gap: 10px;
+        }
+
+        .yt-channel {
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #ff0000;
+        }
+
+        .yt-title {
+            font-size: 0.97rem;
+            font-weight: 700;
+            color: var(--couleur-texte);
+            line-height: 1.45;
+            transition: color var(--transition);
+        }
+
+        .yt-card:hover .yt-title { color: #ff0000; }
+
+        .yt-desc {
+            font-size: 0.83rem;
+            color: var(--couleur-texte-secondaire);
+            line-height: 1.65;
+            flex: 1;
+        }
+
+        .yt-watch-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 10px 0;
+            border-radius: 10px;
+            border: 1px solid #ff0000;
+            background: transparent;
+            font-size: 0.83rem;
+            font-weight: 600;
+            color: #ff0000;
+            transition: var(--transition);
+            margin-top: auto;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .yt-watch-btn:hover,
+        .yt-card:hover .yt-watch-btn {
+            background: #ff0000;
+            color: white;
+        }
+
+        /* Iframe embed (cachée jusqu'au clic) */
+        .yt-iframe-wrapper {
+            display: none;
+            position: absolute;
+            inset: 0;
+        }
+
+        .yt-iframe-wrapper iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .yt-iframe-wrapper.active { display: block; }
+
         /* Corps */
         .article-body {
             padding: 20px 20px 16px;
@@ -268,7 +444,38 @@
             <div class="veille-section-header">
                 <h2 class="veille-section-title">Articles de veille</h2>
             </div>
-            <div class="articles-grid" id="grid-veille"></div>
+            <div class="articles-grid" id="grid-veille">
+
+                <!-- CARTE YOUTUBE — Micode (Cybersécurité) -->
+                <div class="yt-card">
+                    <div class="yt-thumb-wrapper" id="yt-thumb" onclick="playVideo()">
+                        <img
+                            src="https://i.ytimg.com/vi/QJwVUExjlC0/maxresdefault.jpg"
+                            alt="Micode — Le hacker qui avait 6h d'avance sur Wall Street"
+                            onerror="this.src='https://i.ytimg.com/vi/QJwVUExjlC0/hqdefault.jpg'"
+                        >
+                        <div class="yt-iframe-wrapper" id="yt-iframe"></div>
+                        <div class="yt-play-btn" id="yt-play">
+                            <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+                        </div>
+                        <span class="yt-badge">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="white"><path d="M23.5 6.2a3 3 0 00-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.5A3 3 0 00.5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 002.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 002.1-2.1c.5-1.9.5-5.8.5-5.8s0-3.9-.5-5.8z"/><polygon points="9.75,15.02 15.5,12 9.75,8.98" fill="#ff0000"/></svg>
+                            Micode
+                        </span>
+                        <span class="yt-date">🕐 31 mars 2025</span>
+                    </div>
+                    <div class="yt-body">
+                        <span class="yt-channel">▶ YouTube · Micode — Cybersécurité</span>
+                        <div class="yt-title">Le hacker qui avait 6h d'avance sur Wall Street</div>
+                        <div class="yt-desc">L'histoire folle d'un analyste financier qui devient millionnaire en piratant les boîtes mails de directeurs financiers pour lire leurs rapports avant leur publication officielle.</div>
+                        <a class="yt-watch-btn" href="https://www.youtube.com/watch?v=QJwVUExjlC0" target="_blank" rel="noopener noreferrer">
+                            Voir sur YouTube
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
         </section>
 
         <!-- SOURCES -->
@@ -312,16 +519,6 @@
     ================================================================ */
     const ARTICLES = [
         {
-            theme:  "cyber",
-            image:  "",
-            label:  "🔐 Cybersécurité",
-            source: "🛡️ CERT-FR",
-            date:   "27 mars 2026",
-            title:  "Multiples vulnérabilités dans le noyau Linux d'Ubuntu",
-            desc:   "De multiples vulnérabilités ont été découvertes dans le noyau Linux d'Ubuntu. Certaines permettent à un attaquant de provoquer une exécution de code arbitraire à distance ou une élévation de privilèges.",
-            link:   "https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0276/"
-        },
-        {
             theme:  "reseau",
             image:  "",
             label:  "🌐 Réseaux",
@@ -342,6 +539,16 @@
             link:   "https://www.lemondeinformatique.fr/"
         }
     ];
+
+    /* Lecture YouTube au clic sur le thumbnail */
+    function playVideo() {
+        const videoId = 'QJwVUExjlC0';
+        const wrapper = document.getElementById('yt-iframe');
+        const play    = document.getElementById('yt-play');
+        wrapper.innerHTML = `<iframe src="https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0" allow="autoplay; encrypted-media" allowfullscreen></iframe>`;
+        wrapper.classList.add('active');
+        play.style.display = 'none';
+    }
 
     /* ================================================================
        RENDU — NE PAS MODIFIER
@@ -387,7 +594,7 @@
         </a>`;
     }
 
-    document.getElementById('grid-veille').innerHTML = ARTICLES.map(buildCard).join('');
+    document.getElementById('grid-veille').innerHTML += ARTICLES.map(buildCard).join('');
 
     /* Header & reveal */
     window.addEventListener('scroll', () => {

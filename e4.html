@@ -142,26 +142,23 @@
         /* === CARTE MISE EN AVANT (projets oraux) === */
         .projet-card.phare {
             border: 2px solid var(--couleur-header);
-            box-shadow: 0 6px 28px rgba(161, 0, 242, 0.18);
-            position: relative;
+            box-shadow: 0 8px 32px rgba(161, 0, 242, 0.22);
         }
 
         .badge-phare {
-            position: absolute;
-            top: -14px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: var(--couleur-header);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            width: 100%;
+            background: linear-gradient(135deg, var(--couleur-header), #7b00c0);
             color: white;
-            font-size: 0.7rem;
+            font-size: 0.72rem;
             font-weight: 700;
-            letter-spacing: 0.8px;
+            letter-spacing: 1px;
             text-transform: uppercase;
-            padding: 4px 14px;
-            border-radius: 50px;
-            white-space: nowrap;
-            z-index: 1;
-            box-shadow: 0 2px 10px rgba(161, 0, 242, 0.35);
+            padding: 8px 0;
+            margin-bottom: 0;
         }
 
         /* === BOUTON TABLEAU DE SYNTHÈSE === */
@@ -241,7 +238,9 @@
 
         .synthese-modal-close:hover { background: #7b00c0; transform: scale(1.1); }
 
-        .synthese-iframe { width: 100%; height: 100%; border: none; display: block; }
+        .projet-card.phare .projet-header {
+            border-radius: 0;
+        }
     </style>
 </head>
 <body>
@@ -436,7 +435,7 @@
 
             <!-- PROJET 02 — Windows 11 (PHARE) -->
             <div class="projet-card phare reveal">
-                <span class="badge-phare">⭐ Projet développé à l'oral</span>
+                <div class="badge-phare">⭐&nbsp;&nbsp;Projet présenté à l'oral</div>
                 <div class="projet-header">
                     <p class="projet-numero">Projet 02</p>
                     <h3>Déploiement de masse — Mise à jour Windows 11</h3>
@@ -483,7 +482,7 @@
 
             <!-- PROJET 03 — Ticketing (PHARE) -->
             <div class="projet-card phare reveal">
-                <span class="badge-phare">⭐ Projet développé à l'oral</span>
+                <div class="badge-phare">⭐&nbsp;&nbsp;Projet présenté à l'oral</div>
                 <div class="projet-header">
                     <p class="projet-numero">Projet 03</p>
                     <h3>Ticketing de niveau 1</h3>

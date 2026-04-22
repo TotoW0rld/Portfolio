@@ -114,7 +114,7 @@
             color: var(--couleur-accent-dark);
         }
 
-        /* Légende */
+        /* === LÉGENDE === */
         .tags-legende {
             display: flex;
             align-items: center;
@@ -139,6 +139,31 @@
             flex-shrink: 0;
         }
 
+        /* === CARTE MISE EN AVANT (projets oraux) === */
+        .projet-card.phare {
+            border: 2px solid var(--couleur-header);
+            box-shadow: 0 6px 28px rgba(161, 0, 242, 0.18);
+            position: relative;
+        }
+
+        .badge-phare {
+            position: absolute;
+            top: -14px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--couleur-header);
+            color: white;
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+            padding: 4px 14px;
+            border-radius: 50px;
+            white-space: nowrap;
+            z-index: 1;
+            box-shadow: 0 2px 10px rgba(161, 0, 242, 0.35);
+        }
+
         /* === BOUTON TABLEAU DE SYNTHÈSE === */
         .btn-synthese {
             display: inline-flex;
@@ -158,11 +183,7 @@
             margin-bottom: 10px;
         }
 
-        .btn-synthese svg {
-            width: 18px;
-            height: 18px;
-            flex-shrink: 0;
-        }
+        .btn-synthese svg { width: 18px; height: 18px; flex-shrink: 0; }
 
         .btn-synthese:hover {
             background: var(--couleur-header);
@@ -184,9 +205,7 @@
             padding: 20px;
         }
 
-        .synthese-modal.active {
-            display: flex;
-        }
+        .synthese-modal.active { display: flex; }
 
         .synthese-modal-box {
             position: relative;
@@ -220,17 +239,9 @@
             transition: var(--transition);
         }
 
-        .synthese-modal-close:hover {
-            background: #7b00c0;
-            transform: scale(1.1);
-        }
+        .synthese-modal-close:hover { background: #7b00c0; transform: scale(1.1); }
 
-        .synthese-iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-            display: block;
-        }
+        .synthese-iframe { width: 100%; height: 100%; border: none; display: block; }
     </style>
 </head>
 <body>
@@ -260,7 +271,8 @@
             <p>
                 L'épreuve E4 évalue la mise en situation professionnelle à travers des
                 projets réels réalisés en entreprise. Voici les situations professionnelles
-                significatives que j'ai menées lors de mon alternance à la CPAM de Marseille.
+                significatives que j'ai menées lors de mon alternance à la CPAM de Marseille
+                et en cours de formation.
             </p>
         </section>
 
@@ -294,15 +306,14 @@
         <div class="synthese-modal" id="syntheseModal" onclick="closeSyntheseModal(event)">
             <div class="synthese-modal-box">
                 <button class="synthese-modal-close" onclick="closeSyntheseModal()">✕</button>
-                <iframe
-                    src="Annexe-6-1-Tableau-de-synthese-Epreuve-E4-BTS-SIO-2022__2_.pdf"
-                    class="synthese-iframe"
-                    title="Tableau de synthèse E4 — Thomas VITI">
-                </iframe>
+                <iframe src="Annexe-6-1-Tableau-de-synthese-Epreuve-E4-BTS-SIO-2022__2_.pdf"
+                    class="synthese-iframe" title="Tableau de synthèse E4 — Thomas VITI"></iframe>
             </div>
         </div>
 
-        <!-- SÉPARATEUR FORMATION -->
+        <!-- ===========================
+             RÉALISATIONS EN FORMATION
+             =========================== -->
         <div class="e4-annee-label reveal">
             <span>Réalisations en cours de formation</span>
         </div>
@@ -317,26 +328,26 @@
                 </div>
                 <div class="projet-body">
                     <div class="projet-tags">
-                        <span class="tag-neutre">Projet IT</span>
                         <span class="tag-neutre">Infrastructure</span>
+                        <span class="tag-neutre">Réseaux</span>
                         <span class="tag-formation">🎓 Campus CCI du Vaucluse</span>
                     </div>
                     <p class="projet-periode">📅 02/12/2025 — 30/04/2026</p>
                     <p class="projet-description">
-                        Projet réalisé en cours de formation au Campus CCI du Vaucluse.
-                        Mise en œuvre de compétences techniques dans un contexte pédagogique
-                        simulant un environnement professionnel.
+                        Projet d'infrastructure réseau réalisé en formation au Campus CCI du Vaucluse.
+                        Conception d'une architecture multi-sites (Marseille / Lille) avec VLANs,
+                        VPN site-à-site, pare-feu OPNsense, Active Directory, GLPI, Wazuh et supervision Nagios.
                     </p>
                     <div class="projet-competences">
                         <h4>Compétences mobilisées</h4>
                         <div class="comp-list">
                             <span class="comp-item">Analyser les objectifs et modalités d'un projet</span>
                             <span class="comp-item">Planifier les activités</span>
-                            <span class="comp-item">Travailler en mode projet</span>
+                            <span class="comp-item">Concevoir une architecture réseau</span>
                             <span class="comp-item">Évaluer les indicateurs de suivi</span>
                         </div>
                     </div>
-                    <a href="#" class="btn-doc" aria-label="Documentation Projet ITWAY">
+                    <a href="ITWay_Infra.pdf" target="_blank" rel="noopener noreferrer" class="btn-doc">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
                         Documentation
                     </a>
@@ -352,14 +363,14 @@
                 <div class="projet-body">
                     <div class="projet-tags">
                         <span class="tag-neutre">Développement web</span>
-                        <span class="tag-neutre">HTML / CSS</span>
+                        <span class="tag-neutre">HTML / CSS / JS</span>
                         <span class="tag-formation">🎓 Campus CCI du Vaucluse</span>
                     </div>
                     <p class="projet-periode">📅 01/12/2025 — 20/04/2026</p>
                     <p class="projet-description">
                         Conception et développement du portfolio numérique BTS SIO SISR
                         présentant mon parcours, mes compétences et mes réalisations professionnelles.
-                        Réalisé en HTML, CSS et JavaScript, hébergé à l'adresse tviti.fr.
+                        Réalisé en HTML, CSS et JavaScript pur, hébergé via GitHub Pages à l'adresse tviti.fr.
                     </p>
                     <div class="projet-competences">
                         <h4>Compétences mobilisées</h4>
@@ -370,7 +381,7 @@
                             <span class="comp-item">Développer son projet professionnel</span>
                         </div>
                     </div>
-                    <a href="#" class="btn-doc" aria-label="Documentation Portfolio">
+                    <a href="documentation_portfolio.pdf" target="_blank" rel="noopener noreferrer" class="btn-doc">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
                         Documentation
                     </a>
@@ -379,50 +390,53 @@
 
         </div>
 
-        <!-- SÉPARATEUR PREMIÈRE ANNÉE -->
+        <!-- ===========================
+             1ÈRE ANNÉE ENTREPRISE
+             =========================== -->
         <div class="e4-annee-label reveal">
             <span>1ère année — CPAM Marseille</span>
         </div>
 
         <div class="projets-grid">
 
-            <!-- PROJET 01 -->
+            <!-- PROJET 01 — WAPT (remplace Création d'outils) -->
             <div class="projet-card reveal">
                 <div class="projet-header">
                     <p class="projet-numero">Projet 01</p>
-                    <h3>Création d'outils numériques</h3>
+                    <h3>Outil de maintenance du parc — WAPT</h3>
                 </div>
                 <div class="projet-body">
                     <div class="projet-tags">
-                        <span class="tag-neutre">Développement</span>
-                        <span class="tag-neutre">Outils internes</span>
+                        <span class="tag-neutre">WAPT</span>
+                        <span class="tag-neutre">Gestion de parc</span>
                         <span class="tag-entreprise">🏢 CPAM Marseille</span>
                     </div>
                     <p class="projet-periode">📅 08/11/2024 — 31/08/2025</p>
                     <p class="projet-description">
-                        Conception et développement d'outils numériques internes destinés
-                        à faciliter les tâches quotidiennes du service informatique.
-                        Analyse des besoins, développement, tests et mise en production
-                        des solutions retenues.
+                        Mise en place et exploitation de WAPT (Web Application Packaging Tool)
+                        pour automatiser le déploiement de logiciels et la maintenance du parc
+                        informatique. Prise en main à distance, création de paquets, gestion
+                        des mises à jour et supervision du parc multi-sites.
                     </p>
                     <div class="projet-competences">
                         <h4>Compétences mobilisées</h4>
                         <div class="comp-list">
-                            <span class="comp-item">Analyse du besoin et conception</span>
-                            <span class="comp-item">Développer la présence en ligne de l'organisation</span>
-                            <span class="comp-item">Travailler en mode projet</span>
-                            <span class="comp-item">Mise à disposition d'un service informatique</span>
+                            <span class="comp-item">Gérer le patrimoine informatique</span>
+                            <span class="comp-item">Recenser et identifier les ressources numériques</span>
+                            <span class="comp-item">Vérifier les conditions de continuité du service</span>
+                            <span class="comp-item">Mettre à disposition un service informatique</span>
                         </div>
                     </div>
-                    <a href="#" class="btn-doc" aria-label="Documentation Projet 01">
+                    <a href="documentation_wapt.pdf" target="_blank" rel="noopener noreferrer" class="btn-doc">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
                         Documentation
                     </a>
                 </div>
             </div>
 
-            <!-- PROJET 02 -->
-            <div class="projet-card reveal">
+            <!-- PROJET 02 — Windows 11 (PHARE) -->
+            <div class="projet-card phare reveal">
+                <span class="badge-phare">⭐ Projet développé à l'oral</span>
                 <div class="projet-header">
                     <p class="projet-numero">Projet 02</p>
                     <h3>Déploiement de masse — Mise à jour Windows 11</h3>
@@ -435,10 +449,10 @@
                     </div>
                     <p class="projet-periode">📅 01/03/2025 — 30/10/2025</p>
                     <p class="projet-description">
-                        Planification et réalisation du déploiement en masse de la mise à jour
-                        Windows 11 sur l'ensemble du parc informatique de la CPAM.
-                        Préparation des images, tests de compatibilité applicative, déploiement
-                        par vagues et suivi de l'avancement.
+                        Planification et réalisation du déploiement en masse de Windows 11 sur
+                        ~4 000 postes répartis sur plus de 10 sites de la CPAM des Bouches-du-Rhône.
+                        Déploiement via WAPT, interventions du samedi, rendez-vous par service
+                        et remplacement des postes incompatibles.
                     </p>
                     <div class="projet-competences">
                         <h4>Compétences mobilisées</h4>
@@ -449,7 +463,7 @@
                             <span class="comp-item">Gérer le patrimoine informatique</span>
                         </div>
                     </div>
-                    <a href="#" class="btn-doc" aria-label="Documentation Projet 02">
+                    <a href="documentation_windows11.pdf" target="_blank" rel="noopener noreferrer" class="btn-doc">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
                         Documentation
                     </a>
@@ -458,15 +472,18 @@
 
         </div>
 
-        <!-- SÉPARATEUR DEUXIÈME ANNÉE -->
+        <!-- ===========================
+             2ÈME ANNÉE ENTREPRISE
+             =========================== -->
         <div class="e4-annee-label reveal">
             <span>2ème année — CPAM Marseille</span>
         </div>
 
         <div class="projets-grid">
 
-            <!-- PROJET 03 -->
-            <div class="projet-card reveal">
+            <!-- PROJET 03 — Ticketing (PHARE) -->
+            <div class="projet-card phare reveal">
+                <span class="badge-phare">⭐ Projet développé à l'oral</span>
                 <div class="projet-header">
                     <p class="projet-numero">Projet 03</p>
                     <h3>Ticketing de niveau 1</h3>
@@ -480,9 +497,9 @@
                     <p class="projet-periode">📅 08/11/2024 — 30/08/2026</p>
                     <p class="projet-description">
                         Prise en charge et traitement des tickets de support de niveau 1
-                        au sein du service informatique de la CPAM. Collecte, qualification
-                        et résolution des incidents utilisateurs, escalade vers le niveau 2
-                        si nécessaire, avec suivi dans l'outil de ticketing.
+                        au sein du service informatique de la CPAM. Collecte, qualification,
+                        priorisation et résolution des incidents utilisateurs via GLPI,
+                        escalade N2 si nécessaire, et rédaction de comptes-rendus.
                     </p>
                     <div class="projet-competences">
                         <h4>Compétences mobilisées</h4>
@@ -493,66 +510,31 @@
                             <span class="comp-item">Répondre aux incidents et demandes d'assistance</span>
                         </div>
                     </div>
-                    <a href="documentation support_ticketing.pdf" target="_blank" rel="noopener noreferrer" class="btn-doc" aria-label="Documentation Projet 03">
+                    <a href="documentation_support_ticketing.pdf" target="_blank" rel="noopener noreferrer" class="btn-doc">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
                         Documentation
                     </a>
                 </div>
             </div>
 
-            <!-- PROJET 04 -->
+            <!-- PROJET 04 — Interventions support autonome -->
             <div class="projet-card reveal">
                 <div class="projet-header">
                     <p class="projet-numero">Projet 04</p>
-                    <h3>Outil de maintenance du parc — WAPT</h3>
-                </div>
-                <div class="projet-body">
-                    <div class="projet-tags">
-                        <span class="tag-neutre">WAPT</span>
-                        <span class="tag-neutre">Gestion de parc</span>
-                        <span class="tag-entreprise">🏢 CPAM Marseille</span>
-                    </div>
-                    <p class="projet-periode">📅 01/09/2025 — 30/08/2026</p>
-                    <p class="projet-description">
-                        Mise en place et exploitation de WAPT (Web Application Packaging Tool)
-                        pour automatiser le déploiement de logiciels et la maintenance du parc
-                        informatique. Création de paquets, gestion des mises à jour et
-                        supervision de l'état du parc.
-                    </p>
-                    <div class="projet-competences">
-                        <h4>Compétences mobilisées</h4>
-                        <div class="comp-list">
-                            <span class="comp-item">Gérer le patrimoine informatique</span>
-                            <span class="comp-item">Recenser et identifier les ressources numériques</span>
-                            <span class="comp-item">Vérifier les conditions de continuité du service</span>
-                            <span class="comp-item">Mettre à disposition un service informatique</span>
-                        </div>
-                    </div>
-                    <a href="#" class="btn-doc" aria-label="Documentation Projet 04">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
-                        Documentation
-                    </a>
-                </div>
-            </div>
-
-            <!-- PROJET 05 -->
-            <div class="projet-card reveal">
-                <div class="projet-header">
-                    <p class="projet-numero">Projet 05</p>
                     <h3>Interventions support autonome</h3>
                 </div>
                 <div class="projet-body">
                     <div class="projet-tags">
                         <span class="tag-neutre">Support</span>
-                        <span class="tag-neutre">Autonomie</span>
+                        <span class="tag-neutre">Autonomie terrain</span>
                         <span class="tag-entreprise">🏢 CPAM Marseille</span>
                     </div>
                     <p class="projet-periode">📅 08/11/2024 — 30/08/2026</p>
                     <p class="projet-description">
-                        Réalisation en autonomie d'interventions techniques variées sur
-                        le parc informatique de la CPAM : dépannage matériel et logiciel,
-                        configuration de postes, gestion des droits et habilitations,
-                        et accompagnement des utilisateurs.
+                        Réalisation en autonomie d'interventions techniques sur les 10+ sites
+                        de la CPAM des Bouches-du-Rhône : dépannage matériel et logiciel,
+                        gestion AD, maintenance VPN, remplacement de postes et tournées
+                        d'interventions planifiées.
                     </p>
                     <div class="projet-competences">
                         <h4>Compétences mobilisées</h4>
@@ -563,7 +545,7 @@
                             <span class="comp-item">Gérer son identité professionnelle</span>
                         </div>
                     </div>
-                    <a href="#" class="btn-doc" aria-label="Documentation Projet 05">
+                    <a href="documentation_inter_autonome.pdf" target="_blank" rel="noopener noreferrer" class="btn-doc">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
                         Documentation
                     </a>
@@ -599,6 +581,7 @@
         window.addEventListener('scroll', () => {
             document.getElementById('topbar').classList.toggle('scrolled', window.scrollY > 50);
         });
+
         const observer = new IntersectionObserver(entries => {
             entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
         }, { threshold: 0.1 });

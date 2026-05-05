@@ -8,6 +8,55 @@
     <link rel="stylesheet" href="style.css">
     <style>
         /* ===========================
+           BLOCS MÉTHODE DE VEILLE
+           =========================== */
+        .methode-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .methode-card {
+            background: var(--couleur-fond);
+            border: 1px solid var(--couleur-bordure);
+            border-radius: 16px;
+            padding: 24px 20px;
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .methode-card:hover {
+            border-color: rgba(189, 178, 255, 0.5);
+            background: rgba(189, 178, 255, 0.07);
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .methode-icon {
+            font-size: 2.2rem;
+            margin-bottom: 12px;
+        }
+
+        .methode-card h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--couleur-header);
+            margin-bottom: 10px;
+        }
+
+        .methode-card p {
+            font-size: 0.88rem;
+            color: var(--couleur-texte-secondaire);
+            line-height: 1.65;
+            margin: 0;
+        }
+
+        @media (max-width: 768px) {
+            .methode-grid { grid-template-columns: 1fr; }
+        }
+
+        /* ===========================
            SECTION VEILLE PRINCIPALE
            =========================== */
         .veille-section-header {
@@ -427,9 +476,27 @@
         <!-- INTRO MÉTHODE -->
         <div class="veille-intro reveal">
             <h2>Ma méthode de veille</h2>
-            <p>
-En cours de traitement
-            </p>
+            <div class="methode-grid">
+
+                <div class="methode-card">
+                    <div class="methode-icon">📺</div>
+                    <h3>Veille vidéo</h3>
+                    <p>Je suis plusieurs chaînes YouTube spécialisées en cybersécurité et IT, comme Micode, qui vulgarisent les actualités tech et les cyberattaques de manière claire et visuelle. C'est ma méthode préférée pour assimiler des sujets complexes rapidement.</p>
+                </div>
+
+                <div class="methode-card">
+                    <div class="methode-icon">📧</div>
+                    <h3>Newsletters quotidiennes</h3>
+                    <p>Je suis abonné à des newsletters spécialisées comme le CERT-FR (ANSSI) et Bleeping Computer, qui m'envoient chaque jour un résumé des dernières menaces, vulnérabilités et actualités IT directement dans ma boîte mail.</p>
+                </div>
+
+                <div class="methode-card">
+                    <div class="methode-icon">🌐</div>
+                    <h3>Sites spécialisés</h3>
+                    <p>Je consulte régulièrement des sites comme IT-Connect.fr, ZDNet et Le Monde Informatique pour approfondir mes recherches sur des sujets précis liés aux réseaux, à la cybersécurité et aux infrastructures.</p>
+                </div>
+
+            </div>
         </div>
 
         <!-- ============================================================

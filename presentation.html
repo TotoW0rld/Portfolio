@@ -6,6 +6,122 @@
     <title>Présentation - Portfolio BTS SIO SISR</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* ===========================
+           BLOC ENTREPRISE CPAM
+           =========================== */
+        .entreprise-block {
+            background: #0f1623;
+            border-radius: 20px;
+            padding: 36px 40px;
+            margin-bottom: 50px;
+            border: 1px solid rgba(255,255,255,0.07);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+        }
+
+        .entreprise-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            background: rgba(9, 132, 227, 0.15);
+            border: 1px solid rgba(9, 132, 227, 0.4);
+            color: #4fc3f7;
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            padding: 6px 14px;
+            border-radius: 50px;
+            margin-bottom: 18px;
+        }
+
+        .entreprise-nom {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 14px;
+            line-height: 1.2;
+        }
+
+        .entreprise-desc {
+            font-size: 0.93rem;
+            color: rgba(200, 210, 230, 0.85);
+            line-height: 1.75;
+            max-width: 820px;
+            margin-bottom: 28px;
+        }
+
+        .entreprise-desc strong {
+            color: #ffffff;
+            font-weight: 600;
+        }
+
+        /* Stats */
+        .entreprise-stats {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+        }
+
+        .entreprise-stat {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 14px;
+            padding: 18px 28px;
+            text-align: center;
+            min-width: 140px;
+            flex: 1;
+        }
+
+        .entreprise-stat-value {
+            display: block;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #bdb2ff;
+            line-height: 1.1;
+            margin-bottom: 5px;
+        }
+
+        .entreprise-stat:nth-child(2) .entreprise-stat-value { color: #4fc3f7; }
+        .entreprise-stat:nth-child(3) .entreprise-stat-value { color: #ffd700; }
+
+        .entreprise-stat-label {
+            font-size: 0.78rem;
+            color: rgba(200, 210, 230, 0.6);
+            font-weight: 500;
+        }
+
+        /* Outils */
+        .entreprise-outils {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .entreprise-outil {
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.12);
+            color: rgba(220, 225, 240, 0.9);
+            font-size: 0.8rem;
+            font-weight: 600;
+            padding: 7px 16px;
+            border-radius: 8px;
+            transition: 0.2s ease;
+        }
+
+        .entreprise-outil:hover {
+            background: rgba(189, 178, 255, 0.12);
+            border-color: rgba(189, 178, 255, 0.4);
+            color: #bdb2ff;
+        }
+
+        @media (max-width: 768px) {
+            .entreprise-block { padding: 24px 20px; }
+            .entreprise-nom { font-size: 1.5rem; }
+            .entreprise-stat { min-width: 100px; padding: 14px 16px; }
+        }
+    </style>
 </head>
 <body>
 
@@ -39,10 +155,10 @@
             </p>
             <div class="cv-buttons">
                 <button class="btn-cv-preview" onclick="openCVModal()">
-                    Aperçu du CV
+                    👁️ Aperçu du CV
                 </button>
                 <a href="CV ThomasVITI.pdf" download class="btn-cv">
-                    Télécharger mon CV
+                    📄 Télécharger mon CV
                 </a>
             </div>
         </section>
@@ -54,6 +170,45 @@
                 <iframe src="CV ThomasVITI.pdf" class="cv-iframe" title="Aperçu CV Thomas VITI"></iframe>
             </div>
         </div>
+
+        <!-- BLOC ENTREPRISE CPAM -->
+        <section class="entreprise-block reveal">
+
+            <span class="entreprise-badge">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/></svg>
+                ENTREPRISE D'ALTERNANCE — MARSEILLE (13)
+            </span>
+
+            <h2 class="entreprise-nom">CPAM des Bouches-du-Rhône</h2>
+
+            <p class="entreprise-desc">
+                La Caisse Primaire d'Assurance Maladie des Bouches-du-Rhône est un organisme public de sécurité sociale qui assure la gestion de la santé de plusieurs millions d'assurés en région PACA. J'intègre le <strong>service informatique support utilisateurs</strong>, chargé d'assurer la continuité du parc sur l'ensemble des sites et agences du département.
+            </p>
+
+            <div class="entreprise-stats">
+                <div class="entreprise-stat">
+                    <span class="entreprise-stat-value">7</span>
+                    <span class="entreprise-stat-label">Techniciens support</span>
+                </div>
+                <div class="entreprise-stat">
+                    <span class="entreprise-stat-value">10+</span>
+                    <span class="entreprise-stat-label">Sites & agences</span>
+                </div>
+                <div class="entreprise-stat">
+                    <span class="entreprise-stat-value">N1/N2</span>
+                    <span class="entreprise-stat-label">Support & régie</span>
+                </div>
+            </div>
+
+            <div class="entreprise-outils">
+                <span class="entreprise-outil">GLPI — Ticketing</span>
+                <span class="entreprise-outil">WAPT — Gestion de parc</span>
+                <span class="entreprise-outil">Active Directory</span>
+                <span class="entreprise-outil">Windows 10 / 11</span>
+                <span class="entreprise-outil">VPN télétravail</span>
+            </div>
+
+        </section>
 
         <!-- COMPÉTENCES -->
         <section class="skills-carousel-section reveal">
@@ -225,7 +380,7 @@
                                 </div>
                                 <div class="skill-card">
                                     <div class="skill-card-header">
-                                        <img src="images/css.png" alt="CSS">
+                                        <img src="css.png" alt="CSS">
                                         <h4>CSS3</h4>
                                     </div>
                                     <p>Mise en forme, responsive design et amélioration visuelle d'interfaces.</p>
@@ -359,7 +514,17 @@
             </div>
         </section>
 
-        
+        <!-- OBJECTIFS -->
+        <section class="presentation-section reveal">
+            <h2>Mes objectifs</h2>
+            <p>
+                Mon objectif est de continuer à développer mes compétences dans
+                l'administration systèmes et réseaux, la sécurisation des infrastructures
+                et le support informatique, afin d'évoluer vers un poste technique avec
+                davantage de responsabilités.
+            </p>
+        </section>
+
     </main>
 
     <footer class="footer">

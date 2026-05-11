@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WAPT — Outil de maintenance du parc — Portfolio Thomas VITI</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .projet-detail-page {
+            padding: 110px 80px 80px 80px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .retour-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--couleur-texte-secondaire);
+            text-decoration: none;
+            font-size: 0.88rem;
+            font-weight: 600;
+            margin-bottom: 36px;
+            transition: var(--transition);
+        }
+        .retour-btn:hover { color: var(--couleur-header); }
+        .retour-btn svg { width: 16px; height: 16px; }
+
+        .projet-layout {
+            display: grid;
+            grid-template-columns: 320px 1fr;
+            gap: 40px;
+            align-items: start;
+        }
+
+        /* SIDEBAR */
+        .projet-sidebar {
+            position: sticky;
+            top: 110px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .sidebar-hero {
+            background: linear-gradient(135deg, var(--couleur-header), #5c00b8);
+            border-radius: 20px;
+            padding: 28px 24px;
+            color: white;
+        }
+
+        .sidebar-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(255,255,255,0.15);
+            border: 1px solid rgba(255,255,255,0.25);
+            border-radius: 50px;
+            font-size: 0.68rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            padding: 5px 12px;
+            margin-bottom: 16px;
+        }
+
+        .sidebar-titre {
+            font-size: 1.3rem;
+            font-weight: 700;
+            line-height: 1.35;
+            margin-bottom: 12px;
+        }
+
+        .sidebar-desc {
+            font-size: 0.83rem;
+            line-height: 1.65;
+            opacity: 0.85;
+        }
+
+        .sidebar-card {
+            background: var(--couleur-blanc);
+            border-radius: 16px;
+            padding: 22px;
+            border: 1px solid var(--couleur-bordure);
+            box-shadow: var(--shadow-card);
+        }
+
+        .sidebar-card-title {
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--couleur-texte-secondaire);
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .sidebar-card-title::before {
+            content: "";
+            display: inline-block;
+            width: 3px;
+            height: 14px;
+            background: var(--couleur-header);
+            border-radius: 2px;
+        }
+
+        .fiche-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--couleur-bordure);
+            font-size: 0.85rem;
+        }
+        .fiche-row:last-of-type { border-bottom: none; }
+        .fiche-label { color: var(--couleur-texte-secondaire); font-weight: 500; }
+        .fiche-value { color: var(--couleur-texte); font-weight: 600; text-align: right; }
+
+        .stack-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-top: 12px;
+        }
+
+        .stack-badge {
+            background: rgba(161, 0, 242, 0.08);
+            border: 1px solid rgba(161, 0, 242, 0.25);
+            color: var(--couleur-header);
+            font-size: 0.72rem;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 6px;
+        }
+
+        .autonomie-dots { display: flex; gap: 5px; }
+        .autonomie-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--couleur-bordure); }
+        .autonomie-dot.active { background: var(--couleur-header); }
+
+        .competence-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--couleur-bordure);
+            font-size: 0.83rem;
+        }
+        .competence-item:last-child { border-bottom: none; }
+
+        .competence-check {
+            width: 18px;
+            height: 18px;
+            background: var(--couleur-header);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            margin-top: 1px;
+        }
+        .competence-check svg { width: 10px; height: 10px; stroke: white; stroke-width: 3; }
+        .competence-code { font-weight: 700; color: var(--couleur-header); display: block; font-size: 0.75rem; }
+        .competence-label { color: var(--couleur-texte-secondaire); line-height: 1.4; }
+
+        .btn-doc-sidebar {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 13px;
+            border-radius: 12px;
+            background: var(--couleur-header);
+            color: white;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        .btn-doc-sidebar:hover {
+            background: #7b00c0;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(161, 0, 242, 0.35);
+        }
+        .btn-doc-sidebar svg { width: 16px; height: 16px; }
+
+        /* CONTENU */
+        .projet-content { display: flex; flex-direction: column; gap: 0; }
+
+        .situation-block {
+            background: rgba(161, 0, 242, 0.04);
+            border-left: 4px solid var(--couleur-header);
+            border-radius: 0 12px 12px 0;
+            padding: 22px 24px;
+            margin-bottom: 40px;
+            font-size: 0.95rem;
+            line-height: 1.75;
+            color: var(--couleur-texte);
+        }
+        .situation-block strong { color: var(--couleur-header); }
+
+        .partie-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--couleur-texte);
+            margin-bottom: 28px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid var(--couleur-bordure);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .partie-title::before {
+            content: "";
+            display: inline-block;
+            width: 5px;
+            height: 24px;
+            background: linear-gradient(180deg, var(--couleur-accent), var(--couleur-header));
+            border-radius: 3px;
+        }
+
+        /* ÉTAPES */
+        .etape {
+            display: grid;
+            grid-template-columns: 48px 1fr;
+            gap: 20px;
+            margin-bottom: 40px;
+            align-items: start;
+        }
+
+        .etape-numero {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, var(--couleur-header), #7b00c0);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: white;
+            flex-shrink: 0;
+        }
+
+        .etape-contenu { flex: 1; }
+        .etape-titre { font-size: 1.05rem; font-weight: 700; color: var(--couleur-texte); margin-bottom: 8px; }
+        .etape-texte { font-size: 0.9rem; color: var(--couleur-texte-secondaire); line-height: 1.7; margin-bottom: 14px; }
+        .etape-texte strong { color: var(--couleur-texte); }
+
+        .etape-img {
+            width: 100%;
+            border-radius: 12px;
+            border: 1px solid var(--couleur-bordure);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            margin-top: 14px;
+            cursor: zoom-in;
+            transition: var(--transition);
+        }
+        .etape-img:hover { transform: scale(1.01); box-shadow: 0 8px 32px rgba(0,0,0,0.14); }
+
+        .etape-img-caption {
+            font-size: 0.75rem;
+            color: var(--couleur-texte-secondaire);
+            text-align: center;
+            margin-top: 6px;
+            font-style: italic;
+        }
+
+        .etape-svg {
+            width: 100%;
+            background: #f8f9fc;
+            border-radius: 12px;
+            border: 1px solid var(--couleur-bordure);
+            padding: 24px;
+            margin-top: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* TABLEAU COMPARATIF SSH/RDP */
+        .comparatif-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 16px;
+            font-size: 0.87rem;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--couleur-bordure);
+        }
+
+        .comparatif-table thead tr {
+            background: #0f1623;
+        }
+
+        .comparatif-table thead th {
+            padding: 14px 18px;
+            text-align: left;
+            font-weight: 700;
+            font-size: 0.82rem;
+            letter-spacing: 0.5px;
+        }
+
+        .comparatif-table thead th:first-child { color: var(--couleur-texte-secondaire); }
+        .comparatif-table thead th:nth-child(2) { color: #bdb2ff; }
+        .comparatif-table thead th:nth-child(3) { color: #4fc3f7; }
+
+        .comparatif-table tbody tr {
+            border-bottom: 1px solid var(--couleur-bordure);
+            transition: background 0.2s;
+        }
+        .comparatif-table tbody tr:last-child { border-bottom: none; }
+        .comparatif-table tbody tr:hover { background: rgba(161,0,242,0.03); }
+
+        .comparatif-table td {
+            padding: 12px 18px;
+            vertical-align: top;
+            line-height: 1.5;
+        }
+
+        .comparatif-table td:first-child {
+            font-weight: 700;
+            color: var(--couleur-texte-secondaire);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            white-space: nowrap;
+        }
+
+        .badge-oui {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            background: rgba(105, 219, 124, 0.12);
+            border: 1px solid rgba(105, 219, 124, 0.4);
+            color: #2d9e47;
+            font-size: 0.78rem;
+            font-weight: 700;
+            padding: 3px 10px;
+            border-radius: 50px;
+        }
+
+        .badge-non {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            background: rgba(192, 57, 43, 0.1);
+            border: 1px solid rgba(192, 57, 43, 0.3);
+            color: #c0392b;
+            font-size: 0.78rem;
+            font-weight: 700;
+            padding: 3px 10px;
+            border-radius: 50px;
+        }
+
+        .badge-frequent {
+            background: rgba(161,0,242,0.1);
+            border: 1px solid rgba(161,0,242,0.3);
+            color: var(--couleur-header);
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 2px 8px;
+            border-radius: 50px;
+            display: inline-block;
+        }
+
+        .badge-rare {
+            background: rgba(255,193,7,0.1);
+            border: 1px solid rgba(255,193,7,0.4);
+            color: #b8860b;
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 2px 8px;
+            border-radius: 50px;
+            display: inline-block;
+        }
+
+        /* BLOC RGPD */
+        .rgpd-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 14px;
+            margin-top: 16px;
+        }
+
+        .rgpd-item {
+            background: var(--couleur-fond);
+            border: 1px solid var(--couleur-bordure);
+            border-left: 3px solid var(--couleur-header);
+            border-radius: 0 10px 10px 0;
+            padding: 14px 16px;
+            font-size: 0.85rem;
+            color: var(--couleur-texte-secondaire);
+            line-height: 1.6;
+        }
+
+        .rgpd-item strong { color: var(--couleur-texte); display: block; margin-bottom: 4px; font-size: 0.82rem; }
+
+        /* LIGHTBOX */
+        .lightbox {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.88);
+            z-index: 3000;
+            align-items: center;
+            justify-content: center;
+            padding: 30px;
+            cursor: pointer;
+        }
+        .lightbox.active { display: flex; }
+        .lightbox img { max-width: 100%; max-height: 90vh; border-radius: 12px; box-shadow: 0 30px 80px rgba(0,0,0,0.5); }
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            background: var(--couleur-header);
+            border: none;
+            border-radius: 50%;
+            color: white;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        @media (max-width: 1024px) {
+            .projet-detail-page { padding: 110px 40px 60px; }
+            .projet-layout { grid-template-columns: 1fr; }
+            .projet-sidebar { position: static; }
+            .rgpd-grid { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 768px) {
+            .projet-detail-page { padding: 100px 20px 40px; }
+            .etape { grid-template-columns: 40px 1fr; gap: 14px; }
+            .etape-numero { width: 40px; height: 40px; font-size: 0.95rem; }
+            .comparatif-table { font-size: 0.8rem; }
+            .comparatif-table td, .comparatif-table th { padding: 10px 12px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="topbar" id="topbar">
+        <a href="index.html" class="brand">
+            <div class="logo-placeholder">
+                <img src="logo1.png" alt="Logo Thomas VITI" class="logo">
+            </div>
+            <span class="brand-title">PORTFOLIO BTS SIO - SISR</span>
+        </a>
+        <nav class="navbar">
+            <a href="index.html">ACCUEIL</a>
+            <a href="presentation.html">PRÉSENTATION</a>
+            <a href="btssio.html">BTS SIO</a>
+            <a href="e4.html" class="active">PROJETS E4</a>
+            <a href="veille.html">VEILLE</a>
+            <a href="contact.html">CONTACT</a>
+        </nav>
+    </header>
+
+    <main class="projet-detail-page">
+
+        <a href="e4.html" class="retour-btn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+            Retour aux projets
+        </a>
+
+        <div class="projet-layout">
+
+            <!-- SIDEBAR -->
+            <aside class="projet-sidebar">
+
+                <div class="sidebar-hero">
+                    <span class="sidebar-badge">
+                        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/></svg>
+                        Entreprise d'alternance
+                    </span>
+                    <div class="sidebar-titre">Outil de maintenance du parc — WAPT</div>
+                    <div class="sidebar-desc">Utilisation quotidienne de WAPT pour gérer, superviser et maintenir à distance le parc informatique de la CPAM 13 sur l'ensemble de ses sites et agences.</div>
+                </div>
+
+                <div class="sidebar-card">
+                    <div class="sidebar-card-title">Fiche technique</div>
+                    <div class="fiche-row">
+                        <span class="fiche-label">Catégorie</span>
+                        <span class="fiche-value">Entreprise</span>
+                    </div>
+                    <div class="fiche-row">
+                        <span class="fiche-label">Période</span>
+                        <span class="fiche-value">11/2024 — 08/2026</span>
+                    </div>
+                    <div class="fiche-row">
+                        <span class="fiche-label">Lieu</span>
+                        <span class="fiche-value">CPAM 13 — Marseille</span>
+                    </div>
+                    <div class="fiche-row">
+                        <span class="fiche-label">Autonomie</span>
+                        <span class="fiche-value">
+                            <div class="autonomie-dots">
+                                <span class="autonomie-dot active"></span>
+                                <span class="autonomie-dot active"></span>
+                                <span class="autonomie-dot active"></span>
+                                <span class="autonomie-dot active"></span>
+                                <span class="autonomie-dot"></span>
+                            </div>
+                        </span>
+                    </div>
+                    <div style="margin-top:14px;">
+                        <div class="fiche-label" style="font-size:0.78rem; margin-bottom:8px;">Stack technique</div>
+                        <div class="stack-badges">
+                            <span class="stack-badge">WAPT</span>
+                            <span class="stack-badge">GLPI</span>
+                            <span class="stack-badge">Active Directory</span>
+                            <span class="stack-badge">Windows</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sidebar-card">
+                    <div class="sidebar-card-title">Compétences BTS SIO</div>
+                    <div class="competence-item">
+                        <div class="competence-check">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                        </div>
+                        <div>
+                            <span class="competence-code">B2.2</span>
+                            <span class="competence-label">Gérer le patrimoine informatique</span>
+                        </div>
+                    </div>
+                    <div class="competence-item">
+                        <div class="competence-check">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                        </div>
+                        <div>
+                            <span class="competence-code">B2.3</span>
+                            <span class="competence-label">Répondre aux incidents et demandes</span>
+                        </div>
+                    </div>
+                    <div class="competence-item">
+                        <div class="competence-check">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                        </div>
+                        <div>
+                            <span class="competence-code">B2.1</span>
+                            <span class="competence-label">Mettre à disposition un service informatique</span>
+                        </div>
+                    </div>
+                    <div class="competence-item">
+                        <div class="competence-check">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                        </div>
+                        <div>
+                            <span class="competence-code">B2.6</span>
+                            <span class="competence-label">Sécurité et respect de la vie privée (RGPD)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <a href="documentation_wapt.pdf" target="_blank" rel="noopener noreferrer" class="btn-doc-sidebar">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                    Voir la documentation complète
+                </a>
+
+            </aside>
+
+            <!-- CONTENU -->
+            <div class="projet-content">
+
+                <div class="situation-block">
+                    <strong>Situation :</strong> WAPT est l'outil central du service support de la CPAM 13. Il permet à notre équipe de <strong>7 techniciens</strong> de gérer, maintenir et superviser l'ensemble du parc sur <strong>10+ sites</strong> sans se déplacer pour chaque intervention. Il repose sur une architecture client-serveur : un <strong>serveur WAPT</strong> central, un <strong>agent</strong> installé sur chaque poste, et une <strong>console</strong> depuis laquelle le technicien pilote tout.
+                </div>
+
+                <!-- PARTIE 1 -->
+                <div class="partie-title">Partie 1 — Les 4 usages quotidiens de WAPT</div>
+
+                <!-- Étape 1 -->
+                <div class="etape">
+                    <div class="etape-numero">1</div>
+                    <div class="etape-contenu">
+                        <div class="etape-titre">L'inventaire : connaître le parc en temps réel</div>
+                        <div class="etape-texte">
+                            WAPT remonte automatiquement pour chaque poste : <strong>version Windows, RAM, CPU, logiciels installés, adresse IP, adresse MAC</strong> et statut de connexion. C'est la première chose que je consulte avant toute intervention — ça évite de se déplacer pour des informations que la console affiche en quelques secondes.
+                        </div>
+                        <img src="wapt_global.png" alt="Console WAPT — inventaire du parc" class="etape-img" onclick="openLightbox(this.src)">
+                        <div class="etape-img-caption">Console WAPT — vue inventaire avec spécifications système et paquets installés</div>
+                    </div>
+                </div>
+
+                <!-- Étape 2 -->
+                <div class="etape">
+                    <div class="etape-numero">2</div>
+                    <div class="etape-contenu">
+                        <div class="etape-titre">La prise en main à distance</div>
+                        <div class="etape-texte">
+                            WAPT permet deux types de prise en main à distance selon la situation. C'est l'une des fonctionnalités les plus utilisées au quotidien pour résoudre les incidents sans déplacement.
+                        </div>
+
+                        <table class="comparatif-table">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>🔵 SSH</th>
+                                    <th>🟡 RDP</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Fréquence</td>
+                                    <td><span class="badge-frequent">Cas le plus fréquent</span></td>
+                                    <td><span class="badge-rare">Rare</span></td>
+                                </tr>
+                                <tr>
+                                    <td>Confirmation agent</td>
+                                    <td><span class="badge-oui">✓ Obligatoire</span><br><span style="font-size:0.78rem;color:#888;margin-top:4px;display:block;">L'agent accepte via une notification</span></td>
+                                    <td><span class="badge-non">✗ Non requise</span></td>
+                                </tr>
+                                <tr>
+                                    <td>Ce qu'on voit</td>
+                                    <td>Le bureau de l'agent, sur <strong>sa propre session</strong></td>
+                                    <td>Le bureau de l'agent, sur <strong>sa propre session</strong></td>
+                                </tr>
+                                <tr>
+                                    <td>Différence clé</td>
+                                    <td>L'agent <strong>voit</strong> ce qu'on fait et reste présent</td>
+                                    <td>L'agent est <strong>déconnecté</strong>, on prend sa session à sa place</td>
+                                </tr>
+                                <tr>
+                                    <td>Utilisation</td>
+                                    <td>Support courant, incidents du quotidien avec l'agent</td>
+                                    <td>Cas rares nécessitant d'agir sans présence de l'agent</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="etape-img-caption" style="margin-top:10px;">Comparatif SSH / RDP dans WAPT</div>
+                    </div>
+                </div>
+
+                <!-- Étape 3 -->
+                <div class="etape">
+                    <div class="etape-numero">3</div>
+                    <div class="etape-contenu">
+                        <div class="etape-titre">Le déploiement de logiciels</div>
+                        <div class="etape-texte">
+                            Les logiciels sont disponibles sous forme de <strong>paquets WAPT</strong> sur le serveur. Je sélectionne un ou plusieurs postes et je lance le déploiement. L'installation s'effectue <strong>silencieusement en arrière-plan</strong> sans interruption pour l'utilisateur. Si une mise à jour échoue à cause d'un conflit de version, je désinstalle manuellement l'ancienne version via prise en main à distance, puis je redéploie le paquet propre.
+                        </div>
+                        <img src="wapt_packets.png" alt="Console WAPT — paquets déployés" class="etape-img" onclick="openLightbox(this.src)">
+                        <div class="etape-img-caption">Console WAPT — liste des paquets logiciels déployés sur un poste</div>
+                    </div>
+                </div>
+
+                <!-- Étape 4 -->
+                <div class="etape">
+                    <div class="etape-numero">4</div>
+                    <div class="etape-contenu">
+                        <div class="etape-titre">Filtrage et ciblage du parc</div>
+                        <div class="etape-texte">
+                            Les filtres de la console permettent de cibler des postes selon des critères précis : <strong>version Windows, logiciel manquant, poste hors ligne, mise à jour en attente</strong>... C'est la base de toute intervention planifiée. Avant une tournée ou un déploiement, je filtre d'abord pour savoir exactement quels postes sont concernés.
+                        </div>
+                        <img src="wapt_filtre.png" alt="Console WAPT — filtres" class="etape-img" onclick="openLightbox(this.src)">
+                        <div class="etape-img-caption">Console WAPT — filtrage des postes par critères</div>
+                    </div>
+                </div>
+
+                <!-- PARTIE 2 -->
+                <div class="partie-title">Partie 2 — Procédure : prise en main à distance (SSH)</div>
+
+                <!-- Étape 5 -->
+                <div class="etape">
+                    <div class="etape-numero">5</div>
+                    <div class="etape-contenu">
+                        <div class="etape-titre">Vérifier que le poste est joignable</div>
+                        <div class="etape-texte">
+                            Avant toute prise en main, je vérifie le statut du poste dans la console WAPT. Un poste <strong>connecté</strong> affiche une pastille verte — la prise en main est possible. Un poste <strong>hors ligne</strong> affiche une pastille rouge — impossible d'intervenir à distance, un déplacement physique sera nécessaire.
+                        </div>
+                        <div class="etape-svg">
+                            <svg viewBox="0 0 340 80" xmlns="http://www.w3.org/2000/svg" width="100%" style="max-width:340px;">
+                                <rect x="10" y="15" width="140" height="50" rx="10" fill="#f3eeff" stroke="#a100f2" stroke-width="1.5"/>
+                                <circle cx="35" cy="40" r="8" fill="#69db7c"/>
+                                <text x="50" y="36" font-family="Poppins,sans-serif" font-size="10" font-weight="700" fill="#1f1f1f">Poste connecté</text>
+                                <text x="50" y="50" font-family="Poppins,sans-serif" font-size="9" fill="#555">Prise en main possible</text>
+
+                                <rect x="190" y="15" width="140" height="50" rx="10" fill="#fff0f0" stroke="#c0392b" stroke-width="1.5"/>
+                                <circle cx="215" cy="40" r="8" fill="#c0392b"/>
+                                <text x="230" y="36" font-family="Poppins,sans-serif" font-size="10" font-weight="700" fill="#1f1f1f">Poste hors ligne</text>
+                                <text x="230" y="50" font-family="Poppins,sans-serif" font-size="9" fill="#888">Déplacement requis</text>
+                            </svg>
+                        </div>
+                        <div class="etape-img-caption">Statut de connexion dans la console WAPT</div>
+                    </div>
+                </div>
+
+                <!-- Étape 6 -->
+                <div class="etape">
+                    <div class="etape-numero">6</div>
+                    <div class="etape-contenu">
+                        <div class="etape-titre">Contacter l'agent et obtenir l'accord</div>
+                        <div class="etape-texte">
+                            Je contacte l'agent par <strong>téléphone ou Zoom</strong> pour l'informer de la prise en main imminente. Une <strong>notification apparaît sur son écran</strong> et il doit l'accepter explicitement. Sans cet accord, aucune prise en main SSH n'est possible — c'est une règle stricte liée au RGPD et à la protection des données de santé traitées par les agents.
+                        </div>
+                        <div class="etape-svg">
+                            <svg viewBox="0 0 460 100" xmlns="http://www.w3.org/2000/svg" width="100%" style="max-width:460px;">
+                                <rect x="10" y="20" width="100" height="60" rx="10" fill="#0f1623" stroke="#bdb2ff" stroke-width="1.5"/>
+                                <text x="60" y="46" text-anchor="middle" font-family="Poppins,sans-serif" font-size="9" font-weight="700" fill="#bdb2ff">Technicien</text>
+                                <text x="60" y="60" text-anchor="middle" font-family="Poppins,sans-serif" font-size="8" fill="#aaa">Appel tél. / Zoom</text>
+
+                                <line x1="110" y1="50" x2="160" y2="50" stroke="#a100f2" stroke-width="1.5" stroke-dasharray="4,2"/>
+                                <polygon points="158,45 168,50 158,55" fill="#a100f2"/>
+                                <text x="139" y="43" text-anchor="middle" font-family="Poppins,sans-serif" font-size="8" fill="#a100f2">Demande</text>
+
+                                <rect x="168" y="20" width="120" height="60" rx="10" fill="#f3eeff" stroke="#a100f2" stroke-width="1.5"/>
+                                <text x="228" y="42" text-anchor="middle" font-family="Poppins,sans-serif" font-size="9" font-weight="700" fill="#a100f2">Notification</text>
+                                <text x="228" y="56" text-anchor="middle" font-family="Poppins,sans-serif" font-size="8" fill="#555">sur l'écran de l'agent</text>
+                                <text x="228" y="69" text-anchor="middle" font-family="Poppins,sans-serif" font-size="8" fill="#888">→ Il accepte</text>
+
+                                <line x1="288" y1="50" x2="338" y2="50" stroke="#69db7c" stroke-width="1.5"/>
+                                <polygon points="336,45 346,50 336,55" fill="#69db7c"/>
+                                <text x="317" y="43" text-anchor="middle" font-family="Poppins,sans-serif" font-size="8" fill="#2d9e47">Accord</text>
+
+                                <rect x="346" y="20" width="100" height="60" rx="10" fill="#f0fff4" stroke="#69db7c" stroke-width="1.5"/>
+                                <text x="396" y="46" text-anchor="middle" font-family="Poppins,sans-serif" font-size="9" font-weight="700" fill="#2d9e47">Connexion</text>
+                                <text x="396" y="60" text-anchor="middle" font-family="Poppins,sans-serif" font-size="8" fill="#555">autorisée</text>
+                            </svg>
+                        </div>
+                        <div class="etape-img-caption">Processus d'accord avant prise en main SSH</div>
+                    </div>
+                </div>
+
+                <!-- Étape 7 -->
+                <div class="etape">
+                    <div class="etape-numero">7</div>
+                    <div class="etape-contenu">
+                        <div class="etape-titre">Intervenir et résoudre l'incident</div>
+                        <div class="etape-texte">
+                            Une fois connecté, je vois le bureau de l'agent sur sa session et j'interviens comme si j'étais physiquement devant le poste. Exemples d'actions possibles depuis la session distante :
+                        </div>
+                        <img src="wapt_tache.png" alt="Console WAPT — tâches en cours" class="etape-img" onclick="openLightbox(this.src)">
+                        <div class="etape-img-caption">Console WAPT — suivi des tâches et interventions à distance</div>
+                        <div class="etape-svg" style="margin-top:14px;">
+                            <svg viewBox="0 0 440 120" xmlns="http://www.w3.org/2000/svg" width="100%" style="max-width:440px;">
+                                <rect x="10" y="10" width="190" height="45" rx="9" fill="#f3eeff" stroke="#a100f2" stroke-width="1.2"/>
+                                <text x="20" y="30" font-family="Poppins,sans-serif" font-size="9" font-weight="700" fill="#a100f2">🔍 Voir le message d'erreur exact</text>
+                                <text x="20" y="45" font-family="Poppins,sans-serif" font-size="8" fill="#888">et les journaux d'événements</text>
+
+                                <rect x="220" y="10" width="210" height="45" rx="9" fill="#f3eeff" stroke="#a100f2" stroke-width="1.2"/>
+                                <text x="230" y="30" font-family="Poppins,sans-serif" font-size="9" font-weight="700" fill="#a100f2">📦 Réinstaller un logiciel</text>
+                                <text x="230" y="45" font-family="Poppins,sans-serif" font-size="8" fill="#888">ou reconfigurer un pilote</text>
+
+                                <rect x="10" y="68" width="190" height="45" rx="9" fill="#f3eeff" stroke="#a100f2" stroke-width="1.2"/>
+                                <text x="20" y="88" font-family="Poppins,sans-serif" font-size="9" font-weight="700" fill="#a100f2">⚡ Exécuter des commandes</text>
+                                <text x="20" y="103" font-family="Poppins,sans-serif" font-size="8" fill="#888">CMD / PowerShell en administrateur</text>
+
+                                <rect x="220" y="68" width="210" height="45" rx="9" fill="#f3eeff" stroke="#a100f2" stroke-width="1.2"/>
+                                <text x="230" y="88" font-family="Poppins,sans-serif" font-size="9" font-weight="700" fill="#a100f2">🔄 Redémarrer des services</text>
+                                <text x="230" y="103" font-family="Poppins,sans-serif" font-size="8" fill="#888">Windows sans redémarrer le poste</text>
+                            </svg>
+                        </div>
+                        <div class="etape-img-caption">Actions possibles depuis une session de prise en main WAPT</div>
+                    </div>
+                </div>
+
+                <!-- Étape 8 -->
+                <div class="etape">
+                    <div class="etape-numero">8</div>
+                    <div class="etape-contenu">
+                        <div class="etape-titre">Clôturer la session et tracer dans GLPI</div>
+                        <div class="etape-texte">
+                            Une fois l'incident résolu, je ferme la session de prise en main et je rédige un <strong>compte-rendu détaillé dans le ticket GLPI</strong>. Il doit préciser le nom du poste, l'action réalisée et le résultat. Un compte-rendu complet permet à n'importe quel technicien de l'équipe de reprendre l'historique si l'incident se reproduit.
+                        </div>
+                        <div class="etape-svg">
+                            <svg viewBox="0 0 420 90" xmlns="http://www.w3.org/2000/svg" width="100%" style="max-width:420px;">
+                                <rect x="10" y="15" width="80" height="60" rx="9" fill="#0f1623" stroke="#bdb2ff" stroke-width="1.5"/>
+                                <text x="50" y="40" text-anchor="middle" font-family="Poppins,sans-serif" font-size="9" font-weight="700" fill="#bdb2ff">1. Fermer</text>
+                                <text x="50" y="54" text-anchor="middle" font-family="Poppins,sans-serif" font-size="8" fill="#aaa">la session</text>
+                                <text x="50" y="66" text-anchor="middle" font-family="Poppins,sans-serif" font-size="8" fill="#777">WAPT</text>
+
+                                <polygon points="96,45 106,45 101,53" fill="#a100f2"/>
+                                <line x1="90" y1="45" x2="106" y2="45" stroke="#a100f2" stroke-width="1.5"/>
+
+                                <rect x="108" y="15" width="90" height="60" rx="9" fill="#0f1623" stroke="#bdb2ff" stroke-width="1.5"/>
+                                <text x="153" y="40" text-anchor="middle" font-family="Poppins,sans-serif" font-size="9" font-weight="700" fill="#bdb2ff">2. Rédiger</text>
+                                <text x="153" y="54" text-anchor="middle" font-family="Poppins,sans-serif" font-size="8" fill="#aaa">compte-rendu</text>
+                                <text x="153" y="66" text-anchor="middle" font-family="Poppins,sans-serif" font-size="8" fill="#777">dans GLPI</text>
+
+                                <polygon points="204,45 214,45 209,53" fill="#a100f2"/>
+                                <line x1="198" y1="45" x2="214" y2="45" stroke="#a100f2" stroke-width="1.5"/>
+
+                                <rect x="216" y="15" width="90" height="60" rx="9" fill="#0f1623" stroke="#bdb2ff" stroke-width="1.5"/>
+                                <text x="261" y="40" text-anchor="middle" font-family="Poppins,sans-serif" font-size="9" font-weight="700" fill="#bdb2ff">3. Passer</text>
+                                <text x="261" y="54" text-anchor="middle" font-family="Poppins,sans-serif" font-size="8" fill="#aaa">ticket en</text>
+                                <text x="261" y="66" text-anchor="middle" font-family="Poppins,sans-serif" font-size="8" fill="#777">"Résolu"</text>
+
+                                <polygon points="312,45 322,45 317,53" fill="#69db7c"/>
+                                <line x1="306" y1="45" x2="322" y2="45" stroke="#69db7c" stroke-width="1.5"/>
+
+                                <rect x="324" y="15" width="86" height="60" rx="9" fill="#f0fff4" stroke="#69db7c" stroke-width="1.5"/>
+                                <text x="367" y="38" text-anchor="middle" font-family="Poppins,sans-serif" font-size="9" font-weight="700" fill="#2d9e47">4. Validation</text>
+                                <text x="367" y="52" text-anchor="middle" font-family="Poppins,sans-serif" font-size="8" fill="#555">48h contestation</text>
+                                <text x="367" y="66" text-anchor="middle" font-family="Poppins,sans-serif" font-size="8" fill="#888">→ Clôture</text>
+                            </svg>
+                        </div>
+                        <div class="etape-img-caption">Processus de clôture d'un ticket après prise en main</div>
+                    </div>
+                </div>
+
+                <!-- PARTIE 3 -->
+                <div class="partie-title">Partie 3 — Sécurité & RGPD</div>
+
+                <div class="etape">
+                    <div class="etape-numero">9</div>
+                    <div class="etape-contenu">
+                        <div class="etape-titre">Les règles impératives à respecter</div>
+                        <div class="etape-texte">
+                            La CPAM traite des <strong>données de santé sensibles</strong>. Chaque intervention via WAPT est encadrée par des règles strictes conformes au RGPD et aux directives de la CNIL. En tant que technicien N1/N2, mes droits sur la console WAPT sont limités à la prise en main, au déploiement de paquets validés et à la lecture de l'inventaire — la création de paquets et l'administration du serveur sont réservées aux administrateurs système.
+                        </div>
+                        <div class="rgpd-grid">
+                            <div class="rgpd-item">
+                                <strong>🚫 Accord préalable obligatoire</strong>
+                                Ne jamais prendre la main en SSH sans que l'agent ait explicitement accepté la notification
+                            </div>
+                            <div class="rgpd-item">
+                                <strong>👁️ Données de santé visibles</strong>
+                                Fermer immédiatement la session si des données personnelles d'assurés apparaissent à l'écran
+                            </div>
+                            <div class="rgpd-item">
+                                <strong>📋 Traçabilité systématique</strong>
+                                Toute session distante doit être associée à un ticket GLPI valide et documentée dans le compte-rendu
+                            </div>
+                            <div class="rgpd-item">
+                                <strong>🔒 Fichiers personnels intouchables</strong>
+                                Ne jamais consulter les fichiers personnels de l'agent, même en cas d'incident sur son poste
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+        <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+        <img id="lightbox-img" src="" alt="Agrandissement">
+    </div>
+
+    <footer class="footer">
+        <p>Copyright © 2026. All rights reserved</p>
+        <p>Thomas VITI - Portfolio BTS SIO (SISR) - Session 2025 - 2026</p>
+    </footer>
+
+    <script>
+        function openLightbox(src) {
+            document.getElementById('lightbox-img').src = src;
+            document.getElementById('lightbox').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        document.addEventListener('keydown', e => {
+            if (e.key === 'Escape') closeLightbox();
+        });
+
+        window.addEventListener('scroll', () => {
+            document.getElementById('topbar').classList.toggle('scrolled', window.scrollY > 50);
+        });
+
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+        }, { threshold: 0.05 });
+        document.querySelectorAll('.reveal').forEach(r => observer.observe(r));
+    </script>
+</body>
+</html>

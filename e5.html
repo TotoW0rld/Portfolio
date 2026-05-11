@@ -79,9 +79,7 @@
             transform: translateY(-2px);
         }
 
-        .btn-doc:hover svg {
-            transform: scale(1.1);
-        }
+        .btn-doc:hover svg { transform: scale(1.1); }
 
         /* === TAGS COLORÉS PAR CONTEXTE === */
         .tag-entreprise {
@@ -238,9 +236,7 @@
 
         .synthese-modal-close:hover { background: #7b00c0; transform: scale(1.1); }
 
-        .projet-card.phare .projet-header {
-            border-radius: 0;
-        }
+        .projet-card.phare .projet-header { border-radius: 0; }
 
         /* === DOUBLE BOUTON === */
         .btn-doc-group {
@@ -332,7 +328,7 @@
             <div class="synthese-modal-box">
                 <button class="synthese-modal-close" onclick="closeSyntheseModal()">✕</button>
                 <iframe src="Annexe-6-1-Tableau-de-synthese-Epreuve-E4-BTS-SIO-2022__2_.pdf#zoom=page-width"
-                    class="synthese-iframe" title="Tableau de synthèse E4 — Thomas VITI"
+                    class="synthese-iframe" title="Tableau de synthèse E5 — Thomas VITI"
                     style="width:100%; height:100%; border:none; display:block;"></iframe>
             </div>
         </div>
@@ -425,7 +421,7 @@
 
         <div class="projets-grid">
 
-            <!-- PROJET 01 — WAPT (remplace Création d'outils) -->
+            <!-- PROJET 01 — WAPT -->
             <div class="projet-card reveal">
                 <div class="projet-header">
                     <p class="projet-numero">Projet 01</p>
@@ -439,10 +435,10 @@
                     </div>
                     <p class="projet-periode">📅 08/11/2024 — 31/08/2025</p>
                     <p class="projet-description">
-                        Mise en place et exploitation de WAPT (Web Application Packaging Tool)
-                        pour automatiser le déploiement de logiciels et la maintenance du parc
-                        informatique. Prise en main à distance, création de paquets, gestion
-                        des mises à jour et supervision du parc multi-sites.
+                        Exploitation quotidienne de WAPT pour gérer et maintenir à distance
+                        le parc informatique de la CPAM. Inventaire du parc, prise en main
+                        à distance (SSH / RDP), déploiement silencieux de logiciels
+                        et supervision multi-sites.
                     </p>
                     <div class="projet-competences">
                         <h4>Compétences mobilisées</h4>
@@ -453,10 +449,16 @@
                             <span class="comp-item">Mettre à disposition un service informatique</span>
                         </div>
                     </div>
-                    <a href="documentation_wapt.pdf" target="_blank" rel="noopener noreferrer" class="btn-doc">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
-                        Documentation
-                    </a>
+                    <div class="btn-doc-group">
+                        <a href="documentation_wapt.pdf" target="_blank" rel="noopener noreferrer" class="btn-doc btn-doc-half">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+                            Documentation
+                        </a>
+                        <a href="wapt.html" class="btn-doc btn-doc-half btn-doc-primary">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 8 16 12 12 16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+                            Voir le projet
+                        </a>
+                    </div>
                 </div>
             </div>
 
